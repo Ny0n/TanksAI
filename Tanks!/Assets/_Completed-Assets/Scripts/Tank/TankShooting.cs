@@ -12,6 +12,8 @@ namespace Complete
         public AudioClip m_ChargingClip;            // Audio that plays when each shot is charging up.
         public AudioClip m_FireClip;                // Audio that plays when each shot is fired.
         public float m_MinLaunchForce = 15f;        // The force given to the shell if the fire button is not held.
+        public float m_ShotCooldown = 0.2f;
+        private float _ShotTimer = 0;
 
 
         private string m_FireButton;                // The input axis that is used for launching shells.
@@ -36,8 +38,8 @@ namespace Complete
         private void Update ()
         {
             // The slider should have a default value of the minimum launch force.
-
-            if (Input.GetButtonDown (m_FireButton))
+            
+            if (_ShotTimer <= 0 && Input.GetButtonDown (m_FireButton))
             {
                 // ... reset the fired flag and reset the launch force.
                 m_Fired = false;
@@ -47,7 +49,11 @@ namespace Complete
                 m_ShootingAudio.clip = m_ChargingClip;
                 m_ShootingAudio.Play ();
                 // ... launch the shell.
+                _ShotTimer = m_ShotCooldown;
                 Fire ();
+            }else if (_ShotTimer > 0)
+            {
+                _ShotTimer -= Time.deltaTime;
             }
         }
 

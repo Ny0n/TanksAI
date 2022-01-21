@@ -12,7 +12,7 @@ public class NodeGrid : MonoBehaviour
     public LayerMask UnwalkableLayer;
     public Vector2 GridSize;
     public float NodeRadius;
-    private Node[,] grid;
+    public Node[,] grid;
     
     private float _nodeDiameter;
     private int _nodeNumberX, _nodeNumberY;
@@ -60,11 +60,10 @@ public class NodeGrid : MonoBehaviour
         {
             for (int j = -1; j <= 1; j++)
             {
-                if(x + i < 0 || x + i >= _nodeNumberX || y + j < 0 || y + j >= _nodeNumberY)
+                if((x + i < 0 || x + i >= _nodeNumberX) || (y + j < 0 || y + j >= _nodeNumberY))
                     continue;
 
-                Node neighbour = grid[x + i, y + j];
-                if(neighbour != node)
+                if(i != 0 && j != 0)
                 {
                     node.NeighbourIndex.Add((x+i, y+j));
                 }

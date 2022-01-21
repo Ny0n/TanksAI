@@ -17,15 +17,9 @@ public class NodeGrid : MonoBehaviour
     private float _nodeDiameter;
     private int _nodeNumberX, _nodeNumberY;
 
-    public int SeparateTask;
-
-    private Stopwatch _stopwatch;
-
     // Start is called before the first frame update
     void Start()
     {
-        _stopwatch = new Stopwatch();
-        
         _nodeDiameter = NodeRadius * 2;
         _nodeNumberX = Mathf.RoundToInt(GridSize.x / _nodeDiameter);
         _nodeNumberY = Mathf.RoundToInt(GridSize.y / _nodeDiameter);
@@ -40,11 +34,8 @@ public class NodeGrid : MonoBehaviour
     
     IEnumerator CreateGrid()
     {
-        _stopwatch.Start();
         grid = new Node[_nodeNumberX, _nodeNumberY];
-        
-        Debug.Log($"start grid : {_stopwatch.Elapsed}");
-        
+
         Vector3 worldBottomLeft = transform.position - Vector3.right * GridSize.x / 2 - Vector3.forward * GridSize.y / 2;
         
         for (int i = 0; i < _nodeNumberX; i++)
@@ -61,8 +52,6 @@ public class NodeGrid : MonoBehaviour
             }
             yield return null;
         }
-
-        Debug.Log($"grid end : {_stopwatch.Elapsed}");
     }
 
     IEnumerator SetupNeighbour(Node node, int x, int y)

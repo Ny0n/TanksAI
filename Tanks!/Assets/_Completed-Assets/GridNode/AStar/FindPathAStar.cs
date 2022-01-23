@@ -7,6 +7,12 @@ public class FindPathAStar : MonoBehaviour
 {
     private NodeGrid _nodeGrid;
 
+
+    public Transform startPos;
+    public Transform targetPos;
+
+    public List<Node> Path = new List<Node>();
+
     private void Awake()
     {
         _nodeGrid = GetComponent<NodeGrid>();
@@ -21,6 +27,13 @@ public class FindPathAStar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (_nodeGrid.grid != null)
+        {
+            Debug.Log("Search");
+            SearchPath(startPos.position, targetPos.position);
+            Debug.Log(Path.Count);
+        }
         
     }
 
@@ -36,22 +49,25 @@ public class FindPathAStar : MonoBehaviour
 
         while (openedNode.Count > 0)
         {
+            Debug.Log("Do while");
             Node currentNode = FindNodeLowestFCost(openedNode);
             closedNode.Add(currentNode);
             openedNode.Remove(currentNode);
 
             if (currentNode == goalNode)
-                return;
-
-            foreach (var nodeIndex in currentNode.NeighbourIndex)
             {
-                Node neighbour = _nodeGrid.grid[nodeIndex.X, nodeIndex.Y];
+                Path = RetracePath(startNode, goalNode);
+                return;
+            }
+
+            foreach (var neighbourIndex in currentNode.NeighbourIndex)
+            {
+                Node neighbour = _nodeGrid.grid[neighbourIndex.X, neighbourIndex.Y];
+                
                 if(!neighbour.Walkable || closedNode.Contains(neighbour))
                 {
                     continue;
                 }
-
-
                 int newNeighbourFCost = currentNode.GCost + DistBtwNode(currentNode, neighbour);
                 
                 if (newNeighbourFCost < neighbour.GCost || !openedNode.Contains(neighbour))
@@ -66,11 +82,20 @@ public class FindPathAStar : MonoBehaviour
                 }
             }
         }
+
+        Debug.Log("Not found");
     }
 
     public List<Node> RetracePath(Node startNode, Node targetNode)
     {
-        return null;
+        List<Node> NodePath = new List<Node>();
+        if (targetNode != startNode)
+        {
+            NodePath.AddRange(RetracePath(startNode, targetNode.parentNode));
+        }
+        NodePath.Add(targetNode);
+        
+        return NodePath;
     }
 
     //not optimized
@@ -91,11 +116,35 @@ public class FindPathAStar : MonoBehaviour
 
     public int DistBtwNode(Node start, Node goal)
     {
-        int yAxis =Mathf.RoundToInt(Mathf.Abs(start.NodePosition.z - goal.NodePosition.z));
-        int xAxis =Mathf.RoundToInt(Mathf.Abs(start.NodePosition.x - goal.NodePosition.x));
+        int yAxis =Mathf.Abs(start.nodeIndex.Y - goal.nodeIndex.Y);
+        int xAxis =Mathf.Abs(start.nodeIndex.X - goal.nodeIndex.X);
 
-        if (xAxis > yAxis)
+        if ( xAxis > yAxis)
             return 14 * yAxis + 10 * (xAxis - yAxis);
         return 14 * xAxis + 10 * (yAxis - xAxis);
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        if(_nodeGrid.grid != null)
+        {
+            Gizmos.color = Color.yellow;
+            Node targetN = _nodeGrid.NodeFromWorldPosition(targetPos.position);
+            Gizmos.DrawCube(targetN.NodePosition, new Vector3(_nodeGrid._nodeDiameter, 2, _nodeGrid._nodeDiameter));
+
+            Gizmos.color = Color.green;
+            Node startN = _nodeGrid.NodeFromWorldPosition(startPos.position);
+            Gizmos.DrawCube(startN.NodePosition, new Vector3(_nodeGrid._nodeDiameter, 2, _nodeGrid._nodeDiameter));
+        }
+        
+        if (Path.Count > 0)
+        {
+            Gizmos.color = Color.blue;
+            foreach (var node in Path)
+            {
+                Gizmos.DrawCube(node.NodePosition, new Vector3(_nodeGrid._nodeDiameter, 2,_nodeGrid._nodeDiameter ));
+            }
+        }
     }
 }

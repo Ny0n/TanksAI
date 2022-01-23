@@ -14,7 +14,7 @@ public class NodeGrid : MonoBehaviour
     public float NodeRadius;
     public Node[,] grid;
     
-    private float _nodeDiameter;
+    public float _nodeDiameter;
     private int _nodeNumberX, _nodeNumberY;
 
     // Start is called before the first frame update
@@ -47,7 +47,7 @@ public class NodeGrid : MonoBehaviour
 
                 bool walkable = !(Physics.CheckSphere(worldPoint, NodeRadius, UnwalkableLayer));
 
-                grid[i, j] = new Node(walkable, worldPoint);
+                grid[i, j] = new Node(walkable, worldPoint, i, j);
                 StartCoroutine(SetupNeighbour(grid[i, j],i , j));
             }
             yield return null;
@@ -60,16 +60,44 @@ public class NodeGrid : MonoBehaviour
         {
             for (int j = -1; j <= 1; j++)
             {
-                if((x + i < 0 || x + i >= _nodeNumberX) || (y + j < 0 || y + j >= _nodeNumberY))
+                
+                int neighX = x + i;
+                int neighY = y + j;
+                
+                if(i == 0 & j == 0)
                     continue;
-
-                if(i != 0 && j != 0)
+                
+                if((neighX >= 0 && neighX < _nodeNumberX) && (neighY >= 0 && neighY < _nodeNumberY))
                 {
                     node.NeighbourIndex.Add((x+i, y+j));
                 }
             }
             yield return null;
         }
+    }
+    
+    public List<Node> GetNeighbour(Node node)
+    {
+        List<Node> neighbours = new List<Node>();
+
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                int neighX = node.nodeIndex.X + i;
+                int neighY = node.nodeIndex.Y + j;
+                
+                if(i == 0 & j == 0)
+                    continue;
+
+                if((neighX >= 0 && neighX < _nodeNumberX) && (neighY >= 0 && neighY < _nodeNumberY))
+                {
+                    neighbours.Add(grid[neighX, neighY]);
+                }
+            }
+        }
+
+        return neighbours;
     }
 
     public Node NodeFromWorldPosition(Vector3 worldPosition)
@@ -116,13 +144,13 @@ public class NodeGrid : MonoBehaviour
                 if (!node.Walkable)
                 {
                     Gizmos.color = Color.red;
+                    Gizmos.DrawWireCube(node.NodePosition, new Vector3(_nodeDiameter, 0.5f, _nodeDiameter));
                 }
                 else
                 {
                     Gizmos.color = Color.green;
                 }
                 
-                Gizmos.DrawWireCube(node.NodePosition, new Vector3(_nodeDiameter, 0.5f, _nodeDiameter));
 
             }
         }

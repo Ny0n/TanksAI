@@ -48,29 +48,6 @@ public class NodeGrid : MonoBehaviour
                 bool walkable = !(Physics.CheckSphere(worldPoint, NodeRadius, UnwalkableLayer));
 
                 grid[i, j] = new Node(walkable, worldPoint, i, j);
-                StartCoroutine(SetupNeighbour(grid[i, j],i , j));
-            }
-            yield return null;
-        }
-    }
-
-    IEnumerator SetupNeighbour(Node node, int x, int y)
-    {
-        for (int i = -1; i <= 1; i++)
-        {
-            for (int j = -1; j <= 1; j++)
-            {
-                
-                int neighX = x + i;
-                int neighY = y + j;
-                
-                if(i == 0 & j == 0)
-                    continue;
-                
-                if((neighX >= 0 && neighX < _nodeNumberX) && (neighY >= 0 && neighY < _nodeNumberY))
-                {
-                    node.NeighbourIndex.Add((x+i, y+j));
-                }
             }
             yield return null;
         }
@@ -129,18 +106,6 @@ public class NodeGrid : MonoBehaviour
                 if(node == null)
                     continue;
                 
-                if (node == playerNode)
-                {
-                    Gizmos.color = Color.green;
-                    Gizmos.DrawWireCube(node.NodePosition, new Vector3(_nodeDiameter, 0.5f, _nodeDiameter));
-                    
-                    foreach (var neigbour in node.NeighbourIndex)
-                    {
-                        Node nodeTemp = grid[neigbour.X, neigbour.Y];
-                        Gizmos.color = Color.yellow;
-                        Gizmos.DrawWireCube(nodeTemp.NodePosition, Vector3.one * _nodeDiameter);
-                    }
-                }
                 if (!node.Walkable)
                 {
                     Gizmos.color = Color.red;

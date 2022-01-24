@@ -125,15 +125,21 @@ public class FindPathAStar : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(_nodeGrid.grid != null)
+        if(_nodeGrid != null)
         {
-            Gizmos.color = Color.yellow;
-            Node targetN = _nodeGrid.NodeFromWorldPosition(targetPos.position);
-            Gizmos.DrawCube(targetN.NodePosition, new Vector3(_nodeGrid._nodeDiameter, 2, _nodeGrid._nodeDiameter));
+            if (_nodeGrid.grid != null)
+            {
+                Gizmos.color = Color.yellow;
+                Node targetN = _nodeGrid.NodeFromWorldPosition(targetPos.position);
+                if(targetN != null)
+                    Gizmos.DrawCube(targetN.NodePosition, new Vector3(_nodeGrid._nodeDiameter, 2, _nodeGrid._nodeDiameter));
 
-            Gizmos.color = Color.green;
-            Node startN = _nodeGrid.NodeFromWorldPosition(startPos.position);
-            Gizmos.DrawCube(startN.NodePosition, new Vector3(_nodeGrid._nodeDiameter, 2, _nodeGrid._nodeDiameter));
+                Gizmos.color = Color.green;
+                Node startN = _nodeGrid.NodeFromWorldPosition(startPos.position);
+                
+                if(startN != null)
+                    Gizmos.DrawCube(startN.NodePosition, new Vector3(_nodeGrid._nodeDiameter, 2, _nodeGrid._nodeDiameter));
+            } 
         }
         
         if (Path.Count > 0)

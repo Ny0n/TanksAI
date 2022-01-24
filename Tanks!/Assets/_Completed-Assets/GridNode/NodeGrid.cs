@@ -100,7 +100,6 @@ public class NodeGrid : MonoBehaviour
 
         if(grid != null)
         {
-            Node playerNode = NodeFromWorldPosition(playerPos.position);
             foreach (var node in grid)
             {
                 if(node == null)
@@ -115,8 +114,6 @@ public class NodeGrid : MonoBehaviour
                 {
                     Gizmos.color = Color.green;
                 }
-                
-
             }
         }
     }

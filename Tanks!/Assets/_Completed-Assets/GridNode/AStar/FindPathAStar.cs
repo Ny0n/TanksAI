@@ -28,13 +28,12 @@ public class FindPathAStar : MonoBehaviour
     void Update()
     {
 
-        if (_nodeGrid.grid != null)
+        if (Input.GetKeyDown(KeyCode.A))
         {
             Debug.Log("Search");
             SearchPath(startPos.position, targetPos.position);
             Debug.Log(Path.Count);
         }
-        
     }
 
     public void SearchPath(Vector3 startPos, Vector3 goalPos)

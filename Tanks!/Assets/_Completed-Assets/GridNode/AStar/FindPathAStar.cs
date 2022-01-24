@@ -60,10 +60,8 @@ public class FindPathAStar : MonoBehaviour
                 return;
             }
 
-            foreach (var neighbourIndex in currentNode.NeighbourIndex)
+            foreach (var neighbour in _nodeGrid.GetNeighbour(currentNode))
             {
-                Node neighbour = _nodeGrid.grid[neighbourIndex.X, neighbourIndex.Y];
-                
                 if(!neighbour.Walkable || closedNode.Contains(neighbour))
                 {
                     continue;

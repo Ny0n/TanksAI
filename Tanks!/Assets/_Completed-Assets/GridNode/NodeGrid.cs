@@ -12,9 +12,9 @@ public class NodeGrid : MonoBehaviour
     public LayerMask UnwalkableLayer;
     public Vector2 GridSize;
     public float NodeRadius;
-    private Node[,] grid;
+    public Node[,] grid;
     
-    private float _nodeDiameter;
+    public float _nodeDiameter;
     private int _nodeNumberX, _nodeNumberY;
 
     // Start is called before the first frame update
@@ -47,30 +47,34 @@ public class NodeGrid : MonoBehaviour
 
                 bool walkable = !(Physics.CheckSphere(worldPoint, NodeRadius, UnwalkableLayer));
 
-                grid[i, j] = new Node(walkable, worldPoint);
-                StartCoroutine(SetupNeighbour(grid[i, j],i , j));
+                grid[i, j] = new Node(walkable, worldPoint, i, j);
             }
             yield return null;
         }
     }
-
-    IEnumerator SetupNeighbour(Node node, int x, int y)
+    
+    public List<Node> GetNeighbour(Node node)
     {
+        List<Node> neighbours = new List<Node>();
+
         for (int i = -1; i <= 1; i++)
         {
             for (int j = -1; j <= 1; j++)
             {
-                if(x + i < 0 || x + i >= _nodeNumberX || y + j < 0 || y + j >= _nodeNumberY)
+                int neighX = node.nodeIndex.X + i;
+                int neighY = node.nodeIndex.Y + j;
+                
+                if(i == 0 & j == 0)
                     continue;
 
-                Node neighbour = grid[x + i, y + j];
-                if(neighbour != node)
+                if((neighX >= 0 && neighX < _nodeNumberX) && (neighY >= 0 && neighY < _nodeNumberY))
                 {
-                    node.NeighbourIndex.Add((x+i, y+j));
+                    neighbours.Add(grid[neighX, neighY]);
                 }
             }
-            yield return null;
         }
+
+        return neighbours;
     }
 
     public Node NodeFromWorldPosition(Vector3 worldPosition)
@@ -102,28 +106,16 @@ public class NodeGrid : MonoBehaviour
                 if(node == null)
                     continue;
                 
-                if (node == playerNode)
-                {
-                    Gizmos.color = Color.green;
-                    Gizmos.DrawWireCube(node.NodePosition, new Vector3(_nodeDiameter, 0.5f, _nodeDiameter));
-                    
-                    foreach (var neigbour in node.NeighbourIndex)
-                    {
-                        Node nodeTemp = grid[neigbour.X, neigbour.Y];
-                        Gizmos.color = Color.yellow;
-                        Gizmos.DrawWireCube(nodeTemp.NodePosition, Vector3.one * _nodeDiameter);
-                    }
-                }
                 if (!node.Walkable)
                 {
                     Gizmos.color = Color.red;
+                    Gizmos.DrawWireCube(node.NodePosition, new Vector3(_nodeDiameter, 0.5f, _nodeDiameter));
                 }
                 else
                 {
                     Gizmos.color = Color.green;
                 }
                 
-                Gizmos.DrawWireCube(node.NodePosition, new Vector3(_nodeDiameter, 0.5f, _nodeDiameter));
 
             }
         }

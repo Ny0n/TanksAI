@@ -12,7 +12,12 @@ namespace BehaviourTree
 
         public Node.State Update()
         {
-            return rootNode.Update();
+            if (rootNode.state == Node.State.Running)
+            {
+                return rootNode.Update();
+            }
+
+            return treeState;
         }
     }
     

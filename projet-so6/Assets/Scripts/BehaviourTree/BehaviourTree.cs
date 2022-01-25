@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace BehaviourTree
+{
+    [CreateAssetMenu()]
+    public class BehaviourTree : ScriptableObject
+    {
+        public Node rootNode;
+        public Node.State treeState = Node.State.Running;
+
+        public Node.State Update()
+        {
+            return rootNode.Update();
+        }
+    }
+    
+}

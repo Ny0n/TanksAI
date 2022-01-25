@@ -4,105 +4,66 @@ using UnityEngine;
 
 public class NodeGrid : MonoBehaviour
 {
-    public Transform playerPos;
-    
     public LayerMask UnwalkableLayer;
-    public Vector2 GridSize;
-    public float NodeRadius;
-    public Node[,] grid;
+
+    [SerializeField] private NodeGridVariable NodeGridVariable;
     
     public float _nodeDiameter;
-    private int _nodeNumberX, _nodeNumberY;
 
     // Start is called before the first frame update
     void Start()
     {
-        _nodeDiameter = NodeRadius * 2;
-        _nodeNumberX = Mathf.RoundToInt(GridSize.x / _nodeDiameter);
-        _nodeNumberY = Mathf.RoundToInt(GridSize.y / _nodeDiameter);
+        _nodeDiameter = NodeGridVariable.NodeRadius * 2;
+        NodeGridVariable.NodeNumberX = Mathf.RoundToInt(NodeGridVariable.GridSize.x / _nodeDiameter);
+        NodeGridVariable.NodeNumberY = Mathf.RoundToInt(NodeGridVariable.GridSize.y / _nodeDiameter);
         StartCoroutine(CreateGrid());
     }
     
     IEnumerator CreateGrid()
     {
-        grid = new Node[_nodeNumberX, _nodeNumberY];
+        NodeGridVariable.GridNew = new List<SerializeList>(NodeGridVariable.NodeNumberX);
 
-        Vector3 worldBottomLeft = transform.position - Vector3.right * GridSize.x / 2 - Vector3.forward * GridSize.y / 2;
+        Vector3 worldBottomLeft = transform.position - Vector3.right * NodeGridVariable.GridSize.x / 2 - Vector3.forward * NodeGridVariable.GridSize.y / 2;
         
-        for (int i = 0; i < _nodeNumberX; i++)
+        for (int i = 0; i < NodeGridVariable.NodeNumberX; i++)
         {
-            for (int j = 0; j < _nodeNumberY; j++)
+            for (int j = 0; j < NodeGridVariable.NodeNumberY; j++)
             {
-                Vector3 worldPoint = worldBottomLeft + Vector3.right * (i * _nodeDiameter + NodeRadius) 
-                                                     + Vector3.forward * (j * _nodeDiameter + NodeRadius);
+                Vector3 worldPoint = worldBottomLeft + Vector3.right * (i * _nodeDiameter + NodeGridVariable.NodeRadius) 
+                                                     + Vector3.forward * (j * _nodeDiameter + NodeGridVariable.NodeRadius);
 
-                bool walkable = !(Physics.CheckSphere(worldPoint, NodeRadius, UnwalkableLayer));
+                bool walkable = !(Physics.CheckSphere(worldPoint, NodeGridVariable.NodeRadius, UnwalkableLayer));
 
-                grid[i, j] = new Node(walkable, worldPoint, i, j);
+                Debug.Log(NodeGridVariable.GridNew.Count);
+                if (NodeGridVariable.GridNew.Count <= i)
+                {
+                    Debug.Log("add list");
+                    NodeGridVariable.GridNew.Add(new SerializeList(NodeGridVariable.NodeNumberY));
+                }
+                NodeGridVariable.GridNew[i].NodeList.Add(new Node(walkable, worldPoint, i, j));
             }
             yield return null;
         }
-    }
-    
-    public List<Node> GetNeighbour(Node node)
-    {
-        List<Node> neighbours = new List<Node>();
-
-        for (int i = -1; i <= 1; i++)
-        {
-            for (int j = -1; j <= 1; j++)
-            {
-                int neighX = node.nodeIndex.X + i;
-                int neighY = node.nodeIndex.Y + j;
-                
-                if(i == 0 & j == 0)
-                    continue;
-
-                if((neighX >= 0 && neighX < _nodeNumberX) && (neighY >= 0 && neighY < _nodeNumberY))
-                {
-                    neighbours.Add(grid[neighX, neighY]);
-                }
-            }
-        }
-
-        return neighbours;
-    }
-
-    public Node NodeFromWorldPosition(Vector3 worldPosition)
-    {
-        float percentX = (worldPosition.x + GridSize.x/2) / GridSize.x;
-        float percentY = (worldPosition.z + GridSize.y/2) / GridSize.y;
-        
-        //this or use Mathf.Clamp01(percentX/Y) and always return a node
-        if (percentX > 1 || percentX < 0 || percentY > 1 || percentY < 0)
-            return null;
-
-        int XgridIndex = Mathf.RoundToInt(percentX * (_nodeNumberX - 1));
-        int YgridIndex = Mathf.RoundToInt(percentY * (_nodeNumberY - 1));
-        return grid[XgridIndex, YgridIndex];
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, new Vector3(GridSize.x,1,GridSize.y));
+        Gizmos.DrawWireCube(transform.position, new Vector3(NodeGridVariable.GridSize.x,1,NodeGridVariable.GridSize.y));
 
-        if (grid != null)
+        if (NodeGridVariable.GridNew != null)
         {
-            foreach (var node in grid)
+            foreach (var nodeList in NodeGridVariable.GridNew)
             {
-                if (node == null)
-                    continue;
-                
-                if (!node.Walkable)
-                {
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawWireCube(node.NodePosition, new Vector3(_nodeDiameter, 0.5f, _nodeDiameter));
-                }
-                else
-                {
-                    Gizmos.color = Color.green;
-                    Gizmos.DrawWireCube(node.NodePosition, new Vector3(_nodeDiameter, 0.5f, _nodeDiameter));
+                foreach(var node in nodeList.NodeList){
+                    if (node == null)
+                        continue;
+
+                    if (!node.Walkable)
+                    {
+                        Gizmos.color = Color.red;
+                        Gizmos.DrawWireCube(node.NodePosition, new Vector3(_nodeDiameter, 0.5f, _nodeDiameter));
+                    }
                 }
             }
         }

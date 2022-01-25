@@ -1,12 +1,16 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
+[Serializable]
 public class Node
 {
      public bool Walkable;
      public Vector3 NodePosition;
 
-     public (int X, int Y) nodeIndex;
-     
+     public int XIndex;
+     public int YIndex;
+
      //for AStar
      public int GCost { get; set; }
      public int HCost { get; set; }
@@ -18,12 +22,7 @@ public class Node
      {
           Walkable = walkable;
           NodePosition = nodePosition;
-          nodeIndex.X = X;
-          nodeIndex.Y = Y;
-     }
-
-     protected Node()
-     {
-          
+          XIndex = X;
+          YIndex = Y;
      }
 }

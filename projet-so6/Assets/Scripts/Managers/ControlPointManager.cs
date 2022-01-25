@@ -12,6 +12,7 @@ public class ControlPointManager : MonoBehaviour
      * 
      * */
     
+    [SerializeField] private FloatVariableSO _winPoints;
     [SerializeField] private TeamVariableSO _controllingTeam;
     [SerializeField] private BoolVariableSO _isSomeoneOnControlPoint;
     
@@ -21,37 +22,37 @@ public class ControlPointManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _controllingTeam.Value = default;
+        _isSomeoneOnControlPoint.Value = default;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (_controllingTeam.Value != null)
+        {
+            // TODO UI
+            _controllingTeam.Value.Points = Mathf.Min(_controllingTeam.Value.Points + _pointSpeed, _winPoints.Value);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Tank"))
             return;
+        ReliableOnTriggerExit.NotifyTriggerEnter(other, gameObject, OnTriggerExit);
 
         _controllingTeam.Value = other.GetComponent<TankTeam>().Team;
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (_controllingTeam.Value != null)
-        {
-            // TODO
-            _controllingTeam.Value.Points += _pointSpeed;
-        }
+        _isSomeoneOnControlPoint.Value = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Tank"))
             return;
-
+        ReliableOnTriggerExit.NotifyTriggerExit(other, gameObject);
+        
         _controllingTeam.Value = null;
+        _isSomeoneOnControlPoint.Value = false;
     }
 }

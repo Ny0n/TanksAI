@@ -640,7 +640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &575313009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1819,6 +1819,7 @@ MonoBehaviour:
   m_MessageText: {fileID: 102963701}
   tankPrefab: {fileID: 173472, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
   _teamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
+  _winningTeam: {fileID: 11400000, guid: a52255b41ff44e74aa1ea93c472a4125, type: 2}
 --- !u!4 &1304999366
 Transform:
   m_ObjectHideFlags: 0
@@ -2922,6 +2923,18 @@ PrefabInstance:
       value: -0.55
       objectReference: {fileID: 0}
     - target: {fileID: 7157144079320229610, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157144079320229610, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
+      propertyPath: m_Color.g
+      value: 0.0694667
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157144079320229610, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157144079320229610, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
       propertyPath: m_FillAmount
       value: 0
       objectReference: {fileID: 0}
@@ -2933,6 +2946,10 @@ PrefabInstance:
       propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
+      propertyPath: _winPoints
+      value: 
+      objectReference: {fileID: 11400000, guid: 72241f45926654f43802237b6c88a9f9, type: 2}
     - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
       propertyPath: _controllingTeam
       value: 

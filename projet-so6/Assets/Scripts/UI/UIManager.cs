@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
         
         // we update only the team that is in control of the point
         int index = _teamsList.Value.FindIndex(t => t.Equals(_controllingTeam.Value));
-        UpdateTeam(index);
+        UpdateTeam(index+1);
     }
 
     private void OnTeamsUpdated() // TODO link to teams modif
@@ -70,8 +70,9 @@ public class UIManager : MonoBehaviour
     private void UpdateTeam(int index) // 1-4
     {
         TeamSO team = null;
-        if (_teamsList.Value.Count <= index)
+        if (_teamsList.Value.Count >= index)
             team = _teamsList.Value[index-1];
+        
         UpdateTitle(team, _teamsUI[index-1]);
         UpdateBody(team, _teamsUI[index-1]);
     }
@@ -97,8 +98,8 @@ public class UIManager : MonoBehaviour
         }
         
         teamUI.body.text = String.Empty;
-        teamUI.body.text = ((team.Points / _winPoints.Value) * 100).ToString();
+        teamUI.body.text = ((team.Points / _winPoints.Value) * 100).ToString("F2") + "%";
         teamUI.body.text += "\n";
-        teamUI.body.text += "(" + team.Points + "/" + _winPoints.Value + ")";
+        teamUI.body.text += "(" + team.Points.ToString("F1") + "/" + _winPoints.Value + ")";
     }
 }

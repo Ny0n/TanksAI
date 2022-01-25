@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
     public GameObject tankPrefab;
     
     [SerializeField] private TeamsListSO _teamsList;
+    [SerializeField] private TeamVariableSO _winningTeam;
     private List<TankManager> _tanks;
-    private TeamSO _gameWinner;
 
     const float k_MaxDepenetrationVelocity = float.PositiveInfinity;
 
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
     {
         string message = string.Empty;
 
-        message = _gameWinner.Tanks[0].m_ColoredPlayerText + "Team " + _gameWinner.Name + " wins the game!";
+        message = "<color=#" + ColorUtility.ToHtmlStringRGB(_winningTeam.Value.Color) + ">" +  "Team " + _winningTeam.Value.Name + "</color>" + " wins the game!";
 
         return message;
     }

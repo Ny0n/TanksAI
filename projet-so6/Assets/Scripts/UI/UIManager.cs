@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TeamsListSO _teamsList;
     [SerializeField] private TeamVariableSO _controllingTeam;
-    [SerializeField] private BoolVariableSO _isSomeoneOnControlPoint;
+    [SerializeField] private BoolVariableSO _isControllingTeamOnPoint;
     [SerializeField] private FloatVariableSO _winPoints;
 
     [Serializable]
@@ -31,6 +31,33 @@ public class UIManager : MonoBehaviour
 
     private List<TeamUIElements> _teamsUI;
 
+    private int _controllingIndex;
+
+    private void OnEnable()
+    {
+        _controllingTeam.ValueChanged += OnControllingTeamUpdated;
+        _winPoints.ValueChanged += OnDataUpdated;
+    }
+
+    private void OnDisable()
+    {
+        _controllingTeam.ValueChanged -= OnControllingTeamUpdated;
+        _winPoints.ValueChanged -= OnDataUpdated;
+    }
+
+    private void OnDataUpdated()
+    {
+        UpdateTeams();
+    }
+
+    private void OnControllingTeamUpdated()
+    {
+        if (_controllingTeam.Value != null)
+            _controllingIndex = _teamsList.Value.FindIndex(t => t.Equals(_controllingTeam.Value));
+        else
+            _controllingIndex = 0;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,12 +73,11 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_isSomeoneOnControlPoint.Value)
+        if (!_isControllingTeamOnPoint.Value)
             return;
         
         // we update only the team that is in control of the point
-        int index = _teamsList.Value.FindIndex(t => t.Equals(_controllingTeam.Value));
-        UpdateTeam(index+1);
+        UpdateTeam(_controllingIndex+1);
     }
 
     private void OnTeamsUpdated() // TODO link to teams modif
@@ -69,6 +95,9 @@ public class UIManager : MonoBehaviour
 
     private void UpdateTeam(int index) // 1-4
     {
+        if (index < 1 || index > 4)
+            return;
+        
         TeamSO team = null;
         if (_teamsList.Value.Count >= index)
             team = _teamsList.Value[index-1];

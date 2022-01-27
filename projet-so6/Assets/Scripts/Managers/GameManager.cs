@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
                 team.Tanks.Add(tm);
             }
 
-            j = team.NbPlayers;
+            j += team.NbPlayers;
         }
     }
 

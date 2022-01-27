@@ -11,13 +11,15 @@ public class ObservableVariableSO<T> : ScriptableObject
     }
 
     public event System.Action ValueChanged;
+    
+    public void NotifyChange() => ValueChanged?.Invoke();
 
     public void SetValue(T value)
     {
         T oldValue = _value;
         _value = value;
         
-        if (!Equals(oldValue, _value) && ValueChanged != null)
-            ValueChanged.Invoke();
+        if (!Equals(oldValue, _value))
+            ValueChanged?.Invoke();
     }
 }

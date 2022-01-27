@@ -25,8 +25,10 @@ public class NodeGridVariable : ScriptableObject
     public Vector2 GridSize;
 
     public float NodeRadius;
+    
     public int NodeNumberX;
     public int NodeNumberY;
+    
 
     public List<Node> GetNeighbour(Node node)
     {
@@ -63,7 +65,6 @@ public class NodeGridVariable : ScriptableObject
 
         int XgridIndex = Mathf.RoundToInt(percentX * (NodeNumberX - 1));
         int YgridIndex = Mathf.RoundToInt(percentY * (NodeNumberY - 1));
-        Debug.Log(NodeNumberX);
         return GridNew[XgridIndex][YgridIndex];
     }
 }

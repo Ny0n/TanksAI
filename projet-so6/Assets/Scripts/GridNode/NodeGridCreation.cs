@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NodeGrid : MonoBehaviour
+public class NodeGridCreation : MonoBehaviour
 {
     public LayerMask UnwalkableLayer;
 
@@ -46,7 +46,7 @@ public class NodeGrid : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(transform.position, new Vector3(NodeGridVariable.GridSize.x,1,NodeGridVariable.GridSize.y));
@@ -67,5 +67,5 @@ public class NodeGrid : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }

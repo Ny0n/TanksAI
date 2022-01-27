@@ -12,7 +12,7 @@ public class Node
      public int YIndex;
 
      //for AStar
-     public int GCost { get; set; }
+     public int GCost { get; set; } //Dijkstra will use this
      public int HCost { get; set; }
      public int FCost => GCost + HCost;
 

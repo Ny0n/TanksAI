@@ -10,29 +10,33 @@ public class TankPathSystem : MonoBehaviour
 
     private List<Node> MyPath;
 
-    private Transform targetPos;
+    private Vector3 targetPos;
 
+    private RaycastHit m_HitInfo;
 
     // Start is called before the first frame update
     void Start()
     {
         MyPath = new List<Node>();
-        targetPos = GameObject.FindGameObjectWithTag("Target").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A)){
-            Debug.Log(NodeGrid.GridNew.Count);
-            if (NodeGrid.GridNew != null)
-                PathTank();
+        if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftShift))
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray.origin, ray.direction, out m_HitInfo))
+            {
+                targetPos = m_HitInfo.point;
+                PathTank(m_HitInfo.point);
+            }
         }
     }
 
-    async void PathTank()
+    async void PathTank(Vector3 target)
     {
-        MyPath = await SearchPathSystem.FindShortestPath(transform.position, targetPos.position);
+        MyPath = await SearchPathSystem.FindShortestPath(transform.position, target, NodeGrid);
     }
 
     private void OnDrawGizmos()
@@ -49,5 +53,9 @@ public class TankPathSystem : MonoBehaviour
                 Gizmos.DrawCube(Node.NodePosition, Vector3.one * NodeGrid.NodeRadius * 2);
             }
         }
+        
+        Gizmos.color = Color.green;
+        Node targetNode = NodeGrid.NodeFromWorldPosition(targetPos);
+        Gizmos.DrawCube(targetNode.NodePosition, new Vector3(NodeGrid.NodeRadius * 2, 4, NodeGrid.NodeRadius * 2));
     }
 }

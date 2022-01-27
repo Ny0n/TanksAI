@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 314bc65bd2986994bb356f9169b1b85d, type: 3}
-  m_Name: MainNodeGrid
+  m_Name: LargeNodeGrid
   m_EditorClassIdentifier: 
   GridNew:
   - NodeList:

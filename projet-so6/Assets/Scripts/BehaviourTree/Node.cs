@@ -13,8 +13,10 @@ namespace BehaviourTree
             Success
         }
 
-        public State state = State.Running;
-        public bool started = false;
+        [HideInInspector] public State state = State.Running;
+        [HideInInspector] public bool started = false;
+        [HideInInspector] public string guid;
+        [HideInInspector] public Vector2 position;
 
         public State Update()
         {
@@ -35,6 +37,10 @@ namespace BehaviourTree
             return state;
         }
 
+        public virtual Node Clone()
+        {
+            return Instantiate(this);
+        }
         protected abstract void OnStart();
         protected abstract void OnStop();
         protected abstract State OnUpdate();

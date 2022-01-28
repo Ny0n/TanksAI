@@ -7,18 +7,18 @@ using UnityEngine.Serialization;
 [Serializable]
 public class SerializeList
 {
-    public List<Node> NodeList;
-    public Node this[int Y] => NodeList[Y];
+    public List<NodeGrid> NodeList;
+    public NodeGrid this[int Y] => NodeList[Y];
 
     public SerializeList(int Y)
     {
-        NodeList = new List<Node>(Y);
+        NodeList = new List<NodeGrid>(Y);
     }
 }
 
 
 [CreateAssetMenu (menuName = "Variable/NodeGrid")]
-public class NodeGridVariable : ScriptableObject
+public class GridVariable : ScriptableObject
 {
     public List<SerializeList> GridNew;
 
@@ -30,16 +30,16 @@ public class NodeGridVariable : ScriptableObject
     public int NodeNumberY;
     
 
-    public List<Node> GetNeighbour(Node node)
+    public List<NodeGrid> GetNeighbour(NodeGrid nodeGrid)
     {
-        List<Node> neighbours = new List<Node>();
+        List<NodeGrid> neighbours = new List<NodeGrid>();
 
         for (int i = -1; i <= 1; i++)
         {
             for (int j = -1; j <= 1; j++)
             {
-                int neighX = node.XIndex + i;
-                int neighY = node.YIndex + j;
+                int neighX = nodeGrid.XIndex + i;
+                int neighY = nodeGrid.YIndex + j;
                 
                 if(i == 0 & j == 0)
                     continue;
@@ -53,7 +53,7 @@ public class NodeGridVariable : ScriptableObject
         return neighbours;
     }
     
-    public Node NodeFromWorldPosition(Vector3 worldPosition)
+    public NodeGrid NodeFromWorldPosition(Vector3 worldPosition)
     {
         float percentX = (worldPosition.x + GridSize.x/2) / GridSize.x;
         float percentY = (worldPosition.z + GridSize.y/2) / GridSize.y;

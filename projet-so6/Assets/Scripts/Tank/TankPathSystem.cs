@@ -6,12 +6,12 @@ using UnityEngine;
 public class TankPathSystem : MonoBehaviour
 {
     [SerializeField] private SearchPathSystem SearchPathSystem;
-    [SerializeField] private NodeGridVariable NodeGrid;
+    [SerializeField] private GridVariable grid;
     
     [SerializeField] private AnimationCurve TurnRateCurve;
     [SerializeField] private AnimationCurve MoveRateCurve;
 
-    private List<Node> MyPath;
+    private List<NodeGrid> MyPath;
     private Vector3 nextDestination;
 
     private TankMovement _tankMovement;
@@ -23,7 +23,7 @@ public class TankPathSystem : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        MyPath = new List<Node>();
+        MyPath = new List<NodeGrid>();
         _tankMovement = GetComponent<TankMovement>();
     }
 
@@ -52,7 +52,7 @@ public class TankPathSystem : MonoBehaviour
             {
                 MyPath.RemoveAt(0);
             }
-
+            
             Debug.DrawRay(transform.position, transform.forward, Color.red);
             Debug.DrawRay(transform.position, nextDestination - transform.position, Color.blue);
         }
@@ -66,7 +66,7 @@ public class TankPathSystem : MonoBehaviour
 
     async void PathTank(Vector3 target)
     {
-        MyPath = await SearchPathSystem.FindShortestPath(transform.position, target, NodeGrid);
+        MyPath = await SearchPathSystem.FindShortestPath(transform.position, target, grid);
     }
 
     private void OnDrawGizmos()
@@ -80,12 +80,12 @@ public class TankPathSystem : MonoBehaviour
                 
                 Gizmos.color = Color.cyan;
                 
-                Gizmos.DrawCube(Node.NodePosition, Vector3.one * NodeGrid.NodeRadius * 2);
+                Gizmos.DrawCube(Node.NodePosition, Vector3.one * grid.NodeRadius * 2);
             }
         }
         
         Gizmos.color = Color.green;
-        Node targetNode = NodeGrid.NodeFromWorldPosition(targetPos);
-        Gizmos.DrawCube(targetNode.NodePosition, new Vector3(NodeGrid.NodeRadius * 2, 4, NodeGrid.NodeRadius * 2));
+        NodeGrid targetNodeGrid = grid.NodeFromWorldPosition(targetPos);
+        Gizmos.DrawCube(targetNodeGrid.NodePosition, new Vector3(grid.NodeRadius * 2, 4, grid.NodeRadius * 2));
     }
 }

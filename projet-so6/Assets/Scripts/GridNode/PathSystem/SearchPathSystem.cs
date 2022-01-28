@@ -6,42 +6,42 @@ using UnityEngine;
 public abstract class SearchPathSystem : ScriptableObject
 {
     //used for Disjktra and AStar
-    public List<Node> Path = new List<Node>();
+    public List<NodeGrid> Path = new List<NodeGrid>();
 
-    public abstract Task<List<Node>> FindShortestPath(Vector3 startPos, Vector3 targetPos, NodeGridVariable nodeGridVariable);
+    public abstract Task<List<NodeGrid>> FindShortestPath(Vector3 startPos, Vector3 targetPos, GridVariable gridVariable);
     
     
-    public async Task<List<Node>> RetracePath(Node startNode, Node targetNode)
+    public async Task<List<NodeGrid>> RetracePath(NodeGrid startNodeGrid, NodeGrid targetNodeGrid)
     {
-        List<Node> NodePath = new List<Node>();
+        List<NodeGrid> NodePath = new List<NodeGrid>();
         
-        if (targetNode != startNode)
+        if (targetNodeGrid != startNodeGrid)
         {
-            NodePath.AddRange(await RetracePath(startNode, targetNode.parentNode));
+            NodePath.AddRange(await RetracePath(startNodeGrid, targetNodeGrid.parentNodeGrid));
         }
-        NodePath.Add(targetNode);
+        NodePath.Add(targetNodeGrid);
         
         return NodePath;
     }
     
     
     //not optimized
-    protected Node FindNodeLowestFCost(List<Node> NodesList)
+    protected NodeGrid FindNodeLowestFCost(List<NodeGrid> NodesList)
     {
-        Node nodeToReturn = NodesList[0];
+        NodeGrid nodeGridToReturn = NodesList[0];
 
         foreach (var node in NodesList)
         {
-            if (nodeToReturn.FCost > node.FCost || node.FCost == nodeToReturn.FCost && node.HCost < nodeToReturn.HCost)
+            if (nodeGridToReturn.FCost > node.FCost || node.FCost == nodeGridToReturn.FCost && node.HCost < nodeGridToReturn.HCost)
             {
-                nodeToReturn = node;
+                nodeGridToReturn = node;
             }
         }
 
-        return nodeToReturn;
+        return nodeGridToReturn;
     }
 
-    protected int DistBtwNode(Node start, Node goal)
+    protected int DistBtwNode(NodeGrid start, NodeGrid goal)
     {
         int yAxis = Mathf.Abs(start.YIndex - goal.YIndex);
         int xAxis = Mathf.Abs(start.XIndex - goal.XIndex);

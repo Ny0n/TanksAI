@@ -10626,7 +10626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SearchPathSystem: {fileID: 11400000, guid: 7857a098e8033f84b85446fb1281d516, type: 2}
-  NodeGrid: {fileID: 11400000, guid: a8287393d25229343a2807b85b018bd9, type: 2}
+  grid: {fileID: 11400000, guid: 1046713e6e2530d419b9354360aa41c4, type: 2}
   TurnRateCurve:
     serializedVersion: 2
     m_Curve:
@@ -10682,31 +10682,31 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.2
+      time: -45
       value: 0
-      inSlope: 83.3164
-      outSlope: 83.3164
+      inSlope: 0.0042964756
+      outSlope: 0.0042964756
       tangentMode: 0
       weightedMode: 3
       inWeight: 0
-      outWeight: 0.060975477
+      outWeight: 1
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.000055364493
+      outSlope: 0.00005669264
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.31201857
+      outWeight: 0.3047089
+    - serializedVersion: 3
+      time: 45
+      value: 0
+      inSlope: -0.0041953586
+      outSlope: -0.0041953586
       tangentMode: 0
       weightedMode: 3
       inWeight: 1
-      outWeight: 1
-    - serializedVersion: 3
-      time: 0.2
-      value: 0
-      inSlope: -283.20633
-      outSlope: -283.20633
-      tangentMode: 0
-      weightedMode: 3
-      inWeight: 0.018292591
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

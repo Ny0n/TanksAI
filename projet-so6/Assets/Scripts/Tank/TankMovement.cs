@@ -15,6 +15,9 @@ public class TankMovement : MonoBehaviour
     private Rigidbody m_Rigidbody;              // Reference used to move the tank.
     private float m_MovementInputValue;         // The current value of the movement input.
     private float m_TurnInputValue;             // The current value of the turn input.
+    public float MovementInputValue{set => m_MovementInputValue = value;}
+    public float TurnInputValue{set => m_TurnInputValue = value;}
+    
     private float m_OriginalPitch;              // The pitch of the audio source at the start of the scene.
     private ParticleSystem[] m_particleSystems; // References to all the particles systems used by the Tanks
 
@@ -67,8 +70,8 @@ public class TankMovement : MonoBehaviour
     private void Update()
     {
         // Store the value of both input axes.
-        m_MovementInputValue = Input.GetAxis(m_MovementAxisName);
-        m_TurnInputValue = Input.GetAxis(m_TurnAxisName);
+        //m_MovementInputValue = Input.GetAxis(m_MovementAxisName);
+        //m_TurnInputValue = Input.GetAxis(m_TurnAxisName);
 
         EngineAudio();
     }

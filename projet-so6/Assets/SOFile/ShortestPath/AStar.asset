@@ -13,4 +13,3 @@ MonoBehaviour:
   m_Name: AStar
   m_EditorClassIdentifier: 
   Path: []
-  NodeGridVariable: {fileID: 11400000, guid: a8287393d25229343a2807b85b018bd9, type: 2}

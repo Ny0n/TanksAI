@@ -13,4 +13,3 @@ MonoBehaviour:
   m_Name: Dijkstra
   m_EditorClassIdentifier: 
   Path: []
-  NodeGridVariable: {fileID: 0}

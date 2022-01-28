@@ -7,17 +7,24 @@ public class TankPathSystem : MonoBehaviour
 {
     [SerializeField] private SearchPathSystem SearchPathSystem;
     [SerializeField] private NodeGridVariable NodeGrid;
+    
+    [SerializeField] private AnimationCurve TurnRateCurve;
+    [SerializeField] private AnimationCurve MoveRateCurve;
 
     private List<Node> MyPath;
+    private Vector3 nextDestination;
+
+    private TankMovement _tankMovement;
 
     private Vector3 targetPos;
 
     private RaycastHit m_HitInfo;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         MyPath = new List<Node>();
+        _tankMovement = GetComponent<TankMovement>();
     }
 
     // Update is called once per frame
@@ -32,6 +39,29 @@ public class TankPathSystem : MonoBehaviour
                 PathTank(m_HitInfo.point);
             }
         }
+
+        //total mess juste to give me an idea
+        if (MyPath.Count > 0)
+        {
+            nextDestination = MyPath[0].NodePosition;
+            float angle = Vector3.SignedAngle(transform.forward, nextDestination - transform.position, Vector3.one);
+            _tankMovement.TurnInputValue = TurnRateCurve.Evaluate(angle);
+            _tankMovement.MovementInputValue = MoveRateCurve.Evaluate(angle);
+            
+            if (Vector3.SqrMagnitude(nextDestination - transform.position) < 0.1)
+            {
+                MyPath.RemoveAt(0);
+            }
+
+            Debug.DrawRay(transform.position, transform.forward, Color.red);
+            Debug.DrawRay(transform.position, nextDestination - transform.position, Color.blue);
+        }
+        else
+        {
+            _tankMovement.TurnInputValue = 0;
+            _tankMovement.MovementInputValue = 0;
+        }
+        
     }
 
     async void PathTank(Vector3 target)

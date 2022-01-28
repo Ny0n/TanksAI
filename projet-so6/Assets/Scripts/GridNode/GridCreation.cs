@@ -16,7 +16,11 @@ public class GridCreation : MonoBehaviour
         _nodeDiameter = gridVariable.NodeRadius * 2;
         gridVariable.NodeNumberX = Mathf.RoundToInt(gridVariable.GridSize.x / _nodeDiameter);
         gridVariable.NodeNumberY = Mathf.RoundToInt(gridVariable.GridSize.y / _nodeDiameter);
-        StartCoroutine(CreateGrid());
+        if (gridVariable.GridNew.Count == 0)
+        {
+
+            StartCoroutine(CreateGrid());
+        }
     }
     
     IEnumerator CreateGrid()
@@ -49,11 +53,11 @@ public class GridCreation : MonoBehaviour
     /*private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, new Vector3(NodeGridVariable.GridSize.x,1,NodeGridVariable.GridSize.y));
+        Gizmos.DrawWireCube(transform.position, new Vector3(gridVariable.GridSize.x,1,gridVariable.GridSize.y));
 
-        if (NodeGridVariable.GridNew != null)
+        if (gridVariable.GridNew != null)
         {
-            foreach (var nodeList in NodeGridVariable.GridNew)
+            foreach (var nodeList in gridVariable.GridNew)
             {
                 foreach(var node in nodeList.NodeList){
                     if (node == null)

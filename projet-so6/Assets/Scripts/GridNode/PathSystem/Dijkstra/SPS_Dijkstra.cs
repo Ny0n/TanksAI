@@ -7,7 +7,7 @@ using UnityEngine;
 public class SPS_Dijkstra : SearchPathSystem
 {
     
-    public override async Task<List<NodeGrid>> FindShortestPath(Vector3 startPos, Vector3 targetPos, GridVariable gridVariable)
+    public override async Task<List<Vector3>> FindShortestPath(Vector3 startPos, Vector3 targetPos, GridVariable gridVariable)
     {
         GridVariable gridInstance = Instantiate(gridVariable);
         

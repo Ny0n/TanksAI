@@ -8,18 +8,18 @@ public abstract class SearchPathSystem : ScriptableObject
     //used for Disjktra and AStar
     public List<NodeGrid> Path = new List<NodeGrid>();
 
-    public abstract Task<List<NodeGrid>> FindShortestPath(Vector3 startPos, Vector3 targetPos, GridVariable gridVariable);
+    public abstract Task<List<Vector3>> FindShortestPath(Vector3 startPos, Vector3 targetPos, GridVariable gridVariable);
     
     
-    public async Task<List<NodeGrid>> RetracePath(NodeGrid startNodeGrid, NodeGrid targetNodeGrid)
+    public async Task<List<Vector3>> RetracePath(NodeGrid startNodeGrid, NodeGrid targetNodeGrid)
     {
-        List<NodeGrid> NodePath = new List<NodeGrid>();
+        List<Vector3> NodePath = new List<Vector3>();
         
         if (targetNodeGrid != startNodeGrid)
         {
             NodePath.AddRange(await RetracePath(startNodeGrid, targetNodeGrid.parentNodeGrid));
         }
-        NodePath.Add(targetNodeGrid);
+        NodePath.Add(targetNodeGrid.NodePosition);
         
         return NodePath;
     }

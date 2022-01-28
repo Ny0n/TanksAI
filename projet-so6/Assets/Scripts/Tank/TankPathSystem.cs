@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TankPathSystem : MonoBehaviour
 {
@@ -10,8 +12,11 @@ public class TankPathSystem : MonoBehaviour
     
     [SerializeField] private AnimationCurve TurnRateCurve;
     [SerializeField] private AnimationCurve MoveRateCurve;
+    
+    
+    [SerializeField] private NavMeshAgent Agent;
 
-    private List<NodeGrid> MyPath;
+    private List<Vector3> MyPath;
     private Vector3 nextDestination;
 
     private TankMovement _tankMovement;
@@ -23,8 +28,14 @@ public class TankPathSystem : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        MyPath = new List<NodeGrid>();
+        MyPath = new List<Vector3>();
         _tankMovement = GetComponent<TankMovement>();
+    }
+
+    private void Start()
+    {
+        Agent.updatePosition = false;
+        Agent.updateRotation = false;
     }
 
     // Update is called once per frame
@@ -36,14 +47,28 @@ public class TankPathSystem : MonoBehaviour
             if (Physics.Raycast(ray.origin, ray.direction, out m_HitInfo))
             {
                 targetPos = m_HitInfo.point;
-                PathTank(m_HitInfo.point);
+                
+                //todo find better solution than removing the path system to switch on navmesh
+                if(SearchPathSystem != null)
+                {
+                    PathTank(targetPos);
+                }
+                else
+                {
+                    NavMeshPath pathMesh = new NavMeshPath();
+
+                    Agent.nextPosition = transform.position; //reset the agent next pos 
+                    Agent.CalculatePath(targetPos, pathMesh);
+
+                    MyPath = pathMesh.corners.ToList();
+                }
             }
         }
 
         //total mess juste to give me an idea
         if (MyPath.Count > 0)
         {
-            nextDestination = MyPath[0].NodePosition;
+            nextDestination = MyPath[0];
             float angle = Vector3.SignedAngle(transform.forward, nextDestination - transform.position, Vector3.one);
             _tankMovement.TurnInputValue = TurnRateCurve.Evaluate(angle);
             _tankMovement.MovementInputValue = MoveRateCurve.Evaluate(angle);
@@ -53,7 +78,6 @@ public class TankPathSystem : MonoBehaviour
                 MyPath.RemoveAt(0);
             }
             
-            Debug.DrawRay(transform.position, transform.forward, Color.red);
             Debug.DrawRay(transform.position, nextDestination - transform.position, Color.blue);
         }
         else
@@ -80,12 +104,8 @@ public class TankPathSystem : MonoBehaviour
                 
                 Gizmos.color = Color.cyan;
                 
-                Gizmos.DrawCube(Node.NodePosition, Vector3.one * grid.NodeRadius * 2);
+                Gizmos.DrawCube(Node, Vector3.one * grid.NodeRadius * 2);
             }
         }
-        
-        Gizmos.color = Color.green;
-        NodeGrid targetNodeGrid = grid.NodeFromWorldPosition(targetPos);
-        Gizmos.DrawCube(targetNodeGrid.NodePosition, new Vector3(grid.NodeRadius * 2, 4, grid.NodeRadius * 2));
     }
 }

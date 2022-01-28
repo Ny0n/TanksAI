@@ -341,7 +341,7 @@ MonoBehaviour:
   UnwalkableLayer:
     serializedVersion: 2
     m_Bits: 64
-  NodeGridVariable: {fileID: 11400000, guid: e93b381b556ae5d4d8b5826b0f1d3ca9, type: 2}
+  gridVariable: {fileID: 0}
   _nodeDiameter: 0
 --- !u!4 &503405740
 Transform:
@@ -1068,6 +1068,30 @@ PrefabInstance:
       propertyPath: m_LightmapParameters
       value: 
       objectReference: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 2851347891138514622, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
+      propertyPath: m_Size.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851347891138514622, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
+      propertyPath: m_Size.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851347891138514622, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
+      propertyPath: m_Size.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851347891138514622, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
+      propertyPath: m_VoxelSize
+      value: 0.23333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851347891138514622, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 5d72ace50b2656d46aba3470204ef2bd, type: 2}
+    - target: {fileID: 2851347891138514622, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
+      propertyPath: m_UseGeometry
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
 --- !u!1 &1282556331

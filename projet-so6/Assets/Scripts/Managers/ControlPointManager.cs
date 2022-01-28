@@ -19,9 +19,9 @@ public class ControlPointManager : MonoBehaviour
     [SerializeField] private TeamVariableSO _controllingTeam; // IA data #1
     [SerializeField] private BoolVariableSO _isControllingTeamOnPoint;
     
-    [SerializeField] private float _captureSpeed = 0.06f;
-    [SerializeField] private float _captureDropSpeed = 0.12f;
-    [SerializeField] private float _controlPointWinningSpeed = 0.02f;
+    [SerializeField] private float _captureSpeed = 20;
+    [SerializeField] private float _captureDropSpeed = 30;
+    [SerializeField] private float _controlPointWinningSpeed = 4;
     [SerializeField] private bool _dropCaptureInstant;
     
     [SerializeField] private GameObject _helipad;
@@ -79,7 +79,7 @@ public class ControlPointManager : MonoBehaviour
             if (!_dropCaptureInstant)
             {
                 // by default, when the team that was capturing left the point, after a specified cooldown, we start resetting the progress to 0
-                SetCaptureProgress(Mathf.Max(_capture.progress - _captureDropSpeed, 0));
+                SetCaptureProgress(Mathf.Max(_capture.progress - _captureDropSpeed * Time.deltaTime, 0));
             }
             else
             {
@@ -96,7 +96,7 @@ public class ControlPointManager : MonoBehaviour
         TeamSO team = _teamsOnPoint[0];
         if (_controllingTeam.Value == team) // if it's the controlling team, we give it points
         {
-            _controllingTeam.Value.Points = Mathf.Min(_controllingTeam.Value.Points + _controlPointWinningSpeed, _winPoints.Value);
+            _controllingTeam.Value.Points = Mathf.Min(_controllingTeam.Value.Points + _controlPointWinningSpeed * Time.deltaTime, _winPoints.Value);
         }
         else // if there are no controlling team or it's an other one, we start the capture
         {
@@ -108,7 +108,7 @@ public class ControlPointManager : MonoBehaviour
     {
         if (team == _capture.team)
         {
-            SetCaptureProgress(Mathf.Min(_capture.progress + _captureSpeed, 100));
+            SetCaptureProgress(Mathf.Min(_capture.progress + _captureSpeed * Time.deltaTime, 100));
         }
         else // if it's not the same team
         {

@@ -38,9 +38,9 @@ public class TankShooting : MonoBehaviour
     private void Fire()
     {
         // Create an instance of the shell and store a reference to it's rigidbody.
-        Rigidbody shellInstance =
-            Instantiate(m_Shell, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
+        Rigidbody shellInstance = Instantiate(m_Shell, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
 
+        // remove the shell's gravity
         shellInstance.useGravity = false;
 
         // Set the shell's velocity to the launch force in the fire position's forward direction.
@@ -51,5 +51,5 @@ public class TankShooting : MonoBehaviour
         m_ShootingAudio.Play();
     }
     
-    private string m_FireButton;                // The input axis that is used for launching shells.
+    private string m_FireButton; // The input axis that is used for launching shells.
 }

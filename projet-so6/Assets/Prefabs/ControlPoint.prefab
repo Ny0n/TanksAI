@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
+  m_Color: {r: 0, g: 0.07681465, b: 1, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 0
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 8967875540357254733}
   m_Layer: 0
   m_Name: ControlPoint
-  m_TagString: Untagged
+  m_TagString: ControlPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,7 @@ Transform:
   m_GameObject: {fileID: 6681102468023203291}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.69522, y: 0.69522, z: 0.69522}
+  m_LocalScale: {x: 1.0927467, y: 1.0927467, z: 1.0927467}
   m_Children:
   - {fileID: 6681102467030716889}
   - {fileID: 6681102467404430138}
@@ -179,6 +179,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d569e35ab796f6b4eb7e470064224c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _winPoints: {fileID: 11400000, guid: 72241f45926654f43802237b6c88a9f9, type: 2}
+  _captureDrop: {fileID: 11400000, guid: 09366ceb218b5f441b8e0c087f7419cc, type: 2}
+  _controllingTeam: {fileID: 11400000, guid: a52255b41ff44e74aa1ea93c472a4125, type: 2}
+  _isControllingTeamOnPoint: {fileID: 11400000, guid: b7d57f9307076eb4e99e99ffefedf381, type: 2}
+  _captureSpeed: 20
+  _captureDropSpeed: 30
+  _controlPointWinningSpeed: 4
+  _dropCaptureInstant: 0
+  _helipad: {fileID: 6681102468180797193}
+  _captureImage: {fileID: 7157144079320229610}
 --- !u!1 &7630286694350905912
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +374,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -960,7 +970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 614b6b69c0bbcd945bb2f83eb02a3436, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.46
+      value: -0.55
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 614b6b69c0bbcd945bb2f83eb02a3436, type: 3}
       propertyPath: m_LocalPosition.z
@@ -999,5 +1009,10 @@ PrefabInstance:
 --- !u!4 &6681102468180441897 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 614b6b69c0bbcd945bb2f83eb02a3436, type: 3}
+  m_PrefabInstance: {fileID: 6681102468180828585}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6681102468180797193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 614b6b69c0bbcd945bb2f83eb02a3436, type: 3}
   m_PrefabInstance: {fileID: 6681102468180828585}
   m_PrefabAsset: {fileID: 0}

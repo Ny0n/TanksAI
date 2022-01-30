@@ -19,13 +19,13 @@ public class TankShooting : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown(m_FireButton))
+        /*if (Input.GetButtonDown(m_FireButton))
         {
             TryToFire();
-        }
+        }*/
     }
 
-    private void TryToFire()
+    public void TryToFire()
     {
         // check the cooldown
         if (_shootingCooldown.IsCooldownDone())

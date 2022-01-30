@@ -25,4 +25,8 @@ public class NodeGrid
           XIndex = X;
           YIndex = Y;
      }
+
+     public NodeGrid()
+     {
+     }
 }

@@ -26,8 +26,9 @@ public class GridVariable : ScriptableObject
 
     public float NodeRadius;
     
-    public int NodeNumberX;
-    public int NodeNumberY;
+    
+    [HideInInspector] public int NodeNumberX;
+    [HideInInspector] public int NodeNumberY;
     
 
     public List<NodeGrid> GetNeighbour(NodeGrid nodeGrid)

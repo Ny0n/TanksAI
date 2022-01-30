@@ -10309,8 +10309,9 @@ GameObject:
   - component: {fileID: 11443146}
   - component: {fileID: 11409376}
   - component: {fileID: 11488788}
-  - component: {fileID: 2369013990477575668}
   - component: {fileID: -5438524811390777819}
+  - component: {fileID: 2523414829925996835}
+  - component: {fileID: -6914421136305744253}
   m_Layer: 9
   m_Name: CompleteTank
   m_TagString: Untagged
@@ -10577,6 +10578,8 @@ MonoBehaviour:
   m_EngineIdling: {fileID: 8300000, guid: 4932ab25b84dd7649b80af68a9660ddc, type: 3}
   m_EngineDriving: {fileID: 8300000, guid: d7ca9fb5aa30155449192b23d7fb3336, type: 3}
   m_PitchRange: 0.1
+  m_MovementAxisName: 
+  m_TurnAxisName: 
 --- !u!114 &11409376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10614,7 +10617,29 @@ MonoBehaviour:
   m_FireClip: {fileID: 8300000, guid: 672a9941361ad494a99fba36759eca80, type: 3}
   m_LaunchForce: 30
   _shootingCooldown: {fileID: 11400000, guid: f0898b489f3755546811b6909b3fd90f, type: 2}
---- !u!114 &2369013990477575668
+--- !u!195 &-5438524811390777819
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173472}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2523414829925996835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10623,12 +10648,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 173472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10da70ea7fa1e724b985c0f8d9bf83d0, type: 3}
+  m_Script: {fileID: 11500000, guid: d7ac54b7a176c9347b3e9ce30b15c379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SearchPathSystem: {fileID: 0}
-  grid: {fileID: 11400000, guid: 1046713e6e2530d419b9354360aa41c4, type: 2}
-  TurnRateCurve:
+  firstStates:
+  - {fileID: 11400000, guid: d96cda96abf2f5d41807abccfc147ede, type: 2}
+  turnRateCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -10679,7 +10704,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  MoveRateCurve:
+  moveRateCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -10712,29 +10737,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  Agent: {fileID: -5438524811390777819}
---- !u!195 &-5438524811390777819
-NavMeshAgent:
+--- !u!114 &-6914421136305744253
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173472}
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 0
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10da70ea7fa1e724b985c0f8d9bf83d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  searchPathSystem: {fileID: 11400000, guid: 7857a098e8033f84b85446fb1281d516, type: 2}
+  grid: {fileID: 11400000, guid: 1046713e6e2530d419b9354360aa41c4, type: 2}
+  agent: {fileID: -5438524811390777819}
 --- !u!1 &173936
 GameObject:
   m_ObjectHideFlags: 0

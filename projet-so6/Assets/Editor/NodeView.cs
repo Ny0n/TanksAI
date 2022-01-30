@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace BehaviourTree
 {
@@ -13,7 +15,7 @@ namespace BehaviourTree
         public Port input;
         public Port output;
 
-        public NodeView(Node node)
+        public NodeView(Node node) : base("Assets/Editor/NodeView.uxml")
         {
             this.node = node;
             
@@ -25,21 +27,42 @@ namespace BehaviourTree
 
             CreateInputPorts();
             CreateOutputPorts();
+            SetupClasses();
+        }
+
+        private void SetupClasses()
+        {
+            if (node is ActionNode)
+            {
+                AddToClassList("action");
+            }
+            else if (node is CompositeNode)
+            {
+                AddToClassList("composite");
+            }
+            else if (node is DecoratorNode)
+            {
+                AddToClassList("decorator");
+            }
+            else if (node is RootNode)
+            {
+                AddToClassList("root");
+            }
         }
 
         private void CreateInputPorts()
         {
             if (node is ActionNode)
             {
-                input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+                input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
             }
             else if (node is CompositeNode)
             {
-                input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+                input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
             }
             else if (node is DecoratorNode)
             {
-                input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+                input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
             }
             else if (node is RootNode)
             {
@@ -48,6 +71,7 @@ namespace BehaviourTree
             if (input != null)
             {
                 input.portName = "";
+                input.style.flexDirection = FlexDirection.Column;
                 inputContainer.Add(input);
             }
         }
@@ -58,20 +82,21 @@ namespace BehaviourTree
             }
             else if (node is CompositeNode)
             {
-                output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(bool));
+                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(bool));
             }
             else if (node is DecoratorNode)
             {
-                output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
+                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
             }
             else if (node is RootNode)
             {
-                output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
+                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
             }
 
             if (output != null)
             {
                 output.portName = "";
+                output.style.flexDirection = FlexDirection.ColumnReverse;
                 outputContainer.Add(output);
             }
         }
@@ -80,8 +105,11 @@ namespace BehaviourTree
         public override void SetPosition(Rect newPos)
         {
             base.SetPosition(newPos);
+            Undo.RecordObject(node, "Behaviour Tree (Set Position)");
             node.position.x = newPos.xMin;
             node.position.y = newPos.yMin;
+            
+            EditorUtility.SetDirty(node);
         }
 
         public override void OnSelected()

@@ -24,7 +24,10 @@ public class InspectorView : VisualElement
         editor = Editor.CreateEditor(nodeView.node);
         IMGUIContainer container = new IMGUIContainer(() =>
         {
-            editor.OnInspectorGUI();
+            if (editor.target)
+            {
+                editor.OnInspectorGUI();
+            }
         });
         Add(container);
 }

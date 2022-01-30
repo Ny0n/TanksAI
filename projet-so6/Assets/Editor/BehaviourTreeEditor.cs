@@ -1,9 +1,11 @@
 using System;
 using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using UnityEditor.IMGUI.Controls;
+using UnityEditor.VersionControl;
 
 namespace BehaviourTree
 {
@@ -19,6 +21,17 @@ namespace BehaviourTree
             wnd.titleContent = new GUIContent("BehaviourTreeEditor");
         }
 
+        [OnOpenAsset]
+        public static bool OnOpenAsset(int instanceId, int line)
+        {
+            if (Selection.activeObject is BehaviourTree)
+            {
+                OpenWindow();
+                return true;
+            }
+
+            return false;
+        }
         public void CreateGUI()
         {
             // Each editor window contains a root VisualElement object
@@ -45,7 +58,7 @@ namespace BehaviourTree
         {
             BehaviourTree tree = Selection.activeObject as BehaviourTree;
             if (tree)
-            {
+            { 
                 treeView.PopulateView(tree);
             }
         }

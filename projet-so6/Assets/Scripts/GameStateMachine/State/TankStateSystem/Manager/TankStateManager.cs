@@ -40,12 +40,12 @@ public class TankStateManager : StateManager
         _tankPathSystem = GetComponent<TankPathSystem>();
     }
 
-    protected void Start()
+    protected new void Start()
     {
         base.Start();
     }
 
-    protected void Update()
+    protected new void Update()
     {
         base.Update();
         if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftShift))

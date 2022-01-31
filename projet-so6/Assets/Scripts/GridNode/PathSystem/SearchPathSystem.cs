@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -11,27 +12,27 @@ public abstract class SearchPathSystem : ScriptableObject
     public abstract Task<List<Vector3>> FindShortestPath(Vector3 startPos, Vector3 targetPos, GridVariable gridVariable);
     
     
-    public async Task<List<Vector3>> RetracePath(NodeGrid startNodeGrid, NodeGrid targetNodeGrid)
+    public async Task<List<Vector3>> RetracePath(NodeGridWeighted startNodeGrid, NodeGridWeighted targetNodeGrid)
     {
         List<Vector3> NodePath = new List<Vector3>();
         
         if (targetNodeGrid != startNodeGrid)
         {
-            NodePath.AddRange(await RetracePath(startNodeGrid, targetNodeGrid.parentNodeGrid));
+            NodePath.AddRange(await RetracePath(startNodeGrid, targetNodeGrid.ParentNodeGrid));
         }
         NodePath.Add(targetNodeGrid.NodePosition);
         
         return NodePath;
     }
     
-    
     //not optimized
-    protected NodeGrid FindNodeLowestFCost(List<NodeGrid> NodesList)
+    protected NodeGridWeighted FindNodeLowestFCost(Dictionary<string, NodeGridWeighted> NodesList)
     {
-        NodeGrid nodeGridToReturn = NodesList[0];
+        NodeGridWeighted nodeGridToReturn = NodesList.First().Value;
 
-        foreach (var node in NodesList)
+        foreach (var nodeKeyValue in NodesList)
         {
+            NodeGridWeighted node = nodeKeyValue.Value;
             if (nodeGridToReturn.FCost > node.FCost || node.FCost == nodeGridToReturn.FCost && node.HCost < nodeGridToReturn.HCost)
             {
                 nodeGridToReturn = node;

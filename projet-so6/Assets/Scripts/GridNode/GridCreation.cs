@@ -41,7 +41,6 @@ public class GridCreation : MonoBehaviour
                 Debug.Log(gridVariable.GridNew.Count);
                 if (gridVariable.GridNew.Count <= i)
                 {
-                    Debug.Log("add list");
                     gridVariable.GridNew.Add(new SerializeList(gridVariable.NodeNumberY));
                 }
                 gridVariable.GridNew[i].NodeList.Add(new NodeGrid(walkable, worldPoint, i, j));
@@ -50,7 +49,7 @@ public class GridCreation : MonoBehaviour
         }
     }
 
-    /*private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(transform.position, new Vector3(gridVariable.GridSize.x,1,gridVariable.GridSize.y));
@@ -71,5 +70,5 @@ public class GridCreation : MonoBehaviour
                 }
             }
         }
-    }*/
+    }
 }

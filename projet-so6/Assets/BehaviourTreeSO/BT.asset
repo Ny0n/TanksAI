@@ -15,8 +15,8 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 950630bb1323b1f47ad1cf966aaffd13
-  position: {x: 297.00003, y: -172.23262}
-  child: {fileID: 0}
+  position: {x: 297.00003, y: -395.008}
+  child: {fileID: 7120220782065499308}
 --- !u!114 &-7813890288977465541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,8 +32,10 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 241e2c3aa6976da499d8867e6260351f
-  position: {x: 0, y: 0}
-  children: []
+  position: {x: 297, y: 47}
+  children:
+  - {fileID: -5643161334958208389}
+  - {fileID: -1631553393145120095}
 --- !u!114 &-5643161334958208389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,8 +51,25 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: faed7270654892b4c934c7964543effd
-  position: {x: 0, y: 0}
-  message: 
+  position: {x: 207, y: 208}
+  message: "encul\xE9"
+--- !u!114 &-1631553393145120095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7970a5be4c6a046ba7a9ba7ddf0353, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 710026852f0d85440b75cbf00faa6b68
+  position: {x: 400, y: 208}
+  duration: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +89,7 @@ MonoBehaviour:
   - {fileID: -7813890288977465541}
   - {fileID: 7120220782065499308}
   - {fileID: -5643161334958208389}
+  - {fileID: -1631553393145120095}
 --- !u!114 &7120220782065499308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +105,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 8934615895c43844e977648dbbe5b8fa
-  position: {x: 234.21474, y: -0.000009536743}
+  position: {x: 297, y: -226.10005}
   child: {fileID: 0}
   numberRepeat: 0
-  infinite: 0
+  infinite: 1

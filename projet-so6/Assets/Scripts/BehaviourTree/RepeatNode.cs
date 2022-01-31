@@ -27,7 +27,10 @@ namespace BehaviourTree
                 if (numberRepeat > 0)
                 {
                     child.Update();
-                    numberRepeat--;
+                    if (child.state == State.Success)
+                    {
+                        numberRepeat--;
+                    }
                     return State.Running;
                 }
                 return State.Success;

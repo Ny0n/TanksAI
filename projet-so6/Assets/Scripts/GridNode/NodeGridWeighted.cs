@@ -18,5 +18,6 @@ public class NodeGridWeighted : NodeGrid
         XIndex = cloneNode.XIndex;
         YIndex = cloneNode.YIndex;
         NodeID = cloneNode.NodeID;
+        MovementPenalty = cloneNode.MovementPenalty;
     }
 }

@@ -13,12 +13,16 @@ public class NodeGrid
 
      [HideInInspector] public string NodeID;
      
-     public NodeGrid(bool walkable, Vector3 nodePosition, int X, int Y)
+     //using for smooth weith
+     [HideInInspector] public int MovementPenalty;
+     
+     public NodeGrid(bool walkable, Vector3 nodePosition, int movementPenalty, int X, int Y)
      {
           Walkable = walkable;
           NodePosition = nodePosition;
           XIndex = X;
           YIndex = Y;
+          MovementPenalty = movementPenalty;
           NodeID = $"{X}{Y}";
      }
 

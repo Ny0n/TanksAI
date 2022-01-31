@@ -21,6 +21,12 @@ public class SerializeList
 public class GridVariable : ScriptableObject
 {
     public List<SerializeList> GridNew;
+    
+    
+    public NodeGrid this[int x, int y]
+    {
+        get => GridNew[x][y];
+    }
 
     public Vector2 GridSize;
 

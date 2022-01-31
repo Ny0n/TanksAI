@@ -46,7 +46,7 @@ public class SPS_AStar : SearchPathSystem
                         neighbourWeigh = openedNodeDict[neighbour.NodeID];
                     }
                     
-                    int newNeighbourFCost = currentNodeGrid.GCost + DistBtwNode(currentNodeGrid, neighbour);
+                    int newNeighbourFCost = currentNodeGrid.GCost + DistBtwNode(currentNodeGrid, neighbour) + currentNodeGrid.MovementPenalty;
 
                     if (newNeighbourFCost < neighbourWeigh.GCost || !openedNodeDict.ContainsKey(neighbour.NodeID))
                     {

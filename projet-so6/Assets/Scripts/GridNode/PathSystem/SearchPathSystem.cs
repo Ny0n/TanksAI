@@ -15,14 +15,25 @@ public abstract class SearchPathSystem : ScriptableObject
     public async Task<List<Vector3>> RetracePath(NodeGridWeighted startNodeGrid, NodeGridWeighted targetNodeGrid)
     {
         List<Vector3> NodePath = new List<Vector3>();
+        NodeGridWeighted currentNode = targetNodeGrid;
+
+        return await Task.Run((() => {int destination = 0;
+
+            while (currentNode != startNodeGrid)
+            {
+                int newDestination = Mathf.Abs(currentNode.GCost - currentNode.ParentNodeGrid.GCost);
+                if (destination != newDestination)
+                {
+                    NodePath.Add(currentNode.NodePosition);
+                    destination = newDestination;
+                }
+                currentNode = currentNode.ParentNodeGrid;
+            }
+            NodePath.Reverse();
         
-        if (targetNodeGrid != startNodeGrid)
-        {
-            NodePath.AddRange(await RetracePath(startNodeGrid, targetNodeGrid.ParentNodeGrid));
-        }
-        NodePath.Add(targetNodeGrid.NodePosition);
+            return NodePath; 
+        }));
         
-        return NodePath;
     }
     
     //not optimized

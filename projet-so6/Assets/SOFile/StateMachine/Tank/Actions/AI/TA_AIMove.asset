@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75aa6b313d6d004ea174dd5aeee0d21, type: 3}
   m_Name: TA_AIMove
   m_EditorClassIdentifier: 
+  goalPrecision: 1.5

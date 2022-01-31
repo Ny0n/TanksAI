@@ -51,7 +51,7 @@ public class SPS_Dijkstra : SearchPathSystem
                     
                     //can use the same system as AStar to return a cost if horizontal neigh or not
                     //No need in this project but we can add a special cost on node to add with DistBtwNode
-                    int newNeighbourFCost = currentNodeGrid.GCost + DistBtwNode(currentNodeGrid, neighbour);
+                    int newNeighbourFCost = currentNodeGrid.GCost + DistBtwNode(currentNodeGrid, neighbour) + currentNodeGrid.MovementPenalty;
 
                     if (newNeighbourFCost < neighbourWeigh.GCost || !openedNodeDict.ContainsKey(neighbour.NodeID))
                     {

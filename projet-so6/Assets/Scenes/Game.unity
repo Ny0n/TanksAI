@@ -333,7 +333,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503405738}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 038f7312484325b4a82bbf46cf1e7ebe, type: 3}
   m_Name: 
@@ -341,8 +341,9 @@ MonoBehaviour:
   UnwalkableLayer:
     serializedVersion: 2
     m_Bits: 64
-  gridVariable: {fileID: 11400000, guid: 1046713e6e2530d419b9354360aa41c4, type: 2}
-  _nodeDiameter: 0
+  gridVariable: {fileID: 11400000, guid: a8287393d25229343a2807b85b018bd9, type: 2}
+  BlurPenaltyValue: 0
+  bDrawGizmo: 0
 --- !u!4 &503405740
 Transform:
   m_ObjectHideFlags: 0

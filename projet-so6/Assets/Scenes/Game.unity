@@ -303,7 +303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194018015}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: -3, y: 0, z: 30}
+  m_LocalPosition: {x: -0.5, y: 0, z: 27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -341,8 +341,9 @@ MonoBehaviour:
   UnwalkableLayer:
     serializedVersion: 2
     m_Bits: 64
-  NodeGridVariable: {fileID: 11400000, guid: e93b381b556ae5d4d8b5826b0f1d3ca9, type: 2}
-  _nodeDiameter: 0
+  gridVariable: {fileID: 11400000, guid: 3a066e1ca7cdc9f478dc211071c7caf3, type: 2}
+  BlurPenaltyValue: 10
+  bDrawGizmo: 0
 --- !u!4 &503405740
 Transform:
   m_ObjectHideFlags: 0
@@ -1068,6 +1069,30 @@ PrefabInstance:
       propertyPath: m_LightmapParameters
       value: 
       objectReference: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 2851347891138514622, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
+      propertyPath: m_Size.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851347891138514622, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
+      propertyPath: m_Size.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851347891138514622, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
+      propertyPath: m_Size.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851347891138514622, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
+      propertyPath: m_VoxelSize
+      value: 0.23333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851347891138514622, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 5d72ace50b2656d46aba3470204ef2bd, type: 2}
+    - target: {fileID: 2851347891138514622, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
+      propertyPath: m_CollectObjects
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 312c52d27be2d2d42acea3ccebc4694b, type: 3}
 --- !u!1 &1282556331
@@ -1181,11 +1206,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NumRoundsToWin: 5
-  m_StartDelay: 3
+  m_StartDelay: 0
   m_EndDelay: 3
   m_CameraControl: {fileID: 1771596988}
   m_MessageText: {fileID: 102963701}
-  m_TankPrefab: {fileID: 173472, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
+  m_TankPrefab: {fileID: 173472, guid: e34cab7122aca2042bd009f9e7cc1fac, type: 3}
   m_Tanks:
   - m_PlayerColor: {r: 0.16470589, g: 0.39215687, b: 0.69803923, a: 0}
     m_SpawnPoint: {fileID: 194018016}
@@ -1532,14 +1557,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771596986}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9e26b621854da943aeca10c9a73880c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_DampTime: 0.2
   m_ScreenEdgeBuffer: 4
-  m_MinSize: 6.5
+  m_MinSize: 25.74
   m_Targets: []
 --- !u!1 &2083660208
 GameObject:

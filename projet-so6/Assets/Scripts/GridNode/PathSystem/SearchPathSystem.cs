@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -8,30 +9,41 @@ public abstract class SearchPathSystem : ScriptableObject
     //used for Disjktra and AStar
     public List<NodeGrid> Path = new List<NodeGrid>();
 
-    public abstract Task<List<NodeGrid>> FindShortestPath(Vector3 startPos, Vector3 targetPos, GridVariable gridVariable);
+    public abstract Task<List<Vector3>> FindShortestPath(Vector3 startPos, Vector3 targetPos, GridVariable gridVariable);
     
     
-    public async Task<List<NodeGrid>> RetracePath(NodeGrid startNodeGrid, NodeGrid targetNodeGrid)
+    public async Task<List<Vector3>> RetracePath(NodeGridWeighted startNodeGrid, NodeGridWeighted targetNodeGrid)
     {
-        List<NodeGrid> NodePath = new List<NodeGrid>();
+        List<Vector3> NodePath = new List<Vector3>();
+        NodeGridWeighted currentNode = targetNodeGrid;
+
+        return await Task.Run((() => {int destination = 0;
+
+            while (currentNode != startNodeGrid)
+            {
+                int newDestination = Mathf.Abs(currentNode.GCost - currentNode.ParentNodeGrid.GCost);
+                if (destination != newDestination)
+                {
+                    NodePath.Add(currentNode.NodePosition);
+                    destination = newDestination;
+                }
+                currentNode = currentNode.ParentNodeGrid;
+            }
+            NodePath.Reverse();
         
-        if (targetNodeGrid != startNodeGrid)
-        {
-            NodePath.AddRange(await RetracePath(startNodeGrid, targetNodeGrid.parentNodeGrid));
-        }
-        NodePath.Add(targetNodeGrid);
+            return NodePath; 
+        }));
         
-        return NodePath;
     }
     
-    
     //not optimized
-    protected NodeGrid FindNodeLowestFCost(List<NodeGrid> NodesList)
+    protected NodeGridWeighted FindNodeLowestFCost(Dictionary<string, NodeGridWeighted> NodesList)
     {
-        NodeGrid nodeGridToReturn = NodesList[0];
+        NodeGridWeighted nodeGridToReturn = NodesList.First().Value;
 
-        foreach (var node in NodesList)
+        foreach (var nodeKeyValue in NodesList)
         {
+            NodeGridWeighted node = nodeKeyValue.Value;
             if (nodeGridToReturn.FCost > node.FCost || node.FCost == nodeGridToReturn.FCost && node.HCost < nodeGridToReturn.HCost)
             {
                 nodeGridToReturn = node;

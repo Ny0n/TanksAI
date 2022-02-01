@@ -21,13 +21,20 @@ public class SerializeList
 public class GridVariable : ScriptableObject
 {
     public List<SerializeList> GridNew;
+    
+    
+    public NodeGrid this[int x, int y]
+    {
+        get => GridNew[x][y];
+    }
 
     public Vector2 GridSize;
 
     public float NodeRadius;
     
-    public int NodeNumberX;
-    public int NodeNumberY;
+    
+    [HideInInspector] public int NodeNumberX;
+    [HideInInspector] public int NodeNumberY;
     
 
     public List<NodeGrid> GetNeighbour(NodeGrid nodeGrid)

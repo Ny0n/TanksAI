@@ -1,91 +1,75 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TankPathSystem : MonoBehaviour
 {
-    [SerializeField] private SearchPathSystem SearchPathSystem;
+    [SerializeField] private SearchPathSystem searchPathSystem;
     [SerializeField] private GridVariable grid;
     
-    [SerializeField] private AnimationCurve TurnRateCurve;
-    [SerializeField] private AnimationCurve MoveRateCurve;
+    [SerializeField] private NavMeshAgent agent;
+    public NavMeshAgent Agent => agent;
 
-    private List<NodeGrid> MyPath;
-    private Vector3 nextDestination;
+    private List<Vector3> _myPath;
+    public List<Vector3> MyPath  => _myPath;
+    
+    private Vector3 _targetPos;
 
-    private TankMovement _tankMovement;
-
-    private Vector3 targetPos;
-
-    private RaycastHit m_HitInfo;
 
     // Start is called before the first frame update
     void Awake()
     {
-        MyPath = new List<NodeGrid>();
-        _tankMovement = GetComponent<TankMovement>();
+        _myPath = new List<Vector3>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftShift))
-        {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray.origin, ray.direction, out m_HitInfo))
-            {
-                targetPos = m_HitInfo.point;
-                PathTank(m_HitInfo.point);
-            }
-        }
+        agent.updatePosition = false;
+        agent.updateRotation = false;
+    }
 
-        //total mess juste to give me an idea
-        if (MyPath.Count > 0)
+    
+    //todo find better solution than removing the path system to switch on navmesh
+    //Use this methode to move the tank toward a direction
+    public void SearchTargetPath(Vector3 targetPosition)
+    {
+        _targetPos = targetPosition;
+        if (searchPathSystem != null)
         {
-            nextDestination = MyPath[0].NodePosition;
-            float angle = Vector3.SignedAngle(transform.forward, nextDestination - transform.position, Vector3.one);
-            _tankMovement.TurnInputValue = TurnRateCurve.Evaluate(angle);
-            _tankMovement.MovementInputValue = MoveRateCurve.Evaluate(angle);
-            
-            if (Vector3.SqrMagnitude(nextDestination - transform.position) < 0.1)
-            {
-                MyPath.RemoveAt(0);
-            }
-            
-            Debug.DrawRay(transform.position, transform.forward, Color.red);
-            Debug.DrawRay(transform.position, nextDestination - transform.position, Color.blue);
+            PathTank();
         }
         else
         {
-            _tankMovement.TurnInputValue = 0;
-            _tankMovement.MovementInputValue = 0;
+            PathTankAgent();
         }
-        
     }
-
-    async void PathTank(Vector3 target)
+    
+    async void PathTank()
     {
-        MyPath = await SearchPathSystem.FindShortestPath(transform.position, target, grid);
+        _myPath = await searchPathSystem.FindShortestPath(transform.position, _targetPos, grid);
     }
-
+    
+    void PathTankAgent()
+    {
+        NavMeshPath pathMesh = new NavMeshPath();
+        agent.nextPosition = transform.position; //reset the agent next pos 
+        agent.CalculatePath(_targetPos, pathMesh);
+        
+        _myPath = pathMesh.corners.ToList();
+    }
     private void OnDrawGizmos()
     {
-        if (MyPath != null)
+        if (_myPath != null)
         {
-            foreach (var Node in MyPath)
+            foreach (var Node in _myPath)
             {
-                if (Node == null)
-                    return;
+                Gizmos.color = Color.red;
                 
-                Gizmos.color = Color.cyan;
-                
-                Gizmos.DrawCube(Node.NodePosition, Vector3.one * grid.NodeRadius * 2);
+                Gizmos.DrawCube(Node, Vector3.one * grid.NodeRadius * 2);
             }
         }
-        
-        Gizmos.color = Color.green;
-        NodeGrid targetNodeGrid = grid.NodeFromWorldPosition(targetPos);
-        Gizmos.DrawCube(targetNodeGrid.NodePosition, new Vector3(grid.NodeRadius * 2, 4, grid.NodeRadius * 2));
     }
 }

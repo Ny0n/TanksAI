@@ -9,7 +9,7 @@ using UnityEngine.Assertions.Must;
 public class BaseState : ScriptableObject
 {
     [SerializeField] private StateAction[] stateActions;
-    [SerializeField] private StateTransition[] stateTransitions;
+    [SerializeField] private StateTransition stateTransitions;
     
     public void Tick(StateManager controller, int stateIndex)
     {
@@ -35,14 +35,11 @@ public class BaseState : ScriptableObject
 
     private void MakeTransition(StateManager controller, int stateIndex)
     {
-        foreach (var transition in stateTransitions)
+        foreach (var tuple in stateTransitions.m_Transitions)
         {
-            foreach (var tuple in transition.m_Transitions)
+            if(tuple.Decision.DecideTransition(controller))
             {
-                if(tuple.Decision.DecideTransition(controller))
-                {
-                    controller.ChangeState(tuple.nextState, stateIndex);
-                }
+                controller.ChangeState(tuple.nextState, stateIndex);
             }
         }
     }

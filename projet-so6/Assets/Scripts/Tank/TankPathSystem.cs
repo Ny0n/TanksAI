@@ -66,10 +66,7 @@ public class TankPathSystem : MonoBehaviour
         {
             foreach (var Node in _myPath)
             {
-                if (Node == null)
-                    return;
-                
-                Gizmos.color = Color.cyan;
+                Gizmos.color = Color.red;
                 
                 Gizmos.DrawCube(Node, Vector3.one * grid.NodeRadius * 2);
             }

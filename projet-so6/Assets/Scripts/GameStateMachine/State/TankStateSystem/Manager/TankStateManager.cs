@@ -9,12 +9,14 @@ using UnityEngine.PlayerLoop;
 
 public class TankStateManager : StateManager
 {
+    [SerializeField] private bool Player;
     [SerializeField] private AnimationCurve turnRateCurve;
     public AnimationCurve TurnRateCurve => turnRateCurve;
     
     [SerializeField] private AnimationCurve moveRateCurve;
     public AnimationCurve MoveRateCurve => moveRateCurve;
-    
+
+    [HideInInspector] public bool AIShot;
     
     private Vector3 _nextDestination;
     public Vector3 NextDestination => _nextDestination;
@@ -29,6 +31,10 @@ public class TankStateManager : StateManager
     
     private TankPathSystem _tankPathSystem;
     public TankPathSystem TankPathSystem => _tankPathSystem;
+    
+    
+    private AITankAvoidance _aiTankAvoidance;
+    public AITankAvoidance AITankAvoidance => _aiTankAvoidance;
 
 
     private RaycastHit _HitInfo;
@@ -37,7 +43,11 @@ public class TankStateManager : StateManager
     {
         _tankMovement = GetComponent<TankMovement>();
         _tankShooting = GetComponent<TankShooting>();
-        _tankPathSystem = GetComponent<TankPathSystem>();
+        if(!Player)
+        {
+            _tankPathSystem = GetComponent<TankPathSystem>();
+            _aiTankAvoidance = GetComponent<AITankAvoidance>();
+        }
     }
 
     protected new void Start()
@@ -48,13 +58,20 @@ public class TankStateManager : StateManager
     protected new void Update()
     {
         base.Update();
-        if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftShift))
+        if(Player)
+            return;
+        if (Input.GetMouseButtonDown(0))
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray.origin, ray.direction, out _HitInfo))
             {
                 _tankPathSystem.SearchTargetPath(_HitInfo.point);
             }
+        }
+        
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            AIShot = true;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (menuName = "StateMachine/Tank/Actions/AIMoveTank")]
+[CreateAssetMenu (menuName = "StateMachine/Tank/Actions/AI/MoveTank")]
 public class AAIMoveTank : StateAction
 {
     [Range(0.1f, 2f)]
@@ -28,8 +28,6 @@ public class AAIMoveTank : StateAction
         {
             castController.TankPathSystem.MyPath.RemoveAt(0);
         }
-            
-        Debug.DrawRay(currentTransform.position, nextDestination - currentTransform.position, Color.blue);
     }
 
     public override void OnStateActionEnter(StateManager controller)

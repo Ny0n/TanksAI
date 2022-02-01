@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu (menuName = "StateMachine/Tank/Actions/PlayerMoveTank")]
+[CreateAssetMenu (menuName = "StateMachine/Tank/Actions/Player/MoveTank")]
 public class APlayerMoveTank : StateAction
 {
     public override void ExecuteAction(StateManager controller)

@@ -77,6 +77,8 @@
     font-size: 14px;
     -unity-font-style: bold;
     align-items: center;
+    justify-content: flex-start;
+    -unity-text-align: middle-center;
 }
 
 #description {
@@ -84,6 +86,7 @@
     align-items: center;
     justify-content: flex-start;
     -unity-text-align: upper-center;
+    white-space: normal;
 }
 
 #divider {

@@ -18,6 +18,7 @@ MonoBehaviour:
   position: {x: 297.00003, y: -224.9782}
   blackboard:
     test: {x: 0, y: 0, z: 0}
+  description: 
   child: {fileID: 7120220782065499308}
 --- !u!114 &-7813890288977465541
 MonoBehaviour:
@@ -37,6 +38,7 @@ MonoBehaviour:
   position: {x: 297, y: 47}
   blackboard:
     test: {x: 0, y: 0, z: 0}
+  description: 
   children:
   - {fileID: -5643161334958208389}
   - {fileID: -1631553393145120095}
@@ -59,6 +61,7 @@ MonoBehaviour:
   position: {x: 205.25095, y: 208.00002}
   blackboard:
     test: {x: 0, y: 0, z: 0}
+  description: 
   message: "encul\xE9"
 --- !u!114 &-2739991493236766913
 MonoBehaviour:
@@ -78,6 +81,7 @@ MonoBehaviour:
   position: {x: 647.6001, y: 184.00002}
   blackboard:
     test: {x: 0, y: 0, z: 0}
+  description: 
   children:
   - {fileID: 2835441482072825454}
   - {fileID: -242372818613124801}
@@ -100,6 +104,7 @@ MonoBehaviour:
   position: {x: 400, y: 208}
   blackboard:
     test: {x: 0, y: 0, z: 0}
+  description: 
   duration: 1
 --- !u!114 &-242372818613124801
 MonoBehaviour:
@@ -119,6 +124,7 @@ MonoBehaviour:
   position: {x: 613.2502, y: 392.00003}
   blackboard:
     test: {x: 0, y: 0, z: 0}
+  description: 
   duration: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -164,6 +170,7 @@ MonoBehaviour:
   position: {x: 423.00012, y: 392.00003}
   blackboard:
     test: {x: 0, y: 0, z: 0}
+  description: 
   duration: 1
 --- !u!114 &7120220782065499308
 MonoBehaviour:
@@ -183,6 +190,7 @@ MonoBehaviour:
   position: {x: 297.00003, y: -89.43745}
   blackboard:
     test: {x: 0, y: 0, z: 0}
+  description: 
   child: {fileID: -7813890288977465541}
   numberRepeat: 0
   infinite: 1
@@ -204,4 +212,5 @@ MonoBehaviour:
   position: {x: 798, y: 391.99997}
   blackboard:
     test: {x: 0, y: 0, z: 0}
+  description: 
   message: fdpute

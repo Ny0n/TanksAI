@@ -18,6 +18,7 @@ namespace BehaviourTree
         [HideInInspector] public string guid;
         [HideInInspector] public Vector2 position;
         [HideInInspector] public Blackboard blackboard;
+        [TextArea] public string description;
 
         public State Update()
         {

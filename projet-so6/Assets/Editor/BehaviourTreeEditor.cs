@@ -11,8 +11,12 @@ namespace BehaviourTree
 {
     public class BehaviourTreeEditor : EditorWindow
     {
-        BehaviourTreeView treeView;
+        private BehaviourTreeView treeView;
         private InspectorView inspectorView;
+        private IMGUIContainer blackboardView;
+
+        private SerializedObject treeObject;
+        private SerializedProperty blackboardProperty;
         
         [MenuItem("BehaviourTreeEditor/Editor ...")]
         public static void OpenWindow()
@@ -48,24 +52,88 @@ namespace BehaviourTree
 
             treeView = root.Q<BehaviourTreeView>();
             inspectorView = root.Q<InspectorView>();
+            blackboardView = root.Q<IMGUIContainer>();
+
+            blackboardView.onGUIHandler = () =>
+            {
+                if (treeObject != null && treeObject.targetObject != null)
+                {
+                    treeObject.Update();
+                    EditorGUILayout.PropertyField(blackboardProperty);
+                    treeObject.ApplyModifiedProperties();
+                }
+            };
 
             treeView.OnNodeSelected = OnNodeSelectionChanged;
             
             OnSelectionChange();
         }
 
+        private void OnEnable()
+        {
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        }
+
+        private void OnDisable()
+        {
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+        }
+
+        private void OnPlayModeStateChanged(PlayModeStateChange obj)
+        {
+            switch (obj)
+            {
+                case PlayModeStateChange.EnteredEditMode:
+                    OnSelectionChange();
+                    break;
+                case PlayModeStateChange.ExitingEditMode:
+                    break;
+                case PlayModeStateChange.EnteredPlayMode:
+                    break;
+                case PlayModeStateChange.ExitingPlayMode:
+                    OnSelectionChange();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(obj), obj, null);
+            }
+        }
+        
+
         private void OnSelectionChange()
         {
             BehaviourTree tree = Selection.activeObject as BehaviourTree;
+            if (!tree)
+            {
+                if (Selection.activeGameObject)
+                {
+                    BehaviourTreeRunner runner = Selection.activeGameObject.GetComponent<BehaviourTreeRunner>();
+                    if (runner)
+                    {
+                        tree = runner.tree;
+                    }
+                }
+            }
             if (tree)
             { 
                 treeView.PopulateView(tree);
+            }
+
+            if (tree != null)
+            {
+                treeObject = new SerializedObject(tree);
+                blackboardProperty = treeObject.FindProperty("blackboard");
             }
         }
 
         void OnNodeSelectionChanged(NodeView node)
         {
             inspectorView.UpdateSelection(node);
+        }
+        
+        private void OnInspectorUpdate()
+        {
+            treeView?.UpdateNodeState();
         }
     }
     

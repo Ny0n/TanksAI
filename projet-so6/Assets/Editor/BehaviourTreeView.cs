@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using PlasticPipe.PlasticProtocol.Messages;
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.Experimental.GraphView;
@@ -119,6 +120,15 @@ namespace BehaviourTree
                     _tree.AddChild(parentView.node, childView.node);
                 });
             }
+
+            if (graphViewChange.movedElements != null)
+            {
+                nodes.ForEach((n) =>
+                {
+                    NodeView view = n as NodeView;
+                    view?.SortChildren();
+                });
+            }
             
             return graphViewChange;
         }
@@ -130,21 +140,21 @@ namespace BehaviourTree
                 var types = TypeCache.GetTypesDerivedFrom<ActionNode>();
                 foreach (var type in types)
                 {
-                    evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", (a) => CreateNode(type));
+                    evt.menu.AppendAction($"{type.BaseType?.Name}/{type.Name}", (a) => CreateNode(type));
                 }
             }
             {
                 var types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
                 foreach (var type in types)
                 {
-                    evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", (a) => CreateNode(type));
+                    evt.menu.AppendAction($"{type.BaseType?.Name}/{type.Name}", (a) => CreateNode(type));
                 }
             }
             {
                 var types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
                 foreach (var type in types)
                 {
-                    evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", (a) => CreateNode(type));
+                    evt.menu.AppendAction($"{type.BaseType?.Name}/{type.Name}", (a) => CreateNode(type));
                 }
             }
 
@@ -155,12 +165,22 @@ namespace BehaviourTree
             Node node = _tree.CreateNode(type);
             CreateNodeView(node);
         }
-
+        
         public void CreateNodeView(Node node)
         {
             NodeView nodeView = new NodeView(node);
             nodeView.OnNodeSelected = OnNodeSelected;
+            
             AddElement(nodeView);
+        }
+
+        public void UpdateNodeState()
+        {
+            nodes.ForEach(n =>
+            {
+                NodeView view = n as NodeView;
+                view?.UpdateState();
+            });
         }
     }
 }

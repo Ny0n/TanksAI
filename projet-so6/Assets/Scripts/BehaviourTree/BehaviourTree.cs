@@ -11,6 +11,7 @@ namespace BehaviourTree
         public Node rootNode;
         public Node.State treeState = Node.State.Running;
         public List<Node> nodes = new List<Node>();
+        public Blackboard blackboard = new Blackboard();
         public Node.State Update()
         {
             if (rootNode.state == Node.State.Running)
@@ -29,9 +30,14 @@ namespace BehaviourTree
             
             Undo.RecordObject(this, "Behaviour Tree (Create Node)");
             nodes.Add(node);
+
+            if (!Application.isPlaying)
+            {
+                AssetDatabase.AddObjectToAsset(node, this);
+            }
             
-            AssetDatabase.AddObjectToAsset(node, this);
             Undo.RegisterCreatedObjectUndo(node, "Behaviour Tree (Create Node)");
+            
             AssetDatabase.SaveAssets();
             return node;
         }
@@ -127,11 +133,34 @@ namespace BehaviourTree
             return children;
         }
         
+        public void Traverse(Node node, System.Action<Node> visitor)
+        {
+            if (node)
+            {
+                visitor.Invoke(node);
+                var children = GetChildren(node);
+                children.ForEach((n) => Traverse(n, visitor));
+            }
+        }
+        
         public BehaviourTree Clone()
         {
             BehaviourTree tree = Instantiate(this);
             tree.rootNode = tree.rootNode.Clone();
+            tree.nodes = new List<Node>();
+            Traverse(tree.rootNode, (n) =>
+            {
+                tree.nodes.Add(n);
+            });
             return tree;
+        }
+
+        public void Bind()
+        {
+            Traverse(rootNode, node =>
+            {
+                node.blackboard = blackboard;
+            });
         }
     }
     

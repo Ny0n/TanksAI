@@ -15,7 +15,9 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 950630bb1323b1f47ad1cf966aaffd13
-  position: {x: 297.00003, y: -395.008}
+  position: {x: 297.00003, y: -224.9782}
+  blackboard:
+    test: {x: 0, y: 0, z: 0}
   child: {fileID: 7120220782065499308}
 --- !u!114 &-7813890288977465541
 MonoBehaviour:
@@ -33,9 +35,12 @@ MonoBehaviour:
   started: 0
   guid: 241e2c3aa6976da499d8867e6260351f
   position: {x: 297, y: 47}
+  blackboard:
+    test: {x: 0, y: 0, z: 0}
   children:
   - {fileID: -5643161334958208389}
   - {fileID: -1631553393145120095}
+  - {fileID: -2739991493236766913}
 --- !u!114 &-5643161334958208389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,8 +56,32 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: faed7270654892b4c934c7964543effd
-  position: {x: 207, y: 208}
+  position: {x: 205.25095, y: 208.00002}
+  blackboard:
+    test: {x: 0, y: 0, z: 0}
   message: "encul\xE9"
+--- !u!114 &-2739991493236766913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714e3cde4f487c6459a58d1f5a969a3a, type: 3}
+  m_Name: ParallelNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: fe00fde2d852c8e42a45c7a445814c2d
+  position: {x: 647.6001, y: 184.00002}
+  blackboard:
+    test: {x: 0, y: 0, z: 0}
+  children:
+  - {fileID: 2835441482072825454}
+  - {fileID: -242372818613124801}
+  - {fileID: 8006631924475494655}
 --- !u!114 &-1631553393145120095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +98,27 @@ MonoBehaviour:
   started: 0
   guid: 710026852f0d85440b75cbf00faa6b68
   position: {x: 400, y: 208}
+  blackboard:
+    test: {x: 0, y: 0, z: 0}
+  duration: 1
+--- !u!114 &-242372818613124801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7970a5be4c6a046ba7a9ba7ddf0353, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 5c04f86df5204b1498f318c2cda0787a
+  position: {x: 613.2502, y: 392.00003}
+  blackboard:
+    test: {x: 0, y: 0, z: 0}
   duration: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -90,6 +140,31 @@ MonoBehaviour:
   - {fileID: 7120220782065499308}
   - {fileID: -5643161334958208389}
   - {fileID: -1631553393145120095}
+  - {fileID: -2739991493236766913}
+  - {fileID: 2835441482072825454}
+  - {fileID: -242372818613124801}
+  - {fileID: 8006631924475494655}
+  blackboard:
+    test: {x: 0, y: 0, z: 0}
+--- !u!114 &2835441482072825454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7970a5be4c6a046ba7a9ba7ddf0353, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 23d5e23f2d9a8d442ba827f0493cf462
+  position: {x: 423.00012, y: 392.00003}
+  blackboard:
+    test: {x: 0, y: 0, z: 0}
+  duration: 1
 --- !u!114 &7120220782065499308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,7 +180,28 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 8934615895c43844e977648dbbe5b8fa
-  position: {x: 297, y: -226.10005}
-  child: {fileID: 0}
+  position: {x: 297.00003, y: -89.43745}
+  blackboard:
+    test: {x: 0, y: 0, z: 0}
+  child: {fileID: -7813890288977465541}
   numberRepeat: 0
   infinite: 1
+--- !u!114 &8006631924475494655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470e4d2f13670a341ad865a2f8517c1d, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: b7a1a6646fee7494d8e3d6270e8a6326
+  position: {x: 798, y: 391.99997}
+  blackboard:
+    test: {x: 0, y: 0, z: 0}
+  message: fdpute

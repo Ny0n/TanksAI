@@ -109,7 +109,44 @@
 }
 
 .port {
-    background-color: rgba(255, 0, 0, 255);
+    background-color: rgba(0, 0, 0, 0);
     min-width: 50px;
     min-height: 10px;
+}
+
+#node-state {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+
+.running #node-state {
+    border-left-color: rgba(255, 155, 0, 255);
+    border-right-color: rgba(255, 155, 0, 255);
+    border-top-color: rgba(255, 155, 0, 255);
+    border-bottom-color: rgba(255, 155, 0, 255);
+}
+
+.success #node-state {
+    border-left-color: rgba(61, 255, 0, 255);
+    border-right-color: rgba(61, 255, 0, 255);
+    border-top-color: rgba(61, 255, 0, 255);
+    border-bottom-color: rgba(61, 255, 0, 255);
+}
+
+.failure #node-state {
+    border-left-color: rgba(255, 0, 0, 255);
+    border-right-color: rgba(255, 0, 0, 255);
+    border-top-color: rgba(255, 0, 0, 255);
+    border-bottom-color: rgba(255, 0, 0, 255);
 }

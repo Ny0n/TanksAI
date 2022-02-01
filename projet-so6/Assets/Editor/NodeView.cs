@@ -120,5 +120,46 @@ namespace BehaviourTree
                 OnNodeSelected.Invoke(this);
             }
         }
+
+        public void SortChildren()
+        {
+            CompositeNode compositeNode = node as CompositeNode;
+            if (compositeNode)
+            {
+                compositeNode.children.Sort(SortByHorizontalPosition);
+            }
+        }
+
+        private int SortByHorizontalPosition(Node x, Node y)
+        {
+            return x.position.x < y.position.x ? -1 : 1;
+        }
+
+        public void UpdateState()
+        {
+            RemoveFromClassList("running");
+            RemoveFromClassList("failure");
+            RemoveFromClassList("success");
+
+            if (!Application.isPlaying) return;
+            
+            switch (node.state)
+            {
+                case Node.State.Running:
+                    if (node.started)
+                    {
+                        AddToClassList("running");
+                    }
+                    break;
+                case Node.State.Failure:
+                    AddToClassList("failure");
+                    break;
+                case Node.State.Success:
+                    AddToClassList("success");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
     }
 }

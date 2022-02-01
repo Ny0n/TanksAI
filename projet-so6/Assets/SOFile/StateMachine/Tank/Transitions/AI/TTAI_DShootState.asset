@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cafc90e705ddba47a1aa6997c3adbe2, type: 3}
   m_Name: TTAI_DShootState
   m_EditorClassIdentifier: 
-  m_Transitions: []
+  m_Transitions:
+  - Decision: {fileID: 11400000, guid: e662d72e38ed9a64aa10bc9ec7516fe8, type: 2}
+    nextState: {fileID: 11400000, guid: d94d14429ce0e964b81085cce7341703, type: 2}

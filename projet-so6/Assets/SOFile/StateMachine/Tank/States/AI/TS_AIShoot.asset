@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ed63754f3b93242aa64f2eb7d18f20, type: 3}
   m_Name: TS_AIShoot
   m_EditorClassIdentifier: 
-  stateActions: []
-  stateTransitions: {fileID: 0}
+  stateActions:
+  - {fileID: 11400000, guid: 642bb197a1345ec49b9fdf7f319d5236, type: 2}
+  stateTransitions: {fileID: 11400000, guid: 5e75388da393e284dacf99047cbec68d, type: 2}

@@ -341,8 +341,8 @@ MonoBehaviour:
   UnwalkableLayer:
     serializedVersion: 2
     m_Bits: 64
-  gridVariable: {fileID: 11400000, guid: a8287393d25229343a2807b85b018bd9, type: 2}
-  BlurPenaltyValue: 0
+  gridVariable: {fileID: 11400000, guid: 3a066e1ca7cdc9f478dc211071c7caf3, type: 2}
+  BlurPenaltyValue: 10
   bDrawGizmo: 0
 --- !u!4 &503405740
 Transform:
@@ -1210,7 +1210,7 @@ MonoBehaviour:
   m_EndDelay: 3
   m_CameraControl: {fileID: 1771596988}
   m_MessageText: {fileID: 102963701}
-  m_TankPrefab: {fileID: 173472, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
+  m_TankPrefab: {fileID: 173472, guid: e34cab7122aca2042bd009f9e7cc1fac, type: 3}
   m_Tanks:
   - m_PlayerColor: {r: 0.16470589, g: 0.39215687, b: 0.69803923, a: 0}
     m_SpawnPoint: {fileID: 194018016}
@@ -1564,7 +1564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DampTime: 0.2
   m_ScreenEdgeBuffer: 4
-  m_MinSize: 6
+  m_MinSize: 25.74
   m_Targets: []
 --- !u!1 &2083660208
 GameObject:

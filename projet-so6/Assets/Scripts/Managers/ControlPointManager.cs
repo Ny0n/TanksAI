@@ -208,7 +208,7 @@ public class ControlPointManager : MonoBehaviour
         _teamsOnPoint.Clear();
         foreach (var tank in _tanksOnPoint)
         {
-            TeamSO team = tank.GetComponent<TankTeam>().Team;
+            TeamSO team = tank.GetComponent<TankData>().Team;
             if (!_teamsOnPoint.Contains(team))
                 _teamsOnPoint.Add(team);
         }

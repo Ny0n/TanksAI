@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -54,6 +55,15 @@ public class GameManager : MonoBehaviour
         StartTimer();
     }
 
+    private void Update()
+    {
+        if (!_gameEnded.Value)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            SceneManager.LoadScene(0); // restart the game
+    }
+
     private void ResetTimer()
     {
         _timer.Value = _settings.Value.PlayTime;
@@ -91,15 +101,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void RespawnTank(TankManager tm)
+    public void OnTankDeath(GenericEventSO evt) // SO event
     {
-        
+        TankDeathEventSO e = (TankDeathEventSO) evt;
+        StartCoroutine(RespawnTankCoroutine(e.Manager));
     }
 
     private IEnumerator RespawnTankCoroutine(TankManager tm)
     {
         yield return new WaitForSeconds(_tankRespawnTime);
-        RespawnTank(tm);
+        tm.Reset();
     }
 
     private void SetCameraTargets()
@@ -124,8 +135,6 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(GameStarting());
         yield return StartCoroutine(GamePlaying());
         yield return StartCoroutine(GameEnding());
-
-        // SceneManager.LoadScene(0);
     }
 
     private IEnumerator GameStarting()

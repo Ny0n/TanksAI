@@ -23,7 +23,8 @@ public class TankManager
     public void Setup()
     {
         // Get and Set references to the components.
-        m_Instance.GetComponent<TankTeam>().Team = _team;
+        m_Instance.GetComponent<TankData>().Team = _team;
+        m_Instance.GetComponent<TankData>().Manager = this;
         m_Movement = m_Instance.GetComponent<TankMovement>();
         m_Shooting = m_Instance.GetComponent<TankShooting>();
         m_CanvasGameObject = m_Instance.GetComponentInChildren<Canvas>().gameObject;

@@ -1794,6 +1794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1304999366}
   - component: {fileID: 1304999365}
+  - component: {fileID: 1304999369}
   - component: {fileID: 1304999367}
   - component: {fileID: 1304999368}
   m_Layer: 0
@@ -1816,7 +1817,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings: {fileID: 11400000, guid: a9ce33f8b185602419a1d29963390256, type: 2}
+  _gameEnded: {fileID: 11400000, guid: 8c475891005b0c34cb37d0b21adeea63, type: 2}
   _timer: {fileID: 11400000, guid: 6327bdf6dddb7224782aff12640be274, type: 2}
+  _tankRespawnTime: 5
   m_StartDelay: 3
   m_EndDelay: 3
   m_CameraControl: {fileID: 1771596988}
@@ -1946,6 +1949,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af105783d33090f4280d5ed604f32851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1304999369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304999364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65941c686460c27448023b6d435766a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventListeners:
+  - _events:
+    - {fileID: 11400000, guid: 00fb6b643c51c684886c2df736be600d, type: 2}
+    _onEventRaised:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1304999365}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: OnTankDeath
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1342474203
 GameObject:
   m_ObjectHideFlags: 0
@@ -3005,5 +3038,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: ControlPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
+      propertyPath: _settings
+      value: 
+      objectReference: {fileID: 11400000, guid: a9ce33f8b185602419a1d29963390256, type: 2}
+    - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
+      propertyPath: _gameEnded
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c475891005b0c34cb37d0b21adeea63, type: 2}
+    - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
+      propertyPath: _teamsList
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -15,7 +16,9 @@ public class ControlPointManager : MonoBehaviour
      * 
      * */
     
-    [SerializeField] private FloatVariableSO _winPoints;
+    [SerializeField] private SettingsVariableSO _settings;
+    [SerializeField] private BoolVariableSO _gameEnded;
+    [SerializeField] private TeamsListSO _teamsList;
     [SerializeField] private CooldownSO _captureDrop;
     [SerializeField] private TeamVariableSO _controllingTeam; // IA data #1
     [SerializeField] private BoolVariableSO _isControllingTeamOnPoint;
@@ -36,11 +39,26 @@ public class ControlPointManager : MonoBehaviour
     private void OnEnable()
     {
         _controllingTeam.ValueChanged += OnControllingTeamUpdated;
+        _gameEnded.ValueChanged += OnGameEndedUpdated;
     }
 
     private void OnDisable()
     {
         _controllingTeam.ValueChanged -= OnControllingTeamUpdated;
+        _gameEnded.ValueChanged -= OnGameEndedUpdated;
+    }
+
+    private void OnGameEndedUpdated()
+    {
+        if (_gameEnded.Value)
+        {
+            if (_settings.Value.GameMode == SettingsSO.GameModeType.FirstToMaximumPointsWin)
+            {
+                // clamp to max points on game end
+                foreach (var team in _teamsList.Value)
+                    team.Points = Mathf.Min(team.Points, _settings.Value.MaximumPoints);
+            }
+        }
     }
 
     private void OnControllingTeamUpdated()
@@ -72,6 +90,9 @@ public class ControlPointManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_gameEnded.Value)
+            return;
+        
         if (_teamsOnPoint.Contains(_capture.team)) // as long as the capturing team is on the point, we don't drop the capture
             _captureDrop.StartCooldown();
             
@@ -97,12 +118,17 @@ public class ControlPointManager : MonoBehaviour
         TeamSO team = _teamsOnPoint[0];
         if (_controllingTeam.Value == team) // if it's the controlling team, we give it points
         {
-            _controllingTeam.Value.Points = Mathf.Min(_controllingTeam.Value.Points + _controlPointWinningSpeed * Time.deltaTime, _winPoints.Value);
+            AddPoints(_controllingTeam.Value);
         }
         else // if there are no controlling team or it's an other one, we start the capture
         {
             AddCapture(team);
         }
+    }
+
+    private void AddPoints(TeamSO team)
+    {
+        team.Points = team.Points + _controlPointWinningSpeed * Time.deltaTime;
     }
 
     private void AddCapture(TeamSO team)

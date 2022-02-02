@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private SettingsVariableSO _settings;
+    [SerializeField] private BoolVariableSO _gameEnded;
     [SerializeField] private FloatVariableSO _timer;
+    [SerializeField] private float _tankRespawnTime = 5f;
     
     public float m_StartDelay = 3f;             // The delay between the start of RoundStarting and RoundPlaying phases.
     public float m_EndDelay = 3f;               // The delay between the end of RoundPlaying and RoundEnding phases.
@@ -25,11 +27,16 @@ public class GameManager : MonoBehaviour
     private List<TankManager> _tanks;
 
     private bool _isTimerActive;
+    private List<TeamSO> _drawTeams; // just in case
 
     const float k_MaxDepenetrationVelocity = float.PositiveInfinity;
 
     private void Start()
     {
+        _tanks = new List<TankManager>();
+        _drawTeams = new List<TeamSO>();
+        _gameEnded.Value = false;
+        
         // This line fixes a change to the physics engine.
         Physics.defaultMaxDepenetrationVelocity = k_MaxDepenetrationVelocity;
         
@@ -49,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     private void ResetTimer()
     {
-        _timer.Value = _settings.Value.PlayTime * 60f;
+        _timer.Value = _settings.Value.PlayTime;
     }
 
     private void StartTimer()
@@ -64,7 +71,6 @@ public class GameManager : MonoBehaviour
 
     private void SpawnAllTanks()
     {
-        _tanks = new List<TankManager>();
         int j = 0;
         // For all the teams & all of the players inside
         foreach (var team in _teamsList.Value)
@@ -83,6 +89,17 @@ public class GameManager : MonoBehaviour
 
             j += team.NbPlayers;
         }
+    }
+
+    private void RespawnTank(TankManager tm)
+    {
+        
+    }
+
+    private IEnumerator RespawnTankCoroutine(TankManager tm)
+    {
+        yield return new WaitForSeconds(_tankRespawnTime);
+        RespawnTank(tm);
     }
 
     private void SetCameraTargets()
@@ -147,7 +164,10 @@ public class GameManager : MonoBehaviour
                     {
                         _timer.SetValueWithoutNotify(_timer.Value - Time.deltaTime);
                         if (_timer.Value <= 0)
+                        {
+                            _timer.Value = 0;
                             yield break;
+                        }
                     }
                     break;
                 default:
@@ -168,6 +188,9 @@ public class GameManager : MonoBehaviour
     {
         // Stop tanks from moving.
         DisableTankControl();
+        
+        // set the flag for game ended
+        _gameEnded.Value = true;
 
         if (_teamsList.Value.Count <= 0)
         {
@@ -176,6 +199,7 @@ public class GameManager : MonoBehaviour
         }
 
         // we find the winning team
+        _winningTeam = null;
         switch (_settings.Value.GameMode)
         {
             case SettingsSO.GameModeType.FirstToMaximumPointsWin:
@@ -186,17 +210,22 @@ public class GameManager : MonoBehaviour
                 teamData.team = null;
                 teamData.points = -1;
                 
-                // TODO check for a draw?
                 foreach (var team in _teamsList.Value)
                 {
                     if (team.Points > teamData.points)
                     {
+                        _drawTeams.Clear();
+                        _drawTeams.Add(team);
                         teamData.team = team;
                         teamData.points = team.Points;
+                    } else if (Mathf.Approximately(team.Points, teamData.points))
+                    {
+                        _drawTeams.Add(team);
                     }
                 }
-
-                _winningTeam = teamData.team;
+    
+                if (_drawTeams.Count <= 1)
+                    _winningTeam = teamData.team;
                 
                 // float max = (from team in _teamsList.Value select team.Points).Max();
                 // foreach (var team in _teamsList.Value)
@@ -222,8 +251,29 @@ public class GameManager : MonoBehaviour
 
     private string EndMessage()
     {
-        string message = "<color=#" + ColorUtility.ToHtmlStringRGB(_winningTeam.Color) + ">" +  "Team " + _winningTeam.Name + "</color>" + " wins the game!";
+        string message;
+        if (_winningTeam == null)
+        {
+            message = "Draw!";
+            message += "\n";
+            message += GetColoredName(_drawTeams[0]);
+            for (int i = 1; i < _drawTeams.Count; i++)
+            {
+                message += "/";
+                message += GetColoredName(_drawTeams[i]);
+            }
+        }
+        else
+        {
+            message = GetColoredName(_winningTeam) + " wins the game!";
+        }
+         
         return message;
+    }
+
+    private string GetColoredName(TeamSO team)
+    {
+        return "<color=#" + ColorUtility.ToHtmlStringRGB(team.Color) + ">" + team.Name + "</color>";
     }
 
     private void ResetAllTanks()

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FirstToPointsSettings
   m_EditorClassIdentifier: 
   <GameMode>k__BackingField: 0
-  <MaximumPoints>k__BackingField: 80
+  <MaximumPoints>k__BackingField: 10
   <PlayTime>k__BackingField: 0

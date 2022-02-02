@@ -22,6 +22,6 @@ public class SettingsSO : ScriptableObject
     
     [field: Header("MostPointsWin Data")]
     
-    [field: SerializeField] [Description("Play time in min")]
-    public float PlayTime { get; private set; } = 5.0f;
+    [field: SerializeField] [Description("Play time in sec")]
+    public float PlayTime { get; private set; } = 300f;
 }

@@ -15,6 +15,9 @@ public class TeamSO : ScriptableObject
     [SerializeField] private int _nbPlayers;
     public int NbPlayers => _nbPlayers;
     
+    [SerializeField] private bool _isControlledByAI;
+    public bool IsControlledByAI => _isControlledByAI;
+    
     [Header("Scene data")]
     
     [SerializeField] private TransformVariableSO _spawnTransform;

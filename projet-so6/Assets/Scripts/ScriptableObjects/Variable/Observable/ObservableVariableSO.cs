@@ -22,4 +22,9 @@ public class ObservableVariableSO<T> : ScriptableObject
         if (!Equals(oldValue, _value))
             ValueChanged?.Invoke();
     }
+    
+    public void SetValueWithoutNotify(T value)
+    {
+        _value = value;
+    }
 }

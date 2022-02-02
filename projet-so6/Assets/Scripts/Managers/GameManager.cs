@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private FloatVariableSO _winPoints;
+    [SerializeField] private SettingsVariableSO _settings;
+    [SerializeField] private FloatVariableSO _timer;
     
     public float m_StartDelay = 3f;             // The delay between the start of RoundStarting and RoundPlaying phases.
     public float m_EndDelay = 3f;               // The delay between the end of RoundPlaying and RoundEnding phases.
@@ -19,8 +21,10 @@ public class GameManager : MonoBehaviour
     public GameObject tankPrefab;
     
     [SerializeField] private TeamsListSO _teamsList;
-    [SerializeField] private TeamVariableSO _winningTeam;
+    [SerializeField] private TeamSO _winningTeam;
     private List<TankManager> _tanks;
+
+    private bool _isTimerActive;
 
     const float k_MaxDepenetrationVelocity = float.PositiveInfinity;
 
@@ -38,6 +42,24 @@ public class GameManager : MonoBehaviour
 
         // Once the tanks have been created and the camera is using them as targets, start the game.
         StartCoroutine(GameLoop());
+
+        ResetTimer();
+        StartTimer();
+    }
+
+    private void ResetTimer()
+    {
+        _timer.Value = _settings.Value.PlayTime * 60f;
+    }
+
+    private void StartTimer()
+    {
+        _isTimerActive = true;
+    }
+    
+    private void StopTimer()
+    {
+        _isTimerActive = false;
     }
 
     private void SpawnAllTanks()
@@ -112,16 +134,34 @@ public class GameManager : MonoBehaviour
         // Clear the text from the screen.
         m_MessageText.text = string.Empty;
 
-        while (!CheckForWinner())
+        while (true)
         {
-            // ... return on the next frame.
+            switch (_settings.Value.GameMode)
+            {
+                case SettingsSO.GameModeType.FirstToMaximumPointsWin:
+                    if (CheckForWinner())
+                        yield break;
+                    break;
+                case SettingsSO.GameModeType.MostPointsWin:
+                    if (_isTimerActive)
+                    {
+                        _timer.SetValueWithoutNotify(_timer.Value - Time.deltaTime);
+                        if (_timer.Value <= 0)
+                            yield break;
+                    }
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
             yield return null;
         }
     }
 
     private bool CheckForWinner()
     {
-        return _teamsList.Value.FirstOrDefault(team => team.Points >= _winPoints.Value);
+        // game mode 1
+        return _teamsList.Value.FirstOrDefault(team => team.Points >= _settings.Value.MaximumPoints);
     }
 
     private IEnumerator GameEnding()
@@ -129,20 +169,60 @@ public class GameManager : MonoBehaviour
         // Stop tanks from moving.
         DisableTankControl();
 
-        // Get a message based on the scores and whether or not there is a game winner and display it.
+        if (_teamsList.Value.Count <= 0)
+        {
+            Debug.LogWarning("There are no teams!");
+            yield break;
+        }
+
+        // we find the winning team
+        switch (_settings.Value.GameMode)
+        {
+            case SettingsSO.GameModeType.FirstToMaximumPointsWin:
+                _winningTeam = _teamsList.Value.FirstOrDefault(team => team.Points >= _settings.Value.MaximumPoints);
+                break;
+            case SettingsSO.GameModeType.MostPointsWin:
+                (TeamSO team, float points) teamData;
+                teamData.team = null;
+                teamData.points = -1;
+                
+                // TODO check for a draw?
+                foreach (var team in _teamsList.Value)
+                {
+                    if (team.Points > teamData.points)
+                    {
+                        teamData.team = team;
+                        teamData.points = team.Points;
+                    }
+                }
+
+                _winningTeam = teamData.team;
+                
+                // float max = (from team in _teamsList.Value select team.Points).Max();
+                // foreach (var team in _teamsList.Value)
+                // {
+                //     if (Mathf.Approximately(team.Points, max))
+                //     {
+                //         _winningTeam = team;
+                //         break;
+                //     }
+                // }
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        // display the end message
         string message = EndMessage();
         m_MessageText.text = message;
 
-        // Wait for the specified length of time until yielding control back to the game loop.
+        // wait and end the game
         yield return m_EndWait;
     }
 
     private string EndMessage()
     {
-        string message = string.Empty;
-
-        message = "<color=#" + ColorUtility.ToHtmlStringRGB(_winningTeam.Value.Color) + ">" +  "Team " + _winningTeam.Value.Name + "</color>" + " wins the game!";
-
+        string message = "<color=#" + ColorUtility.ToHtmlStringRGB(_winningTeam.Color) + ">" +  "Team " + _winningTeam.Name + "</color>" + " wins the game!";
         return message;
     }
 

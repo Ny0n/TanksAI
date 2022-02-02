@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TeamsListSO _teamsList;
     [SerializeField] private TeamVariableSO _controllingTeam;
     [SerializeField] private BoolVariableSO _isControllingTeamOnPoint;
-    [SerializeField] private FloatVariableSO _winPoints;
+    [SerializeField] private SettingsVariableSO _settings;
+    [SerializeField] private FloatVariableSO _timer;
 
     [Serializable]
     private struct TeamUIElements
@@ -17,6 +18,9 @@ public class UIManager : MonoBehaviour
         public Text body;
     }
 
+    [Header("UI elements")]
+    [SerializeField] private Text _timerText;
+    
     [Header("Team 1 elements")]
     [SerializeField] private TeamUIElements _team1UI;
     
@@ -36,13 +40,13 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         _controllingTeam.ValueChanged += OnControllingTeamUpdated;
-        _winPoints.ValueChanged += OnDataUpdated;
+        _settings.ValueChanged += OnDataUpdated;
     }
 
     private void OnDisable()
     {
         _controllingTeam.ValueChanged -= OnControllingTeamUpdated;
-        _winPoints.ValueChanged -= OnDataUpdated;
+        _settings.ValueChanged -= OnDataUpdated;
     }
 
     private void OnDataUpdated()
@@ -73,6 +77,8 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _timerText.text = _timer.Value.ToString("F0");
+        
         if (!_isControllingTeamOnPoint.Value)
             return;
         
@@ -127,8 +133,8 @@ public class UIManager : MonoBehaviour
         }
         
         teamUI.body.text = String.Empty;
-        teamUI.body.text = ((team.Points / _winPoints.Value) * 100).ToString("F2") + "%";
+        teamUI.body.text = ((team.Points / _settings.Value.MaximumPoints) * 100).ToString("F2") + "%";
         teamUI.body.text += "\n";
-        teamUI.body.text += "(" + team.Points.ToString("F1") + "/" + _winPoints.Value + ")";
+        teamUI.body.text += "(" + team.Points.ToString("F1") + "/" + _settings.Value.MaximumPoints + ")";
     }
 }

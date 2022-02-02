@@ -12,9 +12,9 @@ public abstract class GenericEventEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        base.OnInspectorGUI();
-        
         if (GUILayout.Button("Raise"))
             _event.Raise();
+        
+        base.OnInspectorGUI();
     }
 }

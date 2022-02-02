@@ -1,13 +1,14 @@
 using UnityEditor;
 using UnityEngine;
 
-public abstract class ObservableVariableEditor<T> : Editor
+[CustomEditor(typeof(TeamSO)), CanEditMultipleObjects]
+public class TeamSOEditor : Editor
 {
-    private ObservableVariableSO<T> _var;
+    private TeamSO _var;
 
     private void OnEnable()
     {
-        _var = target as ObservableVariableSO<T>;
+        _var = target as TeamSO;
     }
 
     public override void OnInspectorGUI()

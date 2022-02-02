@@ -1,13 +1,13 @@
 using UnityEditor;
 using UnityEngine;
 
-public abstract class ObservableVariableEditor<T> : Editor
+public abstract class ObservableListEditor<T> : Editor
 {
-    private ObservableVariableSO<T> _var;
+    private ObservableListSO<T> _var;
 
     private void OnEnable()
     {
-        _var = target as ObservableVariableSO<T>;
+        _var = target as ObservableListSO<T>;
     }
 
     public override void OnInspectorGUI()

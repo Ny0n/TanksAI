@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TeamRed
   m_EditorClassIdentifier: 
   _name: Red
-  _color: {r: 1, g: 0, b: 0, a: 1}
+  _color: {r: 1, g: 0.23925434, b: 0, a: 1}
   _nbPlayers: 1
   _spawnTransform: {fileID: 11400000, guid: 03c6eaf6c850c134383622f2b9f4f519, type: 2}
+  _points: 0

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ObservableVariableSO<T> : ScriptableObject
 {
-    [SerializeField] private T _value;
+    [SerializeField] private T _value; // simple type value, shown in the inspector
     
     public T Value
     {

@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 [CreateAssetMenu(menuName = "Special/Team")]
 public class TeamSO : ScriptableObject
 {
@@ -38,6 +40,11 @@ public class TeamSO : ScriptableObject
     {
         _tanks = new List<TankManager>();
         _points = 0;
+    }
+
+    public void NotifyChange()
+    {
+        GlobalObservableManager.Instance.VarUpdated(this);
     }
     
     private List<TankManager> _tanks;

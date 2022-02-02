@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f0fd2d76951abb4ea5fa66ca589a0c6, type: 3}
+  m_Name: DefaultTeamsList
+  m_EditorClassIdentifier: 
+  _evtListener:
+    _events:
+    - {fileID: 11400000, guid: 5c41fcd6457f2df4497ea88e9fe95637, type: 2}
+    _onEventRaised:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000}
+          m_TargetAssemblyTypeName: ObservableListSO`1[[TeamSO, Assembly-CSharp
+          m_MethodName: OnVarUpdated
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  _team1: {fileID: 11400000, guid: 4bc0597a8f7b13b43a4dc035d083e1d3, type: 2}
+  _team2: {fileID: 11400000, guid: 34e157047128c194ab56843c6686b60f, type: 2}
+  _team3: {fileID: 11400000, guid: 2a99f3eefb01a684e958a3fe03485a3c, type: 2}

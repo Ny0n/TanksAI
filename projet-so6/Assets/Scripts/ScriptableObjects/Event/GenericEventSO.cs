@@ -19,12 +19,14 @@ public abstract class  GenericEventSO : ScriptableObject
 
     public void RegisterListener(GenericEventListener listener)
     {
-        _listeners.Add(listener);
+        if (!_listeners.Contains(listener))
+            _listeners.Add(listener);
     }
 
     public void UnregisterListener(GenericEventListener listener)
     {
-        _listeners.Remove(listener);
+        if (_listeners.Contains(listener))
+            _listeners.Remove(listener);
     }
 
     #region Answers System

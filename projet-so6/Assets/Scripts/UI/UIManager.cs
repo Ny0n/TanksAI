@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TeamsListSO _teamsList;
+    // [SerializeField] private TeamsListSO _teamsList;
+    [SerializeField] private TeamListSO _teamsList;
     [SerializeField] private TeamVariableSO _controllingTeam;
     [SerializeField] private BoolVariableSO _isControllingTeamOnPoint;
     [SerializeField] private FloatVariableSO _winPoints;
@@ -32,17 +33,37 @@ public class UIManager : MonoBehaviour
     private List<TeamUIElements> _teamsUI;
 
     private int _controllingIndex;
+    
+    private void Awake()
+    {
+        _teamsList.Init();
+    }
 
     private void OnEnable()
     {
+        _teamsList.AddObserver(OnTeamsUpdated);
         _controllingTeam.ValueChanged += OnControllingTeamUpdated;
         _winPoints.ValueChanged += OnDataUpdated;
     }
 
     private void OnDisable()
     {
+        _teamsList.RemoveObserver(OnTeamsUpdated);
         _controllingTeam.ValueChanged -= OnControllingTeamUpdated;
         _winPoints.ValueChanged -= OnDataUpdated;
+    }
+
+    
+    [ContextMenu("Register")]
+    public void Register()
+    {
+        // _teamsList._value.ValueChanged += OnTeamsUpdated;
+    }
+    
+    [ContextMenu("Unregister")]
+    public void Unregister()
+    {
+        // _teamsList._value.ValueChanged -= OnTeamsUpdated;
     }
 
     private void OnDataUpdated()
@@ -80,8 +101,9 @@ public class UIManager : MonoBehaviour
         UpdateTeam(_controllingIndex+1);
     }
 
-    private void OnTeamsUpdated() // TODO link to teams modif
+    private void OnTeamsUpdated()
     {
+        Debug.Log("oi?!");
         UpdateTeams();
     }
 

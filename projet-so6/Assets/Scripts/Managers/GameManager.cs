@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,15 +19,24 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds m_EndWait;           // Used to have a delay whilst the round or game ends.
     
     public GameObject tankPrefab;
-    
-    [SerializeField] private TeamsListSO _teamsList;
+
+    [SerializeField] private TeamListSO _teamsList;
     [SerializeField] private TeamVariableSO _winningTeam;
     private List<TankManager> _tanks;
 
     const float k_MaxDepenetrationVelocity = float.PositiveInfinity;
-
+    
     private void Start()
     {
+        ObservableCollection<TeamSO> test = new ObservableCollection<TeamSO>();
+        test.CollectionChanged += (sender, args) =>
+        {
+            Debug.Log("Changed");
+        };
+        
+        Debug.Log(_teamsList.Value[0].Name);
+        test.Add(_teamsList.Value[0]);
+            
         // This line fixes a change to the physics engine.
         Physics.defaultMaxDepenetrationVelocity = k_MaxDepenetrationVelocity;
         
@@ -38,6 +49,12 @@ public class GameManager : MonoBehaviour
 
         // Once the tanks have been created and the camera is using them as targets, start the game.
         StartCoroutine(GameLoop());
+    }
+    
+    [ContextMenu("Change")]
+    public void Change()
+    {
+        _teamsList.Value[0].Reset();
     }
 
     private void SpawnAllTanks()
@@ -121,7 +138,8 @@ public class GameManager : MonoBehaviour
 
     private bool CheckForWinner()
     {
-        return _teamsList.Value.FirstOrDefault(team => team.Points >= _winPoints.Value);
+        return false;
+        // return _teamsList.Value.FirstOrDefault(team => team.Points >= _winPoints.Value);
     }
 
     private IEnumerator GameEnding()

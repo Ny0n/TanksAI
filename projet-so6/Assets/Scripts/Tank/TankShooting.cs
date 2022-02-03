@@ -10,11 +10,13 @@ public class TankShooting : MonoBehaviour
     public float m_LaunchForce = 15f;           // The force given to the shell if the fire button is not held.
 
     [SerializeField] private CooldownSO _shootingCooldown;
+    private CooldownSO _shootinCooldownInstance;
 
     private void Start()
     {
         // The fire axis is based on the player number.
         m_FireButton = "Fire" + m_PlayerNumber;
+        _shootinCooldownInstance = Instantiate(_shootingCooldown);
     }
 
     private void Update()
@@ -25,12 +27,12 @@ public class TankShooting : MonoBehaviour
         }
     }
 
-    private void TryToFire()
+    public void TryToFire()
     {
         // check the cooldown
-        if (_shootingCooldown.IsCooldownDone())
+        if (_shootinCooldownInstance.IsCooldownDone())
         {
-            _shootingCooldown.StartCooldown();
+            _shootinCooldownInstance.StartCooldown();
             Fire();
         }
     }
@@ -52,4 +54,6 @@ public class TankShooting : MonoBehaviour
     }
     
     private string m_FireButton; // The input axis that is used for launching shells.
+
+    public string FireButton => m_FireButton;
 }

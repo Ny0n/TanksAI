@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Green
   _color: {r: 0, g: 1, b: 0.023293018, a: 1}
-  _nbPlayers: 1
-  _spawnTransform: {fileID: 11400000, guid: a81bb4e7a27e1d64cba8c19732f9ab28, type: 2}
+  _nbPlayers: 3
+  _isControlledByAI: 0
+  _btList: []
+  _spawnTransform: {fileID: 11400000, guid: 03c6eaf6c850c134383622f2b9f4f519, type: 2}
+  _points: 0

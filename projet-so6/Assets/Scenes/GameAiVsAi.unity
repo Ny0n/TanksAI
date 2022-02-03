@@ -1534,7 +1534,7 @@ MonoBehaviour:
   _gameEnded: {fileID: 11400000, guid: 8c475891005b0c34cb37d0b21adeea63, type: 2}
   _gameStarted: {fileID: 11400000, guid: 48e65a61263240149b2224ffb6e86490, type: 2}
   _timer: {fileID: 11400000, guid: 6327bdf6dddb7224782aff12640be274, type: 2}
-  _teamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
+  _teamsList: {fileID: 11400000, guid: e7e98f561e83cfc42851f73fc8e7135f, type: 2}
   _tankRespawnTime: 5
   _startDelay: 3
   _endDelay: 3

@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9672e147ed07cc458e7933df6e89e81, type: 3}
-  m_Name: TeamRed
+  m_Name: TeamYellow
   m_EditorClassIdentifier: 
-  _name: Red
-  _color: {r: 1, g: 0, b: 0, a: 1}
+  _name: Green
+  _color: {r: 1, g: 0.97271866, b: 0, a: 1}
   _nbPlayers: 3
   _isControlledByAI: 1
   _btList:
-  - {fileID: 11400000, guid: 1a724f160fdffa74b964f76b94c7b5d1, type: 2}
   - {fileID: 11400000, guid: 21d66292f3695e54a84889a33f707b17, type: 2}
   - {fileID: 11400000, guid: c49d976add47c104c803d5bfa4908a63, type: 2}
-  - {fileID: 11400000, guid: 21d66292f3695e54a84889a33f707b17, type: 2}
-  _spawnTransform: {fileID: 11400000, guid: 03c6eaf6c850c134383622f2b9f4f519, type: 2}
-  _points: 19.1587
+  - {fileID: 11400000, guid: 1a724f160fdffa74b964f76b94c7b5d1, type: 2}
+  _spawnTransform: {fileID: 11400000, guid: d0ae6e1d7aa0b4b4d9d2263d1aab6f15, type: 2}
+  _points: 29.48938

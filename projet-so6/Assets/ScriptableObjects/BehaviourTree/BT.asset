@@ -36,12 +36,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9c3740738dce4714f9d60e79d982e8c2
-  position: {x: 134, y: 275}
+  position: {x: 133.99997, y: 337.485}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
   description: 
-  listString: mapWaypoints
   indexString: currentPoint
 --- !u!114 &-7813890288977465541
 MonoBehaviour:
@@ -58,7 +57,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 241e2c3aa6976da499d8867e6260351f
-  position: {x: 297.00003, y: 100.12726}
+  position: {x: 296.99997, y: 161.48499}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
@@ -130,7 +129,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 32902753451af7e49a9df6ca884ec05a
-  position: {x: 465, y: 275}
+  position: {x: 464.99994, y: 337.485}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
@@ -151,7 +150,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 5979f264de934584d86e9dcae023e175
-  position: {x: 297, y: 275}
+  position: {x: 296.99997, y: 337.485}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
@@ -173,7 +172,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ba6768995c2cb1249b34d2cc9ce5a83f
-  position: {x: 297, y: -18}
+  position: {x: 296.99997, y: -12.709907}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}

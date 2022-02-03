@@ -12,8 +12,6 @@ public class NextPoint : ActionNode
     
     protected override void OnStart()
     {
-        
-        Debug.Log("NextPoint");
         _current = blackboard.GetValue<int>("currentPoint");
         _waypoints = blackboard.MapWaypoints;
     }

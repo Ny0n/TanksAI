@@ -9,6 +9,8 @@ namespace BehaviourTree
         private TankManager _tankManager;
         private Vector3 _targetPos;
 
+        public string TargetPosKey;
+
         protected override void OnStart()
         {
             _tankManager = blackboard.GetValue<TankManager>("tankManager");
@@ -16,7 +18,7 @@ namespace BehaviourTree
             _tankMovement = _tankManager.tankInstance.GetComponent<TankMovement>();
             _tankPathSystem = _tankManager.tankInstance.GetComponent<TankPathSystem>();
 
-            _targetPos = blackboard.GetValue<Vector3>("targetPos");
+            _targetPos = blackboard.GetValue<Vector3>(TargetPosKey);
         }
 
         protected override void OnStop()

@@ -23,10 +23,7 @@ public class TankShooting : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown(m_FireButton))
-        {
-            TryToFire();
-        }
+        
     }
 
     public void TryToFire()

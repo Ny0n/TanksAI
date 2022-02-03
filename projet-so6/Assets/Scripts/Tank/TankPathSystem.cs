@@ -60,6 +60,12 @@ public class TankPathSystem : MonoBehaviour
         
         _myPath = pathMesh.corners.ToList();
     }
+
+    private void OnDisable()
+    {
+        _myPath.Clear();
+    }
+
     private void OnDrawGizmos()
     {
         if (_myPath != null)

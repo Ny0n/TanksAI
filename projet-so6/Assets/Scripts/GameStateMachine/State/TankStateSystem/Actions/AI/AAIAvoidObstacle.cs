@@ -13,7 +13,7 @@ public class AAIAvoidObstacle : StateAction
 
         float angle = castController.AITankAvoidance.AngleCost;
         
-        castController.TankMovement.TurnInputValue = -castController.TurnRateCurve.Evaluate(angle);
+        castController.TankMovement.TurnInputValue = -castController.TankPathSystem.TurnRateCurve.Evaluate(angle);
         castController.TankMovement.MovementInputValue = 1;
          
     }

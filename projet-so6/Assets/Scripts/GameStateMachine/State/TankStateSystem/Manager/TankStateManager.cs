@@ -10,11 +10,6 @@ using UnityEngine.PlayerLoop;
 public class TankStateManager : StateManager
 {
     [SerializeField] private bool Player;
-    [SerializeField] private AnimationCurve turnRateCurve;
-    public AnimationCurve TurnRateCurve => turnRateCurve;
-    
-    [SerializeField] private AnimationCurve moveRateCurve;
-    public AnimationCurve MoveRateCurve => moveRateCurve;
 
     [HideInInspector] public bool AIShot;
     

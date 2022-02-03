@@ -58,13 +58,13 @@ MonoBehaviour:
   - {fileID: 156643315430551702}
   - {fileID: 3887428107081038855}
   - {fileID: 3967688770025622114}
-  - {fileID: 7051235780365733895}
   - {fileID: 5660897014517138478}
   - {fileID: 8352116147534197241}
   - {fileID: 2410242790559242397}
   - {fileID: -171860415771840470}
   - {fileID: 8184947192448897708}
   - {fileID: -1884322616503749735}
+  - {fileID: 7181019357816506171}
   blackboard:
     TeamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
 --- !u!114 &156643315430551702
@@ -107,7 +107,7 @@ MonoBehaviour:
     TeamsList: {fileID: 0}
   description: 
   children:
-  - {fileID: 7051235780365733895}
+  - {fileID: 7181019357816506171}
   - {fileID: 8352116147534197241}
   - {fileID: -171860415771840470}
 --- !u!114 &3887428107081038855
@@ -178,7 +178,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   radius: 100
---- !u!114 &7051235780365733895
+--- !u!114 &7181019357816506171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,18 +187,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36ee9a3273954b04fbc5e3c6d8dbd454, type: 3}
-  m_Name: MoveToNode
+  m_Script: {fileID: 11500000, guid: 769e809c5ce14c64881acb6a62f4ed98, type: 3}
+  m_Name: AimNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 155ae437632805845ba05958fcf32e11
-  position: {x: 99.737625, y: 784.6044}
+  guid: 04e73f9bcd573824eb1a312848bf856e
+  position: {x: 100.61251, y: 785}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
-  positionName: targetPos
-  goalPrecision: 2
 --- !u!114 &8184947192448897708
 MonoBehaviour:
   m_ObjectHideFlags: 0

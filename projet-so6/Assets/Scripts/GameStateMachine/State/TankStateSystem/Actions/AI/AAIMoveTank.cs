@@ -21,8 +21,8 @@ public class AAIMoveTank : StateAction
         
         Vector3 nextDestination = castController.TankPathSystem.MyPath[0];
         float angle = Vector3.SignedAngle(currentTransform.forward, nextDestination - currentTransform.position, Vector3.one);
-        castController.TankMovement.TurnInputValue = castController.TurnRateCurve.Evaluate(angle);
-        castController.TankMovement.MovementInputValue = castController.MoveRateCurve.Evaluate(angle);
+        castController.TankMovement.TurnInputValue = castController.TankPathSystem.TurnRateCurve.Evaluate(angle);
+        castController.TankMovement.MovementInputValue = castController.TankPathSystem.MoveRateCurve.Evaluate(angle);
             
         if (Vector3.SqrMagnitude(nextDestination - currentTransform.position) < goalPrecision)
         {

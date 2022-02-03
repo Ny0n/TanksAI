@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1492508212312663624
+--- !u!114 &-1884322616503749735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,16 +9,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf7970a5be4c6a046ba7a9ba7ddf0353, type: 3}
-  m_Name: WaitNode
+  m_Script: {fileID: 11500000, guid: 36ee9a3273954b04fbc5e3c6d8dbd454, type: 3}
+  m_Name: MoveToNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 3b16aab47ab12f94f83cdff4cf533fd3
-  position: {x: 0, y: 442}
+  guid: 3c3b077e386163848a852a82685a17f2
+  position: {x: -171.95828, y: 502}
+  blackboard:
+    TeamsList: {fileID: 0}
   description: 
-  teamsList: {fileID: 0}
-  duration: 2
+  positionName: controlPointPos
+  goalPrecision: 1.5
+--- !u!114 &-171860415771840470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbd55cd5d82cdd478f3fc6a37b647f2, type: 3}
+  m_Name: ShootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: fd72cda6e624626459fc0895c2cdc47a
+  position: {x: 512.7376, y: 784.6044}
+  blackboard:
+    TeamsList: {fileID: 0}
+  description: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37,9 +58,15 @@ MonoBehaviour:
   - {fileID: 156643315430551702}
   - {fileID: 3887428107081038855}
   - {fileID: 3967688770025622114}
-  - {fileID: 3231488935365710595}
   - {fileID: 7051235780365733895}
-  - {fileID: -1492508212312663624}
+  - {fileID: 5660897014517138478}
+  - {fileID: 8352116147534197241}
+  - {fileID: 2410242790559242397}
+  - {fileID: -171860415771840470}
+  - {fileID: 8184947192448897708}
+  - {fileID: -1884322616503749735}
+  blackboard:
+    TeamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
 --- !u!114 &156643315430551702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,11 +82,12 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: dde7634434461f34fa92b6a666b8cc0f
-  position: {x: 0, y: 0}
+  position: {x: 0, y: -254}
+  blackboard:
+    TeamsList: {fileID: 0}
   description: 
-  teamsList: {fileID: 0}
   child: {fileID: 3887428107081038855}
---- !u!114 &3231488935365710595
+--- !u!114 &2410242790559242397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,15 +96,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efbd55cd5d82cdd478f3fc6a37b647f2, type: 3}
-  m_Name: ShotShellNode
+  m_Script: {fileID: 11500000, guid: d21cb02cb5565e74aa83e99b7cbba388, type: 3}
+  m_Name: SequencerNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 9880cbaa9db299c4ba775a24d7dee61e
-  position: {x: 189, y: 442}
+  guid: 7ce23f8f5dbf5b441b1550fc2c3dcb16
+  position: {x: 308.73764, y: 647.6044}
+  blackboard:
+    TeamsList: {fileID: 0}
   description: 
-  teamsList: {fileID: 0}
+  children:
+  - {fileID: 7051235780365733895}
+  - {fileID: 8352116147534197241}
+  - {fileID: -171860415771840470}
 --- !u!114 &3887428107081038855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,10 +125,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 1b26a06f0587e644ebd8a2b3a1564b0b
-  position: {x: -0.000013589859, y: 131.00003}
+  position: {x: 0, y: -58}
+  blackboard:
+    TeamsList: {fileID: 0}
   description: 
-  teamsList: {fileID: 0}
-  child: {fileID: 3967688770025622114}
+  child: {fileID: 8184947192448897708}
   numberRepeat: 0
   infinite: 1
 --- !u!114 &3967688770025622114
@@ -113,13 +147,37 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 1baab6bf321101142923c646fed00cb9
-  position: {x: 0.000013113022, y: 272.775}
+  position: {x: 0.0000104904175, y: 270.95825}
+  blackboard:
+    TeamsList: {fileID: 0}
   description: 
-  teamsList: {fileID: 0}
   children:
-  - {fileID: 7051235780365733895}
-  - {fileID: -1492508212312663624}
-  - {fileID: 3231488935365710595}
+  - {fileID: -1884322616503749735}
+  - {fileID: 5660897014517138478}
+--- !u!114 &5660897014517138478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d2f41f8f67d15f43b114de8c265004e, type: 3}
+  m_Name: UpdateTargetPos
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 960b15214a2d8a040b14836dbf5dbda5
+  position: {x: 308.73764, y: 533.6044}
+  blackboard:
+    TeamsList: {fileID: 0}
+  description: 
+  child: {fileID: 2410242790559242397}
+  tankMask:
+    serializedVersion: 2
+    m_Bits: 128
+  radius: 100
 --- !u!114 &7051235780365733895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,8 +193,51 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 155ae437632805845ba05958fcf32e11
-  position: {x: -196, y: 442}
+  position: {x: 99.737625, y: 784.6044}
+  blackboard:
+    TeamsList: {fileID: 0}
   description: 
-  teamsList: {fileID: 0}
   positionName: targetPos
-  goalPrecision: 0
+  goalPrecision: 2
+--- !u!114 &8184947192448897708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533baa2410856b4479d5fb5e80f9a67f, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 5ac4841bae6be6e4f9120bf65c4a44d7
+  position: {x: 0, y: 86}
+  blackboard:
+    TeamsList: {fileID: 0}
+  description: 
+  child: {fileID: 3967688770025622114}
+  boolList:
+  - {fileID: 11400000, guid: 48e65a61263240149b2224ffb6e86490, type: 2}
+--- !u!114 &8352116147534197241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7970a5be4c6a046ba7a9ba7ddf0353, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: c2ef8e3ac7a770f41beea2d1c329eb45
+  position: {x: 308.73764, y: 784.6044}
+  blackboard:
+    TeamsList: {fileID: 0}
+  description: 
+  duration: 1

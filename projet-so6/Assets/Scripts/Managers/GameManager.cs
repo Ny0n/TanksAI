@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private SettingsVariableSO _settings;
     [SerializeField] private BoolVariableSO _gameEnded;
+    [SerializeField] private BoolVariableSO _gameStarted;
     [SerializeField] private FloatVariableSO _timer;
     [SerializeField] private TeamsListSO _teamsList;
     
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private GameObject _playerTankPrefab;
     [SerializeField] private GameObject _aiTankPrefab;
+    [SerializeField] private GameObject _controlPoint;
     
     private TeamSO _winningTeam;
     private List<TankManager> _tanks;
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
         _tanks = new List<TankManager>();
         _drawTeams = new List<TeamSO>();
         _gameEnded.Value = false;
+        _gameStarted.Value = false;
         
         // This line fixes a change to the physics engine.
         Physics.defaultMaxDepenetrationVelocity = k_MaxDepenetrationVelocity;
@@ -99,6 +102,7 @@ public class GameManager : MonoBehaviour
                 btRunner.tree = team.BTList[teamTankNumber]; // set the designated tree to the tank
                 btRunner.Initialize(); // clone it for the tank
                 btRunner.tree.blackboard.SetValue("tankManager", tm);
+                btRunner.tree.blackboard.SetValue("controlPointPos", _controlPoint.transform.position);
             }
         }
         else
@@ -166,6 +170,7 @@ public class GameManager : MonoBehaviour
     {
         // As soon as the game starts we let the players/IA control the tanks.
         EnableTankControl();
+        _gameStarted.Value = true;
 
         // Clear the text from the screen.
         _messageText.text = string.Empty;

@@ -102,8 +102,6 @@ public class GameManager : MonoBehaviour
                 btRunner.originTree.blackboard.SetValue("tankManager", tm);
                 btRunner.originTree.blackboard.SetValue("controlPointPos", _controlPoint.transform.position);
                 btRunner.Initialize(); // clone it for the tank
-                
-                Debug.Log(btRunner.runningTree.blackboard.GetValue<TankManager>("tankManager").playerNumber);
             }
         }
         else

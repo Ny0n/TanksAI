@@ -10,7 +10,10 @@ namespace BehaviourTree
 
         public Blackboard()
         {
-            Values = new Dictionary<string, object>();
+            Values = new Dictionary<string, object>()
+            {
+                {"targetPos", new Vector3()}
+            };
         }
     }
 }

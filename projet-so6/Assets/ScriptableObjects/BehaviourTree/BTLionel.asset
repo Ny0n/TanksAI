@@ -1,0 +1,142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1492508212312663624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7970a5be4c6a046ba7a9ba7ddf0353, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 3b16aab47ab12f94f83cdff4cf533fd3
+  position: {x: 0, y: 442}
+  description: 
+  teamsList: {fileID: 0}
+  duration: 2
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffddcf4ceff539f4bae95f950b12ffce, type: 3}
+  m_Name: BTLionel
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 156643315430551702}
+  treeState: 0
+  nodes:
+  - {fileID: 156643315430551702}
+  - {fileID: 3887428107081038855}
+  - {fileID: 3967688770025622114}
+  - {fileID: 3231488935365710595}
+  - {fileID: 7051235780365733895}
+  - {fileID: -1492508212312663624}
+--- !u!114 &156643315430551702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f25c3757d64634aa6706ab15fe330c, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: dde7634434461f34fa92b6a666b8cc0f
+  position: {x: 0, y: 0}
+  description: 
+  teamsList: {fileID: 0}
+  child: {fileID: 3887428107081038855}
+--- !u!114 &3231488935365710595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbd55cd5d82cdd478f3fc6a37b647f2, type: 3}
+  m_Name: ShotShellNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 9880cbaa9db299c4ba775a24d7dee61e
+  position: {x: 189, y: 442}
+  description: 
+  teamsList: {fileID: 0}
+--- !u!114 &3887428107081038855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba9a56ddc1b7fc45af3d1b213e1d446, type: 3}
+  m_Name: RepeatNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 1b26a06f0587e644ebd8a2b3a1564b0b
+  position: {x: -0.000013589859, y: 131.00003}
+  description: 
+  teamsList: {fileID: 0}
+  child: {fileID: 3967688770025622114}
+  numberRepeat: 0
+  infinite: 1
+--- !u!114 &3967688770025622114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21cb02cb5565e74aa83e99b7cbba388, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 1baab6bf321101142923c646fed00cb9
+  position: {x: 0.000013113022, y: 272.775}
+  description: 
+  teamsList: {fileID: 0}
+  children:
+  - {fileID: 7051235780365733895}
+  - {fileID: -1492508212312663624}
+  - {fileID: 3231488935365710595}
+--- !u!114 &7051235780365733895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ee9a3273954b04fbc5e3c6d8dbd454, type: 3}
+  m_Name: MoveToNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 155ae437632805845ba05958fcf32e11
+  position: {x: -196, y: 442}
+  description: 
+  teamsList: {fileID: 0}
+  positionName: targetPos
+  goalPrecision: 0

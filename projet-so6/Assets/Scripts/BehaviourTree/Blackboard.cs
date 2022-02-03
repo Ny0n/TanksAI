@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BehaviourTree
@@ -5,6 +6,11 @@ namespace BehaviourTree
     [System.Serializable]
     public class Blackboard
     {
-        public TankManager tankManager;
+        public Dictionary<string, object> Values;
+
+        public Blackboard()
+        {
+            Values = new Dictionary<string, object>();
+        }
     }
 }

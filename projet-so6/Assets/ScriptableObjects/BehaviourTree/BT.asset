@@ -63,7 +63,7 @@ MonoBehaviour:
   blackboard:
     test: {x: 0, y: 0, z: 0}
   description: 
-  teamsList: {fileID: 0}
+  teamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
   message: "encul\xE9"
 --- !u!114 &-1631553393145120095
 MonoBehaviour:

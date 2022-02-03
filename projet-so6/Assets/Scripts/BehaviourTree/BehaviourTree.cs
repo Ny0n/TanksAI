@@ -12,6 +12,7 @@ namespace BehaviourTree
         public Node.State treeState = Node.State.Running;
         public List<Node> nodes = new List<Node>();
         public Blackboard blackboard = new Blackboard();
+        
         public Node.State Update()
         {
             if (rootNode.state == Node.State.Running)

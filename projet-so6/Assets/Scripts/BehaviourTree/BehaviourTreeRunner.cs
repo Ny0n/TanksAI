@@ -13,7 +13,8 @@ namespace BehaviourTree
         {
             if (!tree) return;
 
-            Initialize();
+            if (!_hasInitialized)
+                Initialize();
         }
 
         public void Initialize()

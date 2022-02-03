@@ -12,7 +12,7 @@ namespace BehaviourTree
             Failure,
             Success
         }
-
+        
         [HideInInspector] public State state = State.Running;
         [HideInInspector] public bool started = false;
         [HideInInspector] public string guid;

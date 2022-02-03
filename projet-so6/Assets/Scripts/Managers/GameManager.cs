@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using BehaviourTree;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -25,7 +26,8 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds _startWait;  // Used to have a delay whilst the round starts.
     private WaitForSeconds _endWait;    // Used to have a delay whilst the round or game ends.
     
-    public GameObject tankPrefab;
+    [SerializeField] private GameObject _playerTankPrefab;
+    [SerializeField] private GameObject _aiTankPrefab;
     
     private TeamSO _winningTeam;
     private List<TankManager> _tanks;
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
         _startWait = new WaitForSeconds(_startDelay);
         _endWait = new WaitForSeconds(_endDelay);
 
-        SpawnAllTanks();
+        CreateAllTanks();
         SetCameraTargets();
 
         // Once the tanks have been created and the camera is using them as targets, start the game.
@@ -67,40 +69,46 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(0); // restart the game
     }
 
-    private void ResetTimer()
+    private void CreateAllTanks()
     {
-        _timer.Value = _settings.Value.PlayTime;
-    }
-
-    private void StartTimer()
-    {
-        _isTimerActive = true;
-    }
-    
-    private void StopTimer()
-    {
-        _isTimerActive = false;
-    }
-
-    private void SpawnAllTanks()
-    {
-        int j = 0;
         // For all the teams & all of the players inside
+        int j = 0;
         foreach (var team in _teamsList.Value)
         {
-            for (int i = 1; i <= team.NbPlayers; i++)
+            for (int i = 0; i < team.NbPlayers; i++)
             {
-                // we create and spawn the tanks
-                TankManager tm = new TankManager(team, i + j);
-                tm.m_Instance = Instantiate(tankPrefab, team.SpawnPoint.position, team.SpawnPoint.rotation) as GameObject;
-                tm.Setup();
-                
-                _tanks.Add(tm);
-                team.Tanks.Add(tm);
+                CreateTank(team, i, i + 1 + j);
             }
 
             j += team.NbPlayers;
         }
+    }
+
+    private void CreateTank(TeamSO team, int teamTankNumber, int playerNumber)
+    {
+        // we create and spawn the tanks
+        Debug.Log(playerNumber);
+        TankManager tm = new TankManager(team, playerNumber);
+
+        if (team.IsControlledByAI)
+        {
+            tm.tankInstance = Instantiate(_aiTankPrefab, team.SpawnPoint.position, team.SpawnPoint.rotation) as GameObject;
+            BehaviourTreeRunner btRunner = tm.tankInstance.GetComponent<BehaviourTreeRunner>();
+            if (teamTankNumber <= team.BTList.Count - 1)
+            {
+                btRunner.tree = team.BTList[teamTankNumber]; // set the designated tree to the tank
+                btRunner.Initialize(); // clone it for the tank
+                btRunner.tree.blackboard.tankManager = tm;
+            }
+        }
+        else
+        {
+            tm.tankInstance = Instantiate(_playerTankPrefab, team.SpawnPoint.position, team.SpawnPoint.rotation) as GameObject;
+        }
+        tm.Setup();
+                
+        _tanks.Add(tm);
+        team.Tanks.Add(tm);
     }
 
     public void OnTankDeath(GenericEventSO evt) // SO event
@@ -124,7 +132,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < targets.Length; i++)
         {
             // ... set it to the appropriate tank transform.
-            targets[i] = _tanks[i].m_Instance.transform;
+            targets[i] = _tanks[i].tankInstance.transform;
         }
 
         // These are the targets the camera should follow.
@@ -287,6 +295,25 @@ public class GameManager : MonoBehaviour
         return "<color=#" + ColorUtility.ToHtmlStringRGB(team.Color) + ">" + team.Name + "</color>";
     }
 
+    #region Timer
+
+    private void ResetTimer()
+    {
+        _timer.Value = _settings.Value.PlayTime;
+    }
+
+    private void StartTimer()
+    {
+        _isTimerActive = true;
+    }
+    
+    private void StopTimer()
+    {
+        _isTimerActive = false;
+    }
+
+    #endregion
+    
     private void ResetAllTanks()
     {
         foreach (var tank in _tanks)

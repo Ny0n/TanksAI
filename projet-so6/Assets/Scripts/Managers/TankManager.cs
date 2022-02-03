@@ -4,46 +4,42 @@ using UnityEngine;
 [Serializable]
 public class TankManager
 {
-    private TeamSO _team;
-    private int _playerNumber;
-    
-    [HideInInspector] public string m_ColoredPlayerText;    // A string that represents the player with their number colored to match their tank.
-    [HideInInspector] public GameObject m_Instance;         // A reference to the instance of the tank when it is created.
+    [HideInInspector] public TeamSO team;
+    [HideInInspector] public GameObject tankInstance;         // A reference to the instance of the tank when it is created.
+    [HideInInspector] public int playerNumber;
 
     private TankMovement m_Movement;                        // Reference to tank's movement script, used to disable and enable control.
     private TankShooting m_Shooting;                        // Reference to tank's shooting script, used to disable and enable control.
     private GameObject m_CanvasGameObject;                  // Used to disable the world space UI during the Starting and Ending phases of each round.
 
     private TankStateManager _stateManager;
+    
     public TankManager(TeamSO team, int playerNumber)
     {
-        _team = team;
-        _playerNumber = playerNumber;
+        this.team = team;
+        this.playerNumber = playerNumber;
     }
     
     public void Setup()
     {
         // Get and Set references to the components.
-        m_Instance.GetComponent<TankData>().Team = _team;
-        m_Instance.GetComponent<TankData>().Manager = this;
-        m_Movement = m_Instance.GetComponent<TankMovement>();
-        m_Shooting = m_Instance.GetComponent<TankShooting>();
-        _stateManager = m_Instance.GetComponent<TankStateManager>();
-        m_CanvasGameObject = m_Instance.GetComponentInChildren<Canvas>().gameObject;
+        tankInstance.GetComponent<TankData>().Team = team;
+        tankInstance.GetComponent<TankData>().Manager = this;
+        m_Movement = tankInstance.GetComponent<TankMovement>();
+        m_Shooting = tankInstance.GetComponent<TankShooting>();
+        m_CanvasGameObject = tankInstance.GetComponentInChildren<Canvas>().gameObject;
+        _stateManager = tankInstance.GetComponent<TankStateManager>();
 
         // Set the player numbers to be consistent across the scripts.
-        m_Movement.m_PlayerNumber = _playerNumber;
-        m_Shooting.m_PlayerNumber = _playerNumber;
-
-        // Create a string using the correct color that says 'PLAYER 1' etc based on the tank's color and the player's number.
-        m_ColoredPlayerText = "<color=#" + ColorUtility.ToHtmlStringRGB(_team.Color) + ">PLAYER " + _playerNumber + "</color>";
+        m_Movement.m_PlayerNumber = playerNumber;
+        m_Shooting.m_PlayerNumber = playerNumber;
 
         // Get all of the renderers of the tank
-        MeshRenderer[] renderers = m_Instance.GetComponentsInChildren<MeshRenderer>();
+        MeshRenderer[] renderers = tankInstance.GetComponentsInChildren<MeshRenderer>();
         foreach (var m in renderers)
         {
             // and set their material color to the color specific to this tank
-            m.material.color = _team.Color;
+            m.material.color = team.Color;
         }
     }
 
@@ -70,10 +66,10 @@ public class TankManager
     // Used at the start of each round to put the tank into it's default state.
     public void Reset()
     {
-        m_Instance.transform.position = _team.SpawnPoint.position;
-        m_Instance.transform.rotation = _team.SpawnPoint.rotation;
+        tankInstance.transform.position = team.SpawnPoint.position;
+        tankInstance.transform.rotation = team.SpawnPoint.rotation;
 
-        m_Instance.SetActive(false);
-        m_Instance.SetActive(true);
+        tankInstance.SetActive(false);
+        tankInstance.SetActive(true);
     }
 }

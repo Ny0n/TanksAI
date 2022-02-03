@@ -15,6 +15,9 @@ MonoBehaviour:
   _name: Red
   _color: {r: 1, g: 0, b: 0, a: 1}
   _nbPlayers: 1
-  _isControlledByAI: 0
+  _isControlledByAI: 1
+  _btList:
+  - {fileID: 11400000, guid: dce834d8e2f1052478f8776542d0bb37, type: 2}
+  - {fileID: 11400000, guid: dce834d8e2f1052478f8776542d0bb37, type: 2}
   _spawnTransform: {fileID: 11400000, guid: 03c6eaf6c850c134383622f2b9f4f519, type: 2}
   _points: 0

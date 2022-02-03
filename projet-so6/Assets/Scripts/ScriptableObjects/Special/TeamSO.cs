@@ -15,8 +15,13 @@ public class TeamSO : ScriptableObject
     [SerializeField] private int _nbPlayers;
     public int NbPlayers => _nbPlayers;
     
+    [Header("Players Management")]
+    
     [SerializeField] private bool _isControlledByAI;
     public bool IsControlledByAI => _isControlledByAI;
+    
+    [SerializeField] private List<BehaviourTree.BehaviourTree> _btList;
+    public List<BehaviourTree.BehaviourTree> BTList => _btList;
     
     [Header("Scene data")]
     

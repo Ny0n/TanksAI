@@ -1328,7 +1328,8 @@ MonoBehaviour:
   _endDelay: 3
   _cameraControl: {fileID: 1771596988}
   _messageText: {fileID: 102963701}
-  tankPrefab: {fileID: 173472, guid: e34cab7122aca2042bd009f9e7cc1fac, type: 3}
+  _playerTankPrefab: {fileID: 173472, guid: 1662b038a4415234886d3cc5a31926ed, type: 3}
+  _aiTankPrefab: {fileID: 173472, guid: e34cab7122aca2042bd009f9e7cc1fac, type: 3}
 --- !u!4 &1304999366
 Transform:
   m_ObjectHideFlags: 0

@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
             {
                 btRunner.tree = team.BTList[teamTankNumber]; // set the designated tree to the tank
                 btRunner.Initialize(); // clone it for the tank
-                btRunner.tree.blackboard.Values.Add("tankManager", tm);
+                btRunner.tree.blackboard.SetValue("tankManager", tm);
             }
         }
         else

@@ -18,14 +18,14 @@ namespace BehaviourTree
         
         protected override void OnStart()
         {
-            _tankManager = (TankManager) blackboard.Values["tankManager"];
+            _tankManager = blackboard.GetValue<TankManager>("tankManager");
             
             _tankMovement = _tankManager.tankInstance.GetComponent<TankMovement>();
             _tankPathSystem = _tankManager.tankInstance.GetComponent<TankPathSystem>();
             _tankStateManager = _tankManager.tankInstance.GetComponent<TankStateManager>();
             jumpFrame = true;
-
-            Vector3 targetPos = (Vector3) blackboard.Values?[positionName];
+            
+            Vector3 targetPos = blackboard.GetValue<Vector3>(positionName);
             
             _tankPathSystem.SearchTargetPath(targetPos);
         }

@@ -7,8 +7,8 @@ namespace BehaviourTree
         public string message;
         protected override void OnStart()
         {
-            TankManager tankManager = (TankManager) blackboard.Values["tankManager"];
-            
+            TankManager tankManager = blackboard.GetValue<TankManager>("tankManager");
+
             // Debug.Log($"DebugLogNode: Player Number {tankManager.playerNumber}");
             // Debug.Log($"DebugLogNode: Player Number {tankManager.team.Name}");
             // GameObject tank = tankManager.tankInstance;

@@ -11,12 +11,12 @@ namespace BehaviourTree
 
         protected override void OnStart()
         {
-            _tankManager = (TankManager) blackboard.Values["tankManager"];
+            _tankManager = blackboard.GetValue<TankManager>("tankManager");
 
             _tankMovement = _tankManager.tankInstance.GetComponent<TankMovement>();
             _tankStateManager = _tankManager.tankInstance.GetComponent<TankStateManager>();
 
-            _targetPos = (Vector3) blackboard.Values["targetPos"];
+            _targetPos = blackboard.GetValue<Vector3>("targetPos");
         }
 
         protected override void OnStop()

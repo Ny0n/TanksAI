@@ -6,7 +6,7 @@ namespace BehaviourTree
     
         protected override void OnStart()
         {
-            var tankManager = (TankManager) blackboard.Values["tankManager"];
+            var tankManager = blackboard.GetValue<TankManager>("tankManager");
             _tankShooting = tankManager.tankInstance.GetComponent<TankShooting>();
         }
 

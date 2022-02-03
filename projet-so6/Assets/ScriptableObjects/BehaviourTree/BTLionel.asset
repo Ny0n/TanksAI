@@ -15,35 +15,12 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: bae218ced3ca1a449bd2bea961031283
-  position: {x: 221.065, y: 986.9325}
+  position: {x: 240.8953, y: 760}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
   description: 
   duration: 0.5
---- !u!114 &-2783467538733140406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d21cb02cb5565e74aa83e99b7cbba388, type: 3}
-  m_Name: SequencerNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 4ae09839bac696548a865a3680b96786
-  position: {x: 284.19254, y: 820.9725}
-  blackboard:
-    TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
-  description: 
-  children:
-  - {fileID: -8555246633786351886}
-  - {fileID: -171860415771840470}
 --- !u!114 &-1884322616503749735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +58,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: fd72cda6e624626459fc0895c2cdc47a
-  position: {x: 396.06503, y: 986.9325}
+  position: {x: 415.29532, y: 760}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
@@ -111,7 +88,6 @@ MonoBehaviour:
   - {fileID: 7181019357816506171}
   - {fileID: -8555246633786351886}
   - {fileID: 1805468817544724136}
-  - {fileID: -2783467538733140406}
   blackboard:
     TeamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
     MapWaypoints: {fileID: 0}
@@ -181,7 +157,8 @@ MonoBehaviour:
   description: 
   children:
   - {fileID: 7181019357816506171}
-  - {fileID: -2783467538733140406}
+  - {fileID: -8555246633786351886}
+  - {fileID: -171860415771840470}
 --- !u!114 &3887428107081038855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,11 +222,12 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 04e73f9bcd573824eb1a312848bf856e
-  position: {x: 32, y: 740}
+  position: {x: 34.922497, y: 760}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
   description: 
+  TargetPosKey: targetPos
 --- !u!114 &8184947192448897708
 MonoBehaviour:
   m_ObjectHideFlags: 0

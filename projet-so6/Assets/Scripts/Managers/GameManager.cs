@@ -98,10 +98,12 @@ public class GameManager : MonoBehaviour
             BehaviourTreeRunner btRunner = tm.tankInstance.GetComponent<BehaviourTreeRunner>();
             if (teamTankNumber <= team.BTList.Count - 1)
             {
-                btRunner.tree = team.BTList[teamTankNumber]; // set the designated tree to the tank
+                btRunner.originTree = team.BTList[teamTankNumber].Clone(); // set the designated tree to the tank
+                btRunner.originTree.blackboard.SetValue("tankManager", tm);
+                btRunner.originTree.blackboard.SetValue("controlPointPos", _controlPoint.transform.position);
                 btRunner.Initialize(); // clone it for the tank
-                btRunner.tree.blackboard.SetValue("tankManager", tm);
-                btRunner.tree.blackboard.SetValue("controlPointPos", _controlPoint.transform.position);
+                
+                Debug.Log(btRunner.runningTree.blackboard.GetValue<TankManager>("tankManager").playerNumber);
             }
         }
         else

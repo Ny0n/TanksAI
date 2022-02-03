@@ -24,7 +24,7 @@ namespace BehaviourTree
 
         protected override void OnStop()
         {
-        
+            
         }
 
         protected override State OnUpdate()
@@ -38,9 +38,12 @@ namespace BehaviourTree
                         Transform currentPos = _tankManager.tankInstance.transform;
                         Transform enemyPos = tm.tankInstance.transform;
 
+                        Vector3 start = currentPos.position;
+                        Vector3 dir = enemyPos.position - currentPos.position;
+
                         RaycastHit hit;
-                        if (Physics.Raycast(currentPos.position, currentPos.position - enemyPos.position, out hit,
-                                radius))
+                        Debug.DrawRay(start, dir, Color.red, 1f);
+                        if (Physics.Raycast(start, dir, out hit, radius))
                         {
                             if (hit.collider.CompareTag("Tank"))
                             {

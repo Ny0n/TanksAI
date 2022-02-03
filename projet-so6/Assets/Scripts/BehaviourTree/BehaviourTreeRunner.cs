@@ -5,37 +5,53 @@ namespace BehaviourTree
 {
     public class BehaviourTreeRunner : MonoBehaviour
     {
-        public BehaviourTree tree;
+        public BehaviourTree originTree;
+        public BehaviourTree runningTree;
         private BehaviourTree _previousTree;
         private bool _hasInitialized;
 
         private void Start()
         {
-            if (!tree) return;
+            if (!originTree) return;
 
             if (!_hasInitialized)
                 Initialize();
         }
 
+        private void OnEnable()
+        {
+            Update();
+        }
+        
+        private void OnDisable()
+        {
+            _hasInitialized = false;
+        }
+
         public void Initialize()
         {
-            tree = tree.Clone();
-            tree.Bind();
+            runningTree = originTree.Clone();
+            
+            // we repopulate the original gamemanager's dico
+            foreach (var kvp in originTree.blackboard.Dico)
+                runningTree.blackboard.SetValue(kvp.Key, kvp.Value);
+            
+            runningTree.Bind();
             _hasInitialized = true;
-            _previousTree = tree;
+            _previousTree = runningTree;
         }
 
         private void Update()
         {
-            if (!tree) return;
+            if (!originTree) return;
             
-            if (tree != _previousTree) 
+            if (runningTree != _previousTree) 
                 _hasInitialized = false;
 
             if (!_hasInitialized)
                 Initialize();
             
-            tree.Update();
+            runningTree.Update();
         }
     }
 }

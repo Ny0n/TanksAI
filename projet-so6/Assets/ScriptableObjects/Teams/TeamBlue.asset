@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Blue
   _color: {r: 0, g: 0.02282834, b: 1, a: 1}
-  _nbPlayers: 1
+  _nbPlayers: 3
   _isControlledByAI: 1
   _btList:
-  - {fileID: 11400000, guid: dce834d8e2f1052478f8776542d0bb37, type: 2}
+  - {fileID: 11400000, guid: c49d976add47c104c803d5bfa4908a63, type: 2}
+  - {fileID: 11400000, guid: c49d976add47c104c803d5bfa4908a63, type: 2}
+  - {fileID: 11400000, guid: c49d976add47c104c803d5bfa4908a63, type: 2}
   _spawnTransform: {fileID: 11400000, guid: d0ae6e1d7aa0b4b4d9d2263d1aab6f15, type: 2}
   _points: 0

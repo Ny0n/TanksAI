@@ -110,7 +110,7 @@ namespace BehaviourTree
                     BehaviourTreeRunner runner = Selection.activeGameObject.GetComponent<BehaviourTreeRunner>();
                     if (runner)
                     {
-                        tree = runner.tree;
+                        tree = runner.runningTree;
                     }
                 }
             }

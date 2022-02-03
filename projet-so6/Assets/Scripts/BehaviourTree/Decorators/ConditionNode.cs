@@ -24,8 +24,7 @@ namespace BehaviourTree
                 }
             }
 
-            child.Update();
-            return State.Success;
+            return child.Update();
         }
     }
 }

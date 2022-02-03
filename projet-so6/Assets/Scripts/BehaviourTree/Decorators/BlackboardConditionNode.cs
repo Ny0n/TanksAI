@@ -5,6 +5,7 @@ namespace BehaviourTree
     public class BlackboardConditionNode : DecoratorNode
     {
         public string key;
+        public bool invert;
         
         protected override void OnStart()
         {
@@ -16,11 +17,23 @@ namespace BehaviourTree
 
         protected override State OnUpdate()
         {
-            if (!blackboard.GetValue<bool>(key))
-                return State.Failure;
+            if (!invert)
+            {
+                if (!blackboard.GetValue<bool>(key))
+                    return State.Failure;
 
-            child.Update();
-            return State.Success;
+                return child.Update();
+            }
+            else
+            {
+                if (!blackboard.GetValue<bool>(key))
+                {
+                    return child.Update();
+                }
+
+                return State.Failure;
+            }
+            
         }
     }
 }

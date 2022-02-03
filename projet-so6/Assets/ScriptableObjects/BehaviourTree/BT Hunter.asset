@@ -18,7 +18,6 @@ MonoBehaviour:
   position: {x: 192.4185, y: 853}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
 --- !u!114 &-8324182591137516565
 MonoBehaviour:
@@ -38,7 +37,6 @@ MonoBehaviour:
   position: {x: 297.00003, y: -238.10002}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   child: {fileID: 3558146475719415561}
 --- !u!114 &-8134240659784171272
@@ -59,9 +57,9 @@ MonoBehaviour:
   position: {x: 357.00003, y: 679.865}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   indexString: currentPoint
+  map: {fileID: 0}
 --- !u!114 &-7813890288977465541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +78,6 @@ MonoBehaviour:
   position: {x: 527.00006, y: 517.865}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   children:
   - {fileID: -8134240659784171272}
@@ -104,10 +101,10 @@ MonoBehaviour:
   position: {x: 86.41841, y: 492}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   child: {fileID: 5568227920316432388}
   key: enemyFound
+  invert: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,20 +127,16 @@ MonoBehaviour:
   - {fileID: 4468569399733216245}
   - {fileID: -8134240659784171272}
   - {fileID: 7369580477545643182}
-  - {fileID: 7542327517898692301}
   - {fileID: 5673923416452297694}
   - {fileID: 5312819330112399203}
   - {fileID: -871969710334488252}
-  - {fileID: 6868004721745840796}
   - {fileID: 5568227920316432388}
   - {fileID: 2811751011224623528}
   - {fileID: -8385660261757560982}
   - {fileID: 4850071297632407899}
   - {fileID: 2253885561949286372}
-  - {fileID: 4328847427751862517}
   blackboard:
     TeamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
-    MapWaypoints: {fileID: 11400000, guid: 478084c5dca87ea4d980a4d8aa68decc, type: 2}
 --- !u!114 &2253885561949286372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,12 +152,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9ff2e8cd343efe241ae258a5e6de128f
-  position: {x: -520, y: 492}
+  position: {x: -310.8, y: 492}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
-  duration: 1
+  duration: 0.2
 --- !u!114 &2811751011224623528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +175,6 @@ MonoBehaviour:
   position: {x: -32.581573, y: 853}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   TargetPosKey: enemyPos
 --- !u!114 &3558146475719415561
@@ -204,32 +195,10 @@ MonoBehaviour:
   position: {x: 297, y: -136}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   child: {fileID: 7369580477545643182}
   numberRepeat: 0
   infinite: 1
---- !u!114 &4328847427751862517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 470e4d2f13670a341ad865a2f8517c1d, type: 3}
-  m_Name: DebugLogNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: d2ac904f97e93cf4f90ff2efb90f90af
-  position: {x: -310.00003, y: 492}
-  blackboard:
-    TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
-  description: 
-  message: test
 --- !u!114 &4468569399733216245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,9 +217,8 @@ MonoBehaviour:
   position: {x: 702.00006, y: 679.865}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
-  waypointsString: mapWaypoints
+  _waypoints: {fileID: 0}
 --- !u!114 &4850071297632407899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +237,6 @@ MonoBehaviour:
   position: {x: -107.99997, y: 492}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   FoundEnemyKey: enemyFound
   EnemyPosKey: enemyPos
@@ -292,10 +259,10 @@ MonoBehaviour:
   position: {x: 527, y: 389}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   child: {fileID: -7813890288977465541}
   key: enemyFound
+  invert: 1
 --- !u!114 &5568227920316432388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +281,6 @@ MonoBehaviour:
   position: {x: 86.41841, y: 680}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   children:
   - {fileID: 2811751011224623528}
@@ -337,11 +303,9 @@ MonoBehaviour:
   position: {x: 86.41841, y: 273}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   children:
   - {fileID: 2253885561949286372}
-  - {fileID: 4328847427751862517}
   - {fileID: 4850071297632407899}
   - {fileID: -871969710334488252}
 --- !u!114 &6754443810916240997
@@ -362,31 +326,9 @@ MonoBehaviour:
   position: {x: 527.00006, y: 679.865}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   positionName: waypoint
   goalPrecision: 0.66
---- !u!114 &6868004721745840796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20adeec90dff53f40898bbdbe2ea3651, type: 3}
-  m_Name: InverterNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 629d4873e9bd4e94390810841ab28fdd
-  position: {x: 527, y: 272.99997}
-  blackboard:
-    TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
-  description: 
-  child: {fileID: 5312819330112399203}
 --- !u!114 &7369580477545643182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,31 +347,7 @@ MonoBehaviour:
   position: {x: 296.99997, y: -12.709907}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
-  child: {fileID: 7542327517898692301}
+  child: {fileID: 5673923416452297694}
   boolList:
   - {fileID: 11400000, guid: 48e65a61263240149b2224ffb6e86490, type: 2}
---- !u!114 &7542327517898692301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 714e3cde4f487c6459a58d1f5a969a3a, type: 3}
-  m_Name: ParallelNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: cfeabdcda10056848b1486365c173e6f
-  position: {x: 297, y: 112.615036}
-  blackboard:
-    TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
-  description: 
-  children:
-  - {fileID: 5673923416452297694}
-  - {fileID: 6868004721745840796}

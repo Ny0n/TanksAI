@@ -9,6 +9,7 @@ namespace BehaviourTree
         public TeamsListSO TeamsList;
         
         private Dictionary<string, object> _dictionary;
+        public Dictionary<string, object> Dico => _dictionary;
 
         public Blackboard()
         {

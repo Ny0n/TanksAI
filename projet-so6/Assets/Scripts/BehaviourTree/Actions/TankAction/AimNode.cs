@@ -32,7 +32,7 @@ namespace BehaviourTree
             float angle = Vector3.SignedAngle(currentTransform.forward, _targetPos - currentTransform.position, Vector3.one);
             _tankMovement.TurnInputValue = _tankPathSystem.TurnRateCurve.Evaluate(angle);
             
-            return Mathf.Abs(angle) <= 0.01 ? State.Success : State.Running;
+            return Mathf.Abs(angle) <= 0.1f ? State.Success : State.Running;
         }
     }
 }

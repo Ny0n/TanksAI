@@ -58,7 +58,7 @@ public class TankManager
     {
         m_Movement.enabled = true;
         m_Shooting.enabled = true;
-        _stateManager.enabled = true;
+        //_stateManager.enabled = true;
 
         m_CanvasGameObject.SetActive(true);
     }

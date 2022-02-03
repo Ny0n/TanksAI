@@ -11,6 +11,13 @@ public class TankPathSystem : MonoBehaviour
     [SerializeField] private GridVariable grid;
     
     [SerializeField] private NavMeshAgent agent;
+    
+    
+    [SerializeField] private AnimationCurve turnRateCurve;
+    public AnimationCurve TurnRateCurve => turnRateCurve;
+    
+    [SerializeField] private AnimationCurve moveRateCurve;
+    public AnimationCurve MoveRateCurve => moveRateCurve;
     public NavMeshAgent Agent => agent;
 
     private List<Vector3> _myPath;

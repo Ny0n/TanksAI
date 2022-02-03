@@ -23,14 +23,20 @@ public class ControlPointManager : MonoBehaviour
     [SerializeField] private TeamVariableSO _controllingTeam; // IA data #1
     [SerializeField] private BoolVariableSO _isControllingTeamOnPoint;
     
-    [SerializeField] private float _captureSpeed = 20;
-    [SerializeField] private float _captureDropSpeed = 30;
-    [SerializeField] private float _controlPointWinningSpeed = 4;
+    [SerializeField] private float _captureSpeed = 30;
+    [SerializeField] private float _captureSpeedBonusPerTank = 10;
+    [SerializeField] private float _captureDropAutoSpeed = 10;
+    [SerializeField] private float _captureDropEnemySpeed = 30;
+    [SerializeField] private float _captureDropEnemySpeedBonusPerTank = 10;
+    [SerializeField] private float _pointsWinningSpeed = 4;
+    [SerializeField] private float _pointsWinningSpeedBonusPerTank = 2;
     [SerializeField] private bool _dropCaptureInstant;
     
     [SerializeField] private GameObject _helipad;
     [SerializeField] private Image _captureImage;
-    
+
+    private List<Color> _savedColors;
+
     private List<TeamSO> _teamsOnPoint; // IA data #3
     private List<GameObject> _tanksOnPoint; // IA data #4
 
@@ -70,10 +76,17 @@ public class ControlPointManager : MonoBehaviour
             foreach (var m in renderers)
                 m.material.color = _controllingTeam.Value.Color;
             
-            // reset the capture bar
-            _captureImage.fillAmount = 0;
-            _captureImage.fillClockwise = false;
-            _captureImage.color = Color.white;
+            // // reset the capture bar
+            // _captureImage.fillAmount = 0;
+            // _captureImage.fillClockwise = false;
+            // _captureImage.color = Color.white;
+        }
+        else
+        {
+            // reset the helipad color
+            MeshRenderer[] renderers = _helipad.GetComponentsInChildren<MeshRenderer>();
+            for (int i = 0; i < renderers.Length; i++)
+                renderers[i].material.color = _savedColors[i];
         }
     }
     
@@ -82,9 +95,14 @@ public class ControlPointManager : MonoBehaviour
     {
         _controllingTeam.Value = default;
         _isControllingTeamOnPoint.Value = default;
+        _capture = default;
 
         _teamsOnPoint = new List<TeamSO>();
         _tanksOnPoint = new List<GameObject>();
+        _savedColors = new List<Color>();
+        MeshRenderer[] renderers = _helipad.GetComponentsInChildren<MeshRenderer>();
+        foreach (var m in renderers)
+            _savedColors.Add(m.material.color);
     }
 
     // Update is called once per frame
@@ -101,7 +119,7 @@ public class ControlPointManager : MonoBehaviour
             if (!_dropCaptureInstant)
             {
                 // by default, when the team that was capturing left the point, after a specified cooldown, we start resetting the progress to 0
-                SetCaptureProgress(Mathf.Max(_capture.progress - _captureDropSpeed * Time.deltaTime, 0));
+                SetCaptureProgress(Mathf.Max(_capture.progress - _captureDropAutoSpeed * Time.deltaTime, 0));
             }
             else
             {
@@ -118,6 +136,7 @@ public class ControlPointManager : MonoBehaviour
         TeamSO team = _teamsOnPoint[0];
         if (_controllingTeam.Value == team) // if it's the controlling team, we give it points
         {
+            AddCapture(team); // we also keep its capture progress for as long as the team's on the point
             AddPoints(_controllingTeam.Value);
         }
         else // if there are no controlling team or it's an other one, we start the capture
@@ -128,18 +147,35 @@ public class ControlPointManager : MonoBehaviour
 
     private void AddPoints(TeamSO team)
     {
-        team.Points = team.Points + _controlPointWinningSpeed * Time.deltaTime;
+        // considering that if we're here, there is only one team on the point
+        float speedBonus = _pointsWinningSpeedBonusPerTank * (_tanksOnPoint.Count - 1);
+        team.Points += (_pointsWinningSpeed + speedBonus) * Time.deltaTime;
     }
 
     private void AddCapture(TeamSO team)
     {
-        if (team == _capture.team)
+        // again, if we're here, that means that there's only one team on the point
+        if (team == _capture.team) // if it's the team that is already capturing
         {
-            SetCaptureProgress(Mathf.Min(_capture.progress + _captureSpeed * Time.deltaTime, 100));
+            float speedBonus = _captureSpeedBonusPerTank * (_tanksOnPoint.Count - 1);
+            SetCaptureProgress(Mathf.Min(_capture.progress + (_captureSpeed + speedBonus) * Time.deltaTime, 100));
         }
         else // if it's not the same team
         {
-            if (_capture.progress <= 0)
+            if (_captureDrop.IsCooldownDone() && _capture.progress > 0)
+            {
+                // when an other team comes to capture the point, it drops faster
+                
+                // first, due to the way that i did the code (and due to time limits it's not worth changing)
+                // we also have to cancel the auto drop
+                SetCaptureProgress(Mathf.Min(_capture.progress + _captureDropAutoSpeed * Time.deltaTime, 100));
+                
+                // then we drop bc there's enemies on the point
+                float speedBonus = _captureDropEnemySpeedBonusPerTank * (_tanksOnPoint.Count - 1);
+                SetCaptureProgress(Mathf.Max(_capture.progress - (_captureDropEnemySpeed + speedBonus) * Time.deltaTime, 0));
+            }
+            
+            if (_capture.progress <= 0) // switch team capture
             {
                 _capture.team = team;
                 _captureImage.fillClockwise = !_captureImage.fillClockwise;
@@ -155,11 +191,12 @@ public class ControlPointManager : MonoBehaviour
 
         if (_capture.progress <= 0)
         {
-            // ResetCapture();
+            ReleasePoint();
         }
         else if (_capture.progress >= 100)
         {
-            CapturePoint(_capture.team);
+            if (_controllingTeam.Value != _capture.team) // if the team doesn't already own the point
+                CapturePoint(_capture.team);
         }
     }
 
@@ -167,7 +204,15 @@ public class ControlPointManager : MonoBehaviour
     {
         // the func to make a team control the point
         _controllingTeam.Value = team;
-        ResetCapture();
+        // ResetCapture();
+        CheckControllingTeamForUI();
+    }
+    
+    private void ReleasePoint()
+    {
+        // the func to make a team lose the control of the point
+        _controllingTeam.Value = null;
+        // ResetCapture();
         CheckControllingTeamForUI();
     }
 

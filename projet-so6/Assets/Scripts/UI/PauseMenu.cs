@@ -69,6 +69,7 @@ public class PauseMenu : MonoBehaviour
     
     public void Restart()
     {
+        Resume();
         SceneManager.LoadScene(0);
     }
 }

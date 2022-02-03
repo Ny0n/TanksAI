@@ -88,8 +88,7 @@ public class GameManager : MonoBehaviour
             for (int i = 1; i <= team.NbPlayers; i++)
             {
                 // we create and spawn the tanks
-                i = i + j;
-                TankManager tm = new TankManager(team, i);
+                TankManager tm = new TankManager(team, i + j);
                 tm.m_Instance = Instantiate(tankPrefab, team.SpawnPoint.position, team.SpawnPoint.rotation) as GameObject;
                 tm.Setup();
                 

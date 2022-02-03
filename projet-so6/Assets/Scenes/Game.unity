@@ -3670,5 +3670,13 @@ PrefabInstance:
       propertyPath: _teamsList
       value: 
       objectReference: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
+    - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
+      propertyPath: _captureDropAutoSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
+      propertyPath: _captureDropEnemyBonusSpeed
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}

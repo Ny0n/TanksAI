@@ -35,6 +35,9 @@ namespace BehaviourTree
                 {
                     foreach (var tm in team.Tanks)
                     {
+                        if (!tm.tankInstance.activeSelf)
+                            continue;
+                            
                         Transform currentPos = _tankManager.tankInstance.transform;
                         Transform enemyPos = tm.tankInstance.transform;
 

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BoolVariableSO _gameStarted;
     [SerializeField] private FloatVariableSO _timer;
     [SerializeField] private TeamsListSO _teamsList;
+    [SerializeField] private CooldownSO _shootingCooldown;
     
     [Header("General Settings")]
     [SerializeField] private float _tankRespawnTime = 5f;
@@ -108,6 +109,7 @@ public class GameManager : MonoBehaviour
         {
             tm.tankInstance = Instantiate(_playerTankPrefab, team.SpawnPoint.position, team.SpawnPoint.rotation) as GameObject;
         }
+        tm.tankInstance.GetComponent<TankShooting>().shootingCooldown = _shootingCooldown;
         tm.Setup();
                 
         _tanks.Add(tm);

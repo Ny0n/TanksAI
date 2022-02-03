@@ -727,6 +727,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ControlPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
+      propertyPath: _teamsList
+      value: 
+      objectReference: {fileID: 11400000, guid: 50f70c0ad9886a8468c95b20fe93c5e3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
 --- !u!1 &1050304015
@@ -1515,6 +1519,7 @@ MonoBehaviour:
   _gameStarted: {fileID: 11400000, guid: 48e65a61263240149b2224ffb6e86490, type: 2}
   _timer: {fileID: 11400000, guid: 6327bdf6dddb7224782aff12640be274, type: 2}
   _teamsList: {fileID: 11400000, guid: 50f70c0ad9886a8468c95b20fe93c5e3, type: 2}
+  _shootingCooldown: {fileID: 11400000, guid: 69abb283c56906e4b9174d18a0a0f26b, type: 2}
   _tankRespawnTime: 5
   _startDelay: 3
   _endDelay: 3
@@ -2362,6 +2367,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_Alignment
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 586412872148842644, guid: cff8dca92b354c4469c49cdfcbd8eb73, type: 3}
+      propertyPath: _teamsList
+      value: 
+      objectReference: {fileID: 11400000, guid: 50f70c0ad9886a8468c95b20fe93c5e3, type: 2}
     - target: {fileID: 586412872148842645, guid: cff8dca92b354c4469c49cdfcbd8eb73, type: 3}
       propertyPath: m_Pivot.x
       value: 0

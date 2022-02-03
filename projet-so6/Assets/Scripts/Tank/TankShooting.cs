@@ -9,13 +9,13 @@ public class TankShooting : MonoBehaviour
     public AudioClip m_FireClip;                // Audio that plays when each shot is fired.
     public float m_LaunchForce = 15f;           // The force given to the shell if the fire button is not held.
 
-    [SerializeField] private CooldownSO _shootingCooldown;
+    [HideInInspector] public CooldownSO shootingCooldown;
     private CooldownSO _shootinCooldownInstance;
 
     private void Start()
     {
         m_FireButton = "Fire" + m_PlayerNumber;
-        _shootinCooldownInstance = Instantiate(_shootingCooldown);
+        _shootinCooldownInstance = Instantiate(shootingCooldown);
     }
 
     private void Update()

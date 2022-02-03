@@ -2688,7 +2688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DampTime: 0.2
   m_ScreenEdgeBuffer: 4
-  m_MinSize: 6
+  m_MinSize: 15
   m_Targets: []
 --- !u!1 &2083660208
 GameObject:

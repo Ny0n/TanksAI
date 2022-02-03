@@ -18,7 +18,7 @@ MonoBehaviour:
   _isControlledByAI: 1
   _btList:
   - {fileID: 11400000, guid: c49d976add47c104c803d5bfa4908a63, type: 2}
-  - {fileID: 11400000, guid: c49d976add47c104c803d5bfa4908a63, type: 2}
-  - {fileID: 11400000, guid: c49d976add47c104c803d5bfa4908a63, type: 2}
+  - {fileID: 11400000, guid: 1a724f160fdffa74b964f76b94c7b5d1, type: 2}
+  - {fileID: 11400000, guid: 21d66292f3695e54a84889a33f707b17, type: 2}
   _spawnTransform: {fileID: 11400000, guid: d0ae6e1d7aa0b4b4d9d2263d1aab6f15, type: 2}
-  _points: 0
+  _points: 27.518164

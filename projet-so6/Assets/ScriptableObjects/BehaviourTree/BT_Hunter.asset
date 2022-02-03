@@ -54,12 +54,12 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9c3740738dce4714f9d60e79d982e8c2
-  position: {x: 357.00003, y: 679.865}
+  position: {x: 388.8978, y: 563.99994}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
   indexString: currentPoint
-  map: {fileID: 0}
+  map: {fileID: 11400000, guid: 478084c5dca87ea4d980a4d8aa68decc, type: 2}
 --- !u!114 &-7813890288977465541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 241e2c3aa6976da499d8867e6260351f
-  position: {x: 527.00006, y: 517.865}
+  position: {x: 558.89777, y: 401.99994}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
@@ -135,6 +135,7 @@ MonoBehaviour:
   - {fileID: -8385660261757560982}
   - {fileID: 4850071297632407899}
   - {fileID: 2253885561949286372}
+  - {fileID: 8969804144938821962}
   blackboard:
     TeamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
 --- !u!114 &2253885561949286372
@@ -214,11 +215,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 32902753451af7e49a9df6ca884ec05a
-  position: {x: 702.00006, y: 679.865}
+  position: {x: 733.8978, y: 563.99994}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
-  _waypoints: {fileID: 0}
+  _waypoints: {fileID: 11400000, guid: 478084c5dca87ea4d980a4d8aa68decc, type: 2}
 --- !u!114 &4850071297632407899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +257,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: fba9cd0a30c09f94ca5b51773c72db4e
-  position: {x: 527, y: 389}
+  position: {x: 558.89777, y: 272.99994}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
@@ -323,12 +324,12 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 5979f264de934584d86e9dcae023e175
-  position: {x: 527.00006, y: 679.865}
+  position: {x: 558.89777, y: 563.99994}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
   positionName: waypoint
-  goalPrecision: 0.66
+  goalPrecision: 1.2
 --- !u!114 &7369580477545643182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +349,28 @@ MonoBehaviour:
   blackboard:
     TeamsList: {fileID: 0}
   description: 
-  child: {fileID: 5673923416452297694}
+  child: {fileID: 8969804144938821962}
   boolList:
   - {fileID: 11400000, guid: 48e65a61263240149b2224ffb6e86490, type: 2}
+--- !u!114 &8969804144938821962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714e3cde4f487c6459a58d1f5a969a3a, type: 3}
+  m_Name: ParallelNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 3d57fd936d60de74fa871010683f85ee
+  position: {x: 297, y: 140}
+  blackboard:
+    TeamsList: {fileID: 0}
+  description: 
+  children:
+  - {fileID: 5673923416452297694}
+  - {fileID: 5312819330112399203}

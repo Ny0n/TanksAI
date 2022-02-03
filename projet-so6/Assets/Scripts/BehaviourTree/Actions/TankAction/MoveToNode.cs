@@ -43,6 +43,11 @@ namespace BehaviourTree
 
         protected override State OnUpdate()
         {
+            if (!_tankManager.tankInstance.activeSelf)
+            {
+                return State.Failure;
+            }
+            
             if (!doNode)
                 return State.Success;
             

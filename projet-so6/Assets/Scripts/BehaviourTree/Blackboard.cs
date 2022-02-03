@@ -19,7 +19,7 @@ namespace BehaviourTree
 
         private void SetDefaultValues()
         {
-            SetValue("targetPos", new Vector3());
+            SetValue("targetPos", null);
             // ...
         }
 

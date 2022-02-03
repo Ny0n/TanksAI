@@ -29,7 +29,6 @@ namespace BehaviourTree
             Transform currentTransform = _tankManager.tankInstance.transform;
             if (Vector3.SqrMagnitude(targetPos - currentTransform.position) < goalPrecision)
             {
-                Debug.Log("Don't do node");
                 doNode = false;
                 return;
             }
@@ -52,15 +51,12 @@ namespace BehaviourTree
             
             if (_tankPathSystem.MyPath.Count > 0 && Vector3.SqrMagnitude(_tankPathSystem.MyPath.Last() - currentTransform.position) < goalPrecision)
             {
-                Debug.Log("SUCCESS");
-                
                 _tankPathSystem.MyPath.Clear();
                 return State.Success;
             }
             
             if (_tankPathSystem.MyPath.Count == 0)
             {
-                Debug.Log("RUNNING");
                 return State.Running;
             }
 
@@ -70,7 +66,6 @@ namespace BehaviourTree
             Vector3 nextDestination = _tankPathSystem.MyPath[0];
             float angle = Vector3.SignedAngle(currentTransform.forward, nextDestination - currentTransform.position, Vector3.one);
             
-            Debug.Log(angle);
             _tankMovement.TurnInputValue = _tankPathSystem.TurnRateCurve.Evaluate(angle);
             _tankMovement.MovementInputValue = _tankPathSystem.MoveRateCurve.Evaluate(angle);
             

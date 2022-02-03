@@ -1518,6 +1518,7 @@ MonoBehaviour:
   _gameEnded: {fileID: 11400000, guid: 8c475891005b0c34cb37d0b21adeea63, type: 2}
   _gameStarted: {fileID: 11400000, guid: 48e65a61263240149b2224ffb6e86490, type: 2}
   _timer: {fileID: 11400000, guid: 6327bdf6dddb7224782aff12640be274, type: 2}
+  _allTeamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
   _teamsList: {fileID: 11400000, guid: 50f70c0ad9886a8468c95b20fe93c5e3, type: 2}
   _shootingCooldown: {fileID: 11400000, guid: 69abb283c56906e4b9174d18a0a0f26b, type: 2}
   _tankRespawnTime: 5

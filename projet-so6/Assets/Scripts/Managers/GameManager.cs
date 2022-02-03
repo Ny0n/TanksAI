@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BoolVariableSO _gameEnded;
     [SerializeField] private BoolVariableSO _gameStarted;
     [SerializeField] private FloatVariableSO _timer;
+    [SerializeField] private TeamsListSO _allTeamsList;
     [SerializeField] private TeamsListSO _teamsList;
     [SerializeField] private CooldownSO _shootingCooldown;
     
@@ -46,6 +47,12 @@ public class GameManager : MonoBehaviour
         _drawTeams = new List<TeamSO>();
         _gameEnded.Value = false;
         _gameStarted.Value = false;
+
+        // reset the teams data on start
+        foreach (var team in _allTeamsList.Value)
+        {
+            team.Reset();
+        }
         
         // This line fixes a change to the physics engine.
         Physics.defaultMaxDepenetrationVelocity = k_MaxDepenetrationVelocity;

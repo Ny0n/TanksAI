@@ -7,6 +7,7 @@ namespace BehaviourTree
     public class Blackboard
     {
         public Dictionary<string, object> Values;
+        public TeamsListSO TeamsList;
 
         public Blackboard()
         {

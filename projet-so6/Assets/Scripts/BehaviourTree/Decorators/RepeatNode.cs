@@ -5,7 +5,7 @@ namespace BehaviourTree
     public class RepeatNode : DecoratorNode
     {
         public int numberRepeat = 0;
-        public bool infinite = false;
+        public bool infinite = true;
         protected override void OnStart()
         {
         }

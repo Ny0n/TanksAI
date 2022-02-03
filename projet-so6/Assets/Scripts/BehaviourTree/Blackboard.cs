@@ -7,6 +7,7 @@ namespace BehaviourTree
     public class Blackboard
     {
         public TeamsListSO TeamsList;
+        public Vector3ListSO MapWaypoints;
         
         private Dictionary<string, object> _dictionary;
 
@@ -20,6 +21,11 @@ namespace BehaviourTree
         {
             SetValue("targetPos", new Vector3());
             // ...
+        }
+
+        public bool HasValue(string key)
+        {
+            return _dictionary.ContainsKey(key);
         }
 
         public void SetValue(string key, object value)

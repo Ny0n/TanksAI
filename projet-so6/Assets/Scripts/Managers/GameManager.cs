@@ -90,7 +90,6 @@ public class GameManager : MonoBehaviour
     private void CreateTank(TeamSO team, int teamTankNumber, int playerNumber)
     {
         // we create and spawn the tanks
-        Debug.Log(playerNumber);
         TankManager tm = new TankManager(team, playerNumber);
 
         if (team.IsControlledByAI)

@@ -8,9 +8,7 @@ namespace BehaviourTree
         private TankPathSystem _tankPathSystem;
         private TankMovement _tankMovement;
         private TankManager _tankManager;
-
-        private bool jumpFrame;
-
+        
         public string positionName;
         
         [Range(0.1f, 2f)]
@@ -18,12 +16,10 @@ namespace BehaviourTree
         
         protected override void OnStart()
         {
-            Debug.Log(positionName);
             _tankManager = blackboard.GetValue<TankManager>("tankManager");
             
             _tankMovement = _tankManager.tankInstance.GetComponent<TankMovement>();
             _tankPathSystem = _tankManager.tankInstance.GetComponent<TankPathSystem>();
-            jumpFrame = true;
             
             Vector3 targetPos = blackboard.GetValue<Vector3>(positionName);
             
@@ -42,26 +38,16 @@ namespace BehaviourTree
 
         protected override State OnUpdate()
         {
-            if (jumpFrame)
-            {
-                jumpFrame = false;
+            
+            if (_tankPathSystem.MyPath.Count == 0)
                 return State.Running;
-            }
 
-
-            if (_tankPathSystem.MyPath.Count <= 0)
-                return State.Success;
-            
             Transform currentTransform = _tankManager.tankInstance.transform;
-
-            if (Vector3.SqrMagnitude(_tankPathSystem.MyPath.Last() - currentTransform.position) < goalPrecision)
-            {
-                return State.Success;
-            }
             
-            _tankPathSystem.Agent.nextPosition = currentTransform.position;
+            if (Vector3.SqrMagnitude(_tankPathSystem.MyPath.Last() - currentTransform.position) < goalPrecision)
+                return State.Success;
 
-            Debug.Log("MOVEEEEEEEEEE");
+            _tankPathSystem.Agent.nextPosition = currentTransform.position;
             
             Vector3 nextDestination = _tankPathSystem.MyPath[0];
             float angle = Vector3.SignedAngle(currentTransform.forward, nextDestination - currentTransform.position, Vector3.one);

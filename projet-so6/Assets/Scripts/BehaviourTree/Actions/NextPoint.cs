@@ -12,8 +12,10 @@ public class NextPoint : ActionNode
     
     protected override void OnStart()
     {
+        
+        Debug.Log("NextPoint");
         _current = blackboard.GetValue<int>("currentPoint");
-        _waypoints = blackboard.GetValue<Vector3ListSO>(waypointsString);
+        _waypoints = blackboard.MapWaypoints;
     }
 
     protected override void OnStop()
@@ -25,10 +27,12 @@ public class NextPoint : ActionNode
         if (_current == _waypoints.Value.Count - 1)
         {
             _current = 0;
+            blackboard.SetValue("currentPoint", _current);
             return State.Success;
         }
 
         _current++;
+        blackboard.SetValue("currentPoint", _current);
         return State.Success;
     }
 }

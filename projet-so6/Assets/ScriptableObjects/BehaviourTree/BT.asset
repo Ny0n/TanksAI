@@ -15,11 +15,34 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 950630bb1323b1f47ad1cf966aaffd13
-  position: {x: 297.00003, y: -175.5785}
+  position: {x: 297.00003, y: -238.10002}
   blackboard:
     TeamsList: {fileID: 0}
+    MapWaypoints: {fileID: 0}
   description: 
-  child: {fileID: -7813890288977465541}
+  child: {fileID: 3558146475719415561}
+--- !u!114 &-8134240659784171272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29aa0f45e4a2de24cacdbbd89d86e61f, type: 3}
+  m_Name: GetPointNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 9c3740738dce4714f9d60e79d982e8c2
+  position: {x: 134, y: 275}
+  blackboard:
+    TeamsList: {fileID: 0}
+    MapWaypoints: {fileID: 0}
+  description: 
+  listString: mapWaypoints
+  indexString: currentPoint
 --- !u!114 &-7813890288977465541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,53 +58,15 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 241e2c3aa6976da499d8867e6260351f
-  position: {x: 297.00003, y: 18.371735}
+  position: {x: 297.00003, y: 100.12726}
   blackboard:
     TeamsList: {fileID: 0}
+    MapWaypoints: {fileID: 0}
   description: 
   children:
-  - {fileID: -5643161334958208389}
-  - {fileID: -1631553393145120095}
---- !u!114 &-5643161334958208389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 470e4d2f13670a341ad865a2f8517c1d, type: 3}
-  m_Name: DebugLogNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: faed7270654892b4c934c7964543effd
-  position: {x: 205.25078, y: 283.3996}
-  blackboard:
-    TeamsList: {fileID: 0}
-  description: 
-  message: bonjour
---- !u!114 &-1631553393145120095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf7970a5be4c6a046ba7a9ba7ddf0353, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 710026852f0d85440b75cbf00faa6b68
-  position: {x: 409.042, y: 282.99997}
-  blackboard:
-    TeamsList: {fileID: 0}
-  description: 
-  duration: 1
+  - {fileID: -8134240659784171272}
+  - {fileID: 6754443810916240997}
+  - {fileID: 4468569399733216245}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +84,100 @@ MonoBehaviour:
   nodes:
   - {fileID: -8324182591137516565}
   - {fileID: -7813890288977465541}
-  - {fileID: -5643161334958208389}
-  - {fileID: -1631553393145120095}
+  - {fileID: 3558146475719415561}
+  - {fileID: 6754443810916240997}
+  - {fileID: 4468569399733216245}
+  - {fileID: -8134240659784171272}
+  - {fileID: 7369580477545643182}
   blackboard:
     TeamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
+    MapWaypoints: {fileID: 11400000, guid: 478084c5dca87ea4d980a4d8aa68decc, type: 2}
+--- !u!114 &3558146475719415561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba9a56ddc1b7fc45af3d1b213e1d446, type: 3}
+  m_Name: RepeatNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 912058e6d2674ad40beae102a7de9eaa
+  position: {x: 297, y: -136}
+  blackboard:
+    TeamsList: {fileID: 0}
+    MapWaypoints: {fileID: 0}
+  description: 
+  child: {fileID: 7369580477545643182}
+  numberRepeat: 0
+  infinite: 1
+--- !u!114 &4468569399733216245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f130e87058090e40a5165863f900851, type: 3}
+  m_Name: NextPoint
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 32902753451af7e49a9df6ca884ec05a
+  position: {x: 465, y: 275}
+  blackboard:
+    TeamsList: {fileID: 0}
+    MapWaypoints: {fileID: 0}
+  description: 
+  waypointsString: mapWaypoints
+--- !u!114 &6754443810916240997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ee9a3273954b04fbc5e3c6d8dbd454, type: 3}
+  m_Name: MoveToNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 5979f264de934584d86e9dcae023e175
+  position: {x: 297, y: 275}
+  blackboard:
+    TeamsList: {fileID: 0}
+    MapWaypoints: {fileID: 0}
+  description: 
+  positionName: waypoint
+  goalPrecision: 0.66
+--- !u!114 &7369580477545643182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533baa2410856b4479d5fb5e80f9a67f, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: ba6768995c2cb1249b34d2cc9ce5a83f
+  position: {x: 297, y: -18}
+  blackboard:
+    TeamsList: {fileID: 0}
+    MapWaypoints: {fileID: 0}
+  description: 
+  child: {fileID: -7813890288977465541}
+  boolList:
+  - {fileID: 11400000, guid: 48e65a61263240149b2224ffb6e86490, type: 2}

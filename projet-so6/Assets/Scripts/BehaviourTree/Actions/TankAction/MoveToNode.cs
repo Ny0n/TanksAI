@@ -38,8 +38,7 @@ namespace BehaviourTree
 
         protected override void OnStop()
         {
-            _tankMovement.TurnInputValue = 0;
-            _tankMovement.MovementInputValue = 0;
+            
         }
 
         protected override State OnUpdate()
@@ -51,6 +50,8 @@ namespace BehaviourTree
             
             if (_tankPathSystem.MyPath.Count > 0 && Vector3.SqrMagnitude(_tankPathSystem.MyPath.Last() - currentTransform.position) < goalPrecision)
             {
+                _tankMovement.TurnInputValue = 0;
+                _tankMovement.MovementInputValue = 0;
                 _tankPathSystem.MyPath.Clear();
                 return State.Success;
             }

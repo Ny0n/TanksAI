@@ -66,8 +66,6 @@ namespace BehaviourTree
 
             
             _tankPathSystem.Agent.nextPosition = currentTransform.position;
-
-            _tankPathSystem.Agent.nextPosition = currentTransform.position;
             
             Vector3 nextDestination = _tankPathSystem.MyPath[0];
             float angle = Vector3.SignedAngle(currentTransform.forward, nextDestination - currentTransform.position, Vector3.one);

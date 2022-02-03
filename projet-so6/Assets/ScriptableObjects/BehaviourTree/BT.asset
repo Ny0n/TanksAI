@@ -19,7 +19,7 @@ MonoBehaviour:
   blackboard:
     TeamsList: {fileID: 0}
   description: 
-  child: {fileID: 0}
+  child: {fileID: -7813890288977465541}
 --- !u!114 &-7813890288977465541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 241e2c3aa6976da499d8867e6260351f
-  position: {x: 297.00003, y: 136.7316}
+  position: {x: 297.00003, y: 18.371735}
   blackboard:
     TeamsList: {fileID: 0}
   description: 

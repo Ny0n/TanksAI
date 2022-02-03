@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BehaviourTree
 {
-    public class UpdateTargetPos : DecoratorNode
+    public class UpdateTargetPos : ActionNode
     {
         public LayerMask tankMask;
         private TankManager _tankManager;
@@ -54,7 +54,6 @@ namespace BehaviourTree
                             if (hitRay.transform.gameObject == targetGo)
                             {
                                 blackboard.SetValue("targetPos", hitRay.transform.position);
-                                child.Update();
                                 return State.Success;
                             }
                         }

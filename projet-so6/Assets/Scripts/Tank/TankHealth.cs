@@ -77,7 +77,7 @@ public class TankHealth : MonoBehaviour
 
         // Play the tank explosion sound effect.
         m_ExplosionAudio.Play();
-
+        
         // Turn the tank off.
         gameObject.SetActive(false);
         _tankDeath.SetAndRaise(GetComponent<TankData>().Manager);

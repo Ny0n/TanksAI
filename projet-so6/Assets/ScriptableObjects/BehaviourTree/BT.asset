@@ -15,11 +15,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 950630bb1323b1f47ad1cf966aaffd13
-  position: {x: 297.00003, y: -224.9782}
+  position: {x: 297.00003, y: -175.5785}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
-  child: {fileID: -1439594251348345214}
+  child: {fileID: 0}
 --- !u!114 &-7813890288977465541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: faed7270654892b4c934c7964543effd
-  position: {x: 187, y: 298}
+  position: {x: 205.25078, y: 283.3996}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
@@ -77,33 +77,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 710026852f0d85440b75cbf00faa6b68
-  position: {x: 399.99994, y: 297.73157}
+  position: {x: 409.042, y: 282.99997}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
   duration: 1
---- !u!114 &-1439594251348345214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cba9a56ddc1b7fc45af3d1b213e1d446, type: 3}
-  m_Name: RepeatNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: da73eaec9ecee394d97914ca260b013d
-  position: {x: 297, y: -30}
-  blackboard:
-    TeamsList: {fileID: 0}
-  description: 
-  child: {fileID: -7813890288977465541}
-  numberRepeat: 0
-  infinite: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +101,5 @@ MonoBehaviour:
   - {fileID: -7813890288977465541}
   - {fileID: -5643161334958208389}
   - {fileID: -1631553393145120095}
-  - {fileID: -1439594251348345214}
   blackboard:
     TeamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}

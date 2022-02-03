@@ -1,6 +1,6 @@
 namespace BehaviourTree
 {
-    public class ShotShellNode : ActionNode
+    public class ShootNode : ActionNode
     {
         private TankShooting _tankShooting;
     

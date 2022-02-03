@@ -121,6 +121,22 @@ InputManager:
     m_Name: Horizontal2
     descriptiveName: Horizontal keyboard axis for player 2
     descriptiveNegativeName: 
+    negativeButton: k
+    positiveButton: m
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.001
+    sensitivity: 3
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Horizontal3
+    descriptiveName: Horizontal keyboard axis for player 2
+    descriptiveNegativeName: 
     negativeButton: left
     positiveButton: right
     altNegativeButton: 
@@ -135,6 +151,22 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Vertical2
+    descriptiveName: Vertical keyboard axis for player 2
+    descriptiveNegativeName: 
+    negativeButton: l
+    positiveButton: o
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.001
+    sensitivity: 3
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Vertical3
     descriptiveName: Vertical keyboard axis for player 2
     descriptiveNegativeName: 
     negativeButton: down
@@ -154,9 +186,25 @@ InputManager:
     descriptiveName: Fire keyboard button for player 2
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: enter
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: return
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Fire3
+    descriptiveName: Fire keyboard button for player 2
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: '[0]'
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000

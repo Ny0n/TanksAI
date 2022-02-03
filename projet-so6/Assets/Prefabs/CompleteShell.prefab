@@ -199,6 +199,8 @@ MonoBehaviour:
   m_ExplosionForce: 1000
   m_MaxLifeTime: 2
   m_ExplosionRadius: 5
+  _ignoredTags:
+  - ControlPoint
 --- !u!1 &1291295503164410
 GameObject:
   m_ObjectHideFlags: 0

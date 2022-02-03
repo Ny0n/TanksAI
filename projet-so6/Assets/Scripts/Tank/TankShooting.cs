@@ -10,26 +10,27 @@ public class TankShooting : MonoBehaviour
     public float m_LaunchForce = 15f;           // The force given to the shell if the fire button is not held.
 
     [SerializeField] private CooldownSO _shootingCooldown;
-    private CooldownSO _shootingCooldownInstance;
 
     private void Start()
     {
         // The fire axis is based on the player number.
         m_FireButton = "Fire" + m_PlayerNumber;
-        _shootingCooldownInstance = Instantiate(_shootingCooldown);
     }
 
     private void Update()
     {
-        
+        if (Input.GetButtonDown(m_FireButton))
+        {
+            TryToFire();
+        }
     }
 
-    public void TryToFire()
+    private void TryToFire()
     {
         // check the cooldown
-        if (_shootingCooldownInstance.IsCooldownDone())
+        if (_shootingCooldown.IsCooldownDone())
         {
-            _shootingCooldownInstance.StartCooldown();
+            _shootingCooldown.StartCooldown();
             Fire();
         }
     }
@@ -37,9 +38,9 @@ public class TankShooting : MonoBehaviour
     private void Fire()
     {
         // Create an instance of the shell and store a reference to it's rigidbody.
-        Rigidbody shellInstance =
-            Instantiate(m_Shell, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
+        Rigidbody shellInstance = Instantiate(m_Shell, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
 
+        // remove the shell's gravity
         shellInstance.useGravity = false;
 
         // Set the shell's velocity to the launch force in the fire position's forward direction.
@@ -50,6 +51,5 @@ public class TankShooting : MonoBehaviour
         m_ShootingAudio.Play();
     }
     
-    private string m_FireButton = "";                // The input axis that is used for launching shells.
-    public string FireButton => m_FireButton;                // The input axis that is used for launching shells.
+    private string m_FireButton; // The input axis that is used for launching shells.
 }

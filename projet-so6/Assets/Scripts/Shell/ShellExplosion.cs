@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ShellExplosion : MonoBehaviour
@@ -10,6 +12,8 @@ public class ShellExplosion : MonoBehaviour
     public float m_MaxLifeTime = 4f;                    // The time in seconds before the shell is removed.
     public float m_ExplosionRadius = 5f;                // The maximum distance away from the explosion tanks can be and are still affected.
 
+    [SerializeField] private List<string> _ignoredTags;
+    
     private void Start()
     {
         // If it isn't destroyed by then, destroy the shell after it's lifetime.
@@ -18,6 +22,9 @@ public class ShellExplosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_ignoredTags.Any(other.CompareTag))
+            return;
+        
 		// Collect all the colliders in a sphere from the shell's current position to a radius of the explosion radius.
         Collider[] colliders = Physics.OverlapSphere(transform.position, m_ExplosionRadius, m_TankMask);
 

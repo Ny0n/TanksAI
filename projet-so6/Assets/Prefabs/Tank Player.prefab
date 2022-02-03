@@ -10195,13 +10195,14 @@ GameObject:
   - component: {fileID: 6507708}
   - component: {fileID: 8261418}
   - component: {fileID: 8268710}
+  - component: {fileID: 5187568364659042264}
   - component: {fileID: 11443146}
   - component: {fileID: 11409376}
   - component: {fileID: 11488788}
   - component: {fileID: 2523414829925996835}
   m_Layer: 7
   m_Name: Tank Player
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10446,6 +10447,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &5187568364659042264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 524766d81ae7c7043a4bfba3db403bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11443146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10479,6 +10492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030896d0325fa3e4d8d7d4cfe2351cb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tankDeath: {fileID: 11400000, guid: 00fb6b643c51c684886c2df736be600d, type: 2}
   m_StartingHealth: 100
   m_Slider: {fileID: 11482748}
   m_FillImage: {fileID: 11404512}
@@ -10519,7 +10533,6 @@ MonoBehaviour:
   firstStates:
   - {fileID: 11400000, guid: 6393bf90116c5f84ab5413af6da1fda8, type: 2}
   - {fileID: 11400000, guid: e907e0efc55a72e4b8a781071699a4e7, type: 2}
-  currentStates: []
   Player: 1
   turnRateCurve:
     serializedVersion: 2
@@ -10605,6 +10618,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  AIShot: 0
 --- !u!1 &173936
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,8 @@ public class TankShooting : MonoBehaviour
     private void Start()
     {
         // The fire axis is based on the player number.
+        Debug.Log("Fire" + m_PlayerNumber);
+        
         m_FireButton = "Fire" + m_PlayerNumber;
         _shootinCooldownInstance = Instantiate(_shootingCooldown);
     }

@@ -14,6 +14,7 @@ public class TankManager
     private TankShooting m_Shooting;                        // Reference to tank's shooting script, used to disable and enable control.
     private GameObject m_CanvasGameObject;                  // Used to disable the world space UI during the Starting and Ending phases of each round.
 
+    private TankStateManager _stateManager;
     public TankManager(TeamSO team, int playerNumber)
     {
         _team = team;
@@ -27,6 +28,7 @@ public class TankManager
         m_Instance.GetComponent<TankData>().Manager = this;
         m_Movement = m_Instance.GetComponent<TankMovement>();
         m_Shooting = m_Instance.GetComponent<TankShooting>();
+        _stateManager = m_Instance.GetComponent<TankStateManager>();
         m_CanvasGameObject = m_Instance.GetComponentInChildren<Canvas>().gameObject;
 
         // Set the player numbers to be consistent across the scripts.
@@ -50,6 +52,7 @@ public class TankManager
     {
         m_Movement.enabled = false;
         m_Shooting.enabled = false;
+        _stateManager.enabled = false;
 
         m_CanvasGameObject.SetActive(false);
     }
@@ -59,6 +62,7 @@ public class TankManager
     {
         m_Movement.enabled = true;
         m_Shooting.enabled = true;
+        _stateManager.enabled = true;
 
         m_CanvasGameObject.SetActive(true);
     }

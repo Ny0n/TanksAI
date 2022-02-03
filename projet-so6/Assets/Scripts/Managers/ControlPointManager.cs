@@ -16,22 +16,29 @@ public class ControlPointManager : MonoBehaviour
      * 
      * */
     
+    [Header("Misc Data")]
     [SerializeField] private SettingsVariableSO _settings;
     [SerializeField] private BoolVariableSO _gameEnded;
     [SerializeField] private TeamsListSO _teamsList;
+    
+    [Header("Control Point Data")]
     [SerializeField] private CooldownSO _captureDrop;
     [SerializeField] private TeamVariableSO _controllingTeam; // IA data #1
     [SerializeField] private BoolVariableSO _isControllingTeamOnPoint;
     
+    [Header("Capture settings")]
     [SerializeField] private float _captureSpeed = 30;
     [SerializeField] private float _captureSpeedBonusPerTank = 10;
     [SerializeField] private float _captureDropAutoSpeed = 10;
     [SerializeField] private float _captureDropEnemySpeed = 30;
     [SerializeField] private float _captureDropEnemySpeedBonusPerTank = 10;
-    [SerializeField] private float _pointsWinningSpeed = 4;
-    [SerializeField] private float _pointsWinningSpeedBonusPerTank = 2;
     [SerializeField] private bool _dropCaptureInstant;
     
+    [Header("Points settings")]
+    [SerializeField] private float _pointsWinningSpeed = 4;
+    [SerializeField] private float _pointsWinningSpeedBonusPerTank = 2;
+    
+    [Header("UI/World Data")]
     [SerializeField] private GameObject _helipad;
     [SerializeField] private Image _captureImage;
 
@@ -93,16 +100,16 @@ public class ControlPointManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _controllingTeam.Value = default;
-        _isControllingTeamOnPoint.Value = default;
-        _capture = default;
-
         _teamsOnPoint = new List<TeamSO>();
         _tanksOnPoint = new List<GameObject>();
         _savedColors = new List<Color>();
         MeshRenderer[] renderers = _helipad.GetComponentsInChildren<MeshRenderer>();
         foreach (var m in renderers)
             _savedColors.Add(m.material.color);
+        
+        _controllingTeam.Value = default;
+        _isControllingTeamOnPoint.Value = default;
+        _capture = default;
     }
 
     // Update is called once per frame

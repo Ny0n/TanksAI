@@ -304,7 +304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194018015}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0.4}
+  m_LocalPosition: {x: -1.02, y: 0, z: -0.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 591403089}
@@ -2227,14 +2227,13 @@ MonoBehaviour:
   _settings: {fileID: 11400000, guid: a9ce33f8b185602419a1d29963390256, type: 2}
   _gameEnded: {fileID: 11400000, guid: 8c475891005b0c34cb37d0b21adeea63, type: 2}
   _timer: {fileID: 11400000, guid: 6327bdf6dddb7224782aff12640be274, type: 2}
-  _tankRespawnTime: 5
-  m_StartDelay: 3
-  m_EndDelay: 3
-  m_CameraControl: {fileID: 1771596988}
-  m_MessageText: {fileID: 102963701}
-  tankPrefab: {fileID: 173472, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
   _teamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
-  _winningTeam: {fileID: 0}
+  _tankRespawnTime: 5
+  _startDelay: 3
+  _endDelay: 3
+  _cameraControl: {fileID: 1771596988}
+  _messageText: {fileID: 102963701}
+  tankPrefab: {fileID: 173472, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
 --- !u!4 &1304999366
 Transform:
   m_ObjectHideFlags: 0
@@ -3657,26 +3656,6 @@ PrefabInstance:
     - target: {fileID: 6681102468023203291, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
       propertyPath: m_Name
       value: ControlPoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
-      propertyPath: _settings
-      value: 
-      objectReference: {fileID: 11400000, guid: a9ce33f8b185602419a1d29963390256, type: 2}
-    - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
-      propertyPath: _gameEnded
-      value: 
-      objectReference: {fileID: 11400000, guid: 8c475891005b0c34cb37d0b21adeea63, type: 2}
-    - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
-      propertyPath: _teamsList
-      value: 
-      objectReference: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
-    - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
-      propertyPath: _captureDropAutoSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8967875540357254733, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}
-      propertyPath: _captureDropEnemyBonusSpeed
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64aeeb3d0fc80a6419ff974dd4b2e470, type: 3}

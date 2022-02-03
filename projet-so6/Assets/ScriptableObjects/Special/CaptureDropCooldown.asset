@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9672e147ed07cc458e7933df6e89e81, type: 3}
-  m_Name: TeamBlue
+  m_Script: {fileID: 11500000, guid: 3571841b846f1b148b1958d3d7218e3d, type: 3}
+  m_Name: CaptureDropCooldown
   m_EditorClassIdentifier: 
-  _name: Blue
-  _color: {r: 0, g: 0.02282834, b: 1, a: 1}
-  _nbPlayers: 1
-  _spawnTransform: {fileID: 11400000, guid: d0ae6e1d7aa0b4b4d9d2263d1aab6f15, type: 2}
-  _points: 0
+  _cooldownDuration: 0.5

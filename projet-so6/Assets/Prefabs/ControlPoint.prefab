@@ -179,14 +179,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d569e35ab796f6b4eb7e470064224c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _winPoints: {fileID: 11400000, guid: 72241f45926654f43802237b6c88a9f9, type: 2}
+  _settings: {fileID: 11400000, guid: a9ce33f8b185602419a1d29963390256, type: 2}
+  _gameEnded: {fileID: 11400000, guid: 8c475891005b0c34cb37d0b21adeea63, type: 2}
+  _teamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
   _captureDrop: {fileID: 11400000, guid: 09366ceb218b5f441b8e0c087f7419cc, type: 2}
   _controllingTeam: {fileID: 11400000, guid: a52255b41ff44e74aa1ea93c472a4125, type: 2}
   _isControllingTeamOnPoint: {fileID: 11400000, guid: b7d57f9307076eb4e99e99ffefedf381, type: 2}
-  _captureSpeed: 20
-  _captureDropSpeed: 30
-  _controlPointWinningSpeed: 4
+  _captureSpeed: 30
+  _captureSpeedBonusPerTank: 10
+  _captureDropAutoSpeed: 10
+  _captureDropEnemySpeed: 30
+  _captureDropEnemySpeedBonusPerTank: 10
   _dropCaptureInstant: 0
+  _pointsWinningSpeed: 4
+  _pointsWinningSpeedBonusPerTank: 2
   _helipad: {fileID: 6681102468180797193}
   _captureImage: {fileID: 7157144079320229610}
 --- !u!1 &7630286694350905912

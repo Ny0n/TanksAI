@@ -11,20 +11,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SettingsVariableSO _settings;
     [SerializeField] private BoolVariableSO _gameEnded;
     [SerializeField] private FloatVariableSO _timer;
-    [SerializeField] private float _tankRespawnTime = 5f;
+    [SerializeField] private TeamsListSO _teamsList;
     
-    public float m_StartDelay = 3f;             // The delay between the start of RoundStarting and RoundPlaying phases.
-    public float m_EndDelay = 3f;               // The delay between the end of RoundPlaying and RoundEnding phases.
-    public CameraControl m_CameraControl;       // Reference to the CameraControl script for control during different phases.
-    public Text m_MessageText;                  // Reference to the overlay Text to display winning text, etc.
+    [Header("General Settings")]
+    [SerializeField] private float _tankRespawnTime = 5f;
+    [SerializeField] private float _startDelay = 3f;        // The delay between the start of RoundStarting and RoundPlaying phases.
+    [SerializeField] private float _endDelay = 3f;          // The delay between the end of RoundPlaying and RoundEnding phases.
+    
+    [Space]
+    [SerializeField] private CameraControl _cameraControl;  // Reference to the CameraControl script for control during different phases.
+    [SerializeField] private Text _messageText;             // Reference to the overlay Text to display winning text, etc.
 
-    private WaitForSeconds m_StartWait;         // Used to have a delay whilst the round starts.
-    private WaitForSeconds m_EndWait;           // Used to have a delay whilst the round or game ends.
+    private WaitForSeconds _startWait;  // Used to have a delay whilst the round starts.
+    private WaitForSeconds _endWait;    // Used to have a delay whilst the round or game ends.
     
     public GameObject tankPrefab;
     
-    [SerializeField] private TeamsListSO _teamsList;
-    [SerializeField] private TeamSO _winningTeam;
+    private TeamSO _winningTeam;
     private List<TankManager> _tanks;
 
     private bool _isTimerActive;
@@ -42,8 +45,8 @@ public class GameManager : MonoBehaviour
         Physics.defaultMaxDepenetrationVelocity = k_MaxDepenetrationVelocity;
         
         // Create the delays so they only have to be made once.
-        m_StartWait = new WaitForSeconds(m_StartDelay);
-        m_EndWait = new WaitForSeconds(m_EndDelay);
+        _startWait = new WaitForSeconds(_startDelay);
+        _endWait = new WaitForSeconds(_endDelay);
 
         SpawnAllTanks();
         SetCameraTargets();
@@ -125,7 +128,7 @@ public class GameManager : MonoBehaviour
         }
 
         // These are the targets the camera should follow.
-        m_CameraControl.m_Targets = targets;
+        _cameraControl.m_Targets = targets;
     }
 
     // This is called from start and will run each phase of the game one after another.
@@ -143,12 +146,12 @@ public class GameManager : MonoBehaviour
         DisableTankControl();
 
         // Snap the camera's zoom and position to something appropriate for the reset tanks.
-        m_CameraControl.SetStartPositionAndSize();
+        _cameraControl.SetStartPositionAndSize();
 
-        m_MessageText.text = "GAME START";
+        _messageText.text = "GAME START";
 
         // Wait for the specified length of time until yielding control back to the game loop.
-        yield return m_StartWait;
+        yield return _startWait;
     }
 
     private IEnumerator GamePlaying()
@@ -157,7 +160,7 @@ public class GameManager : MonoBehaviour
         EnableTankControl();
 
         // Clear the text from the screen.
-        m_MessageText.text = string.Empty;
+        _messageText.text = string.Empty;
 
         while (true)
         {
@@ -251,10 +254,10 @@ public class GameManager : MonoBehaviour
 
         // display the end message
         string message = EndMessage();
-        m_MessageText.text = message;
+        _messageText.text = message;
 
         // wait and end the game
-        yield return m_EndWait;
+        yield return _endWait;
     }
 
     private string EndMessage()

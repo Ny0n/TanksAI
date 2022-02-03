@@ -52,7 +52,7 @@ namespace BehaviourTree
             _tree = tree;
 
             graphViewChanged -= OnGraphViewChanged;
-            DeleteElements(graphElements);
+            DeleteElements(graphElements); 
             graphViewChanged += OnGraphViewChanged;
 
             if (tree.rootNode == null)

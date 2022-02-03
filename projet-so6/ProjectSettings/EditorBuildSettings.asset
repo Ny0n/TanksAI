@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameAiVsAi.unity
     guid: 37961ba4d27bd46428d20c2ffe403dc3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GamePlayerVsAi.unity
     guid: 64925a15866d51c428abb96d88d0514d
   m_configObjects: {}

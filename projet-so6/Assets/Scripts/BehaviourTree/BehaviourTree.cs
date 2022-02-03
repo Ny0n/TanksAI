@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace BehaviourTree
@@ -23,6 +25,7 @@ namespace BehaviourTree
             return treeState;
         }
 
+#if UNITY_EDITOR
         public Node CreateNode(System.Type type)
         {
             Node node = ScriptableObject.CreateInstance(type) as Node;
@@ -108,6 +111,8 @@ namespace BehaviourTree
             }
             
         }
+        
+#endif
         public List<Node> GetChildren(Node parent)
         {
             List<Node> children = new List<Node>();

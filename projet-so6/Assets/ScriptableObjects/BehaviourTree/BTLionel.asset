@@ -1,26 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8555246633786351886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf7970a5be4c6a046ba7a9ba7ddf0353, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: bae218ced3ca1a449bd2bea961031283
-  position: {x: 240.8953, y: 760}
-  blackboard:
-    TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
-  description: 
-  duration: 0.5
 --- !u!114 &-1884322616503749735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,7 +18,6 @@ MonoBehaviour:
   position: {x: -204.60016, y: 406.00006}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   positionName: controlPointPos
   goalPrecision: 1.5
@@ -58,10 +36,9 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: fd72cda6e624626459fc0895c2cdc47a
-  position: {x: 415.29532, y: 760}
+  position: {x: 547.45, y: 563.2001}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
 --- !u!114 &11400000
 MonoBehaviour:
@@ -86,11 +63,9 @@ MonoBehaviour:
   - {fileID: 8184947192448897708}
   - {fileID: -1884322616503749735}
   - {fileID: 7181019357816506171}
-  - {fileID: -8555246633786351886}
   - {fileID: 1805468817544724136}
   blackboard:
     TeamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
-    MapWaypoints: {fileID: 0}
 --- !u!114 &156643315430551702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +84,6 @@ MonoBehaviour:
   position: {x: 0, y: -254}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   child: {fileID: 3887428107081038855}
 --- !u!114 &1805468817544724136
@@ -130,11 +104,11 @@ MonoBehaviour:
   position: {x: -0.00001335144, y: 118.628265}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   children:
   - {fileID: -1884322616503749735}
   - {fileID: 5660897014517138478}
+  - {fileID: 2410242790559242397}
 --- !u!114 &2410242790559242397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,14 +124,12 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 7ce23f8f5dbf5b441b1550fc2c3dcb16
-  position: {x: 240.00002, y: 602.62427}
+  position: {x: 372.25, y: 405.6}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   children:
   - {fileID: 7181019357816506171}
-  - {fileID: -8555246633786351886}
   - {fileID: -171860415771840470}
 --- !u!114 &3887428107081038855
 MonoBehaviour:
@@ -177,7 +149,6 @@ MonoBehaviour:
   position: {x: 0.00000667572, y: -132.52284}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   child: {fileID: 8184947192448897708}
   numberRepeat: 0
@@ -197,12 +168,10 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 960b15214a2d8a040b14836dbf5dbda5
-  position: {x: 239.68758, y: 437.615}
+  position: {x: 0.0000104904175, y: 405.6}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
-  child: {fileID: 2410242790559242397}
   tankMask:
     serializedVersion: 2
     m_Bits: 128
@@ -222,10 +191,9 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 04e73f9bcd573824eb1a312848bf856e
-  position: {x: 34.922497, y: 760}
+  position: {x: 167.45001, y: 563.2001}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   TargetPosKey: targetPos
 --- !u!114 &8184947192448897708
@@ -246,7 +214,6 @@ MonoBehaviour:
   position: {x: 0.00000667572, y: -15.898628}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   child: {fileID: 1805468817544724136}
   boolList:

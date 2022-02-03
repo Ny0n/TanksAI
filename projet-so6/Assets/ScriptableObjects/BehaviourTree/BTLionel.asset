@@ -15,12 +15,12 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3c3b077e386163848a852a82685a17f2
-  position: {x: -204.60016, y: 406.00006}
+  position: {x: -204.7999, y: 429.39896}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
   positionName: controlPointPos
-  goalPrecision: 1.5
+  goalPrecision: 5
 --- !u!114 &-171860415771840470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: fd72cda6e624626459fc0895c2cdc47a
-  position: {x: 547.45, y: 563.2001}
+  position: {x: 548.00006, y: 586.999}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
@@ -101,7 +101,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: a21bcb01fcc0fcb478d89d95dbdfa4a3
-  position: {x: -0.00001335144, y: 118.628265}
+  position: {x: 0.000056266785, y: 142.19904}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
@@ -124,7 +124,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 7ce23f8f5dbf5b441b1550fc2c3dcb16
-  position: {x: 372.25, y: 405.6}
+  position: {x: 372.8, y: 429.39896}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
@@ -168,7 +168,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 960b15214a2d8a040b14836dbf5dbda5
-  position: {x: 0.0000104904175, y: 405.6}
+  position: {x: 0.000056266785, y: 429.39896}
   blackboard:
     TeamsList: {fileID: 0}
   description: 
@@ -191,7 +191,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 04e73f9bcd573824eb1a312848bf856e
-  position: {x: 167.45001, y: 563.2001}
+  position: {x: 168.00003, y: 586.999}
   blackboard:
     TeamsList: {fileID: 0}
   description: 

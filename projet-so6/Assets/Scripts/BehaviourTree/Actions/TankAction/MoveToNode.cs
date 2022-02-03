@@ -13,7 +13,7 @@ namespace BehaviourTree
 
         public string positionName;
         
-        [Range(0.1f, 2f)]
+        [Range(0.1f, 10f)]
         [SerializeField] private float goalPrecision;
         
         protected override void OnStart()

@@ -9,6 +9,13 @@ namespace BehaviourTree
 
         private void Start()
         {
+            if (!tree) return;
+
+            Initialize();
+        }
+
+        public void Initialize()
+        {
             tree = tree.Clone();
             tree.Bind();
         }

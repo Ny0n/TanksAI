@@ -7,13 +7,11 @@ using UnityEngine;
 public class NextPoint : ActionNode
 {
     private int _current;
-    private Vector3ListSO _waypoints;
-    [SerializeField] private string waypointsString;
+    public Vector3ListSO _waypoints;
     
     protected override void OnStart()
     {
         _current = blackboard.GetValue<int>("currentPoint");
-        _waypoints = blackboard.MapWaypoints;
     }
 
     protected override void OnStop()

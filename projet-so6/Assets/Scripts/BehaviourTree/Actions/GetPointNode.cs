@@ -7,6 +7,7 @@ namespace BehaviourTree
     public class GetPointNode : ActionNode
     {
         public string indexString;
+        public Vector3ListSO map;
 
         protected override void OnStart()
         {
@@ -17,7 +18,7 @@ namespace BehaviourTree
             
             var current = blackboard.GetValue<int>(indexString);
             
-            var waypoint = blackboard.MapWaypoints.Value[current];
+            var waypoint = map.Value[current];
             blackboard.SetValue("waypoint", waypoint);
         }
 

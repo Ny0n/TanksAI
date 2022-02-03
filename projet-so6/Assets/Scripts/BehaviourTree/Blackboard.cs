@@ -7,7 +7,6 @@ namespace BehaviourTree
     public class Blackboard
     {
         public TeamsListSO TeamsList;
-        public Vector3ListSO MapWaypoints;
         
         private Dictionary<string, object> _dictionary;
 

@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0a2134a9c2edbef48aed651715220f4f
-  position: {x: 48.668015, y: 852.99994}
+  position: {x: 192.4185, y: 853}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: afdecd99ed6d9a6489b3225177b2e902
-  position: {x: -57.000027, y: 491.95825}
+  position: {x: 86.41841, y: 492}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
@@ -159,7 +159,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9ff2e8cd343efe241ae258a5e6de128f
-  position: {x: -724, y: 413}
+  position: {x: -520, y: 492}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
@@ -180,7 +180,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ce268874967015a44954169afe9da8d3
-  position: {x: -176.47913, y: 852.99994}
+  position: {x: -32.581573, y: 853}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
@@ -224,7 +224,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: d2ac904f97e93cf4f90ff2efb90f90af
-  position: {x: -514, y: 413}
+  position: {x: -310.00003, y: 492}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
@@ -266,7 +266,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e1f963322ab7cf74385f11b973ff6694
-  position: {x: -312.11005, y: 413.00003}
+  position: {x: -107.99997, y: 492}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
@@ -311,7 +311,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6f9ad6240f8d025429a0936fd898cf6e
-  position: {x: -57.000027, y: 679.99994}
+  position: {x: 86.41841, y: 680}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
@@ -334,16 +334,16 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b70e25316e8789e46852a5b5ce4fa915
-  position: {x: -57.000027, y: 272.99997}
+  position: {x: 86.41841, y: 273}
   blackboard:
     TeamsList: {fileID: 0}
     MapWaypoints: {fileID: 0}
   description: 
   children:
   - {fileID: 2253885561949286372}
+  - {fileID: 4328847427751862517}
   - {fileID: 4850071297632407899}
   - {fileID: -871969710334488252}
-  - {fileID: 4328847427751862517}
 --- !u!114 &6754443810916240997
 MonoBehaviour:
   m_ObjectHideFlags: 0

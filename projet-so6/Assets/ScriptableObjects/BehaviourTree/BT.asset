@@ -18,7 +18,6 @@ MonoBehaviour:
   position: {x: 297.00003, y: -238.10002}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   child: {fileID: 3558146475719415561}
 --- !u!114 &-8134240659784171272
@@ -36,12 +35,12 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9c3740738dce4714f9d60e79d982e8c2
-  position: {x: 133.99997, y: 337.485}
+  position: {x: 147.00005, y: 337}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   indexString: currentPoint
+  map: {fileID: 11400000, guid: 5554c7b8e11f1d548af7359c93fe8692, type: 2}
 --- !u!114 &-7813890288977465541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +59,6 @@ MonoBehaviour:
   position: {x: 296.99997, y: 161.48499}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   children:
   - {fileID: -8134240659784171272}
@@ -90,7 +88,6 @@ MonoBehaviour:
   - {fileID: 7369580477545643182}
   blackboard:
     TeamsList: {fileID: 11400000, guid: 0b1b601391324134bb0c8e6c479e130b, type: 2}
-    MapWaypoints: {fileID: 11400000, guid: 478084c5dca87ea4d980a4d8aa68decc, type: 2}
 --- !u!114 &3558146475719415561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +106,6 @@ MonoBehaviour:
   position: {x: 297, y: -136}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   child: {fileID: 7369580477545643182}
   numberRepeat: 0
@@ -132,9 +128,8 @@ MonoBehaviour:
   position: {x: 464.99994, y: 337.485}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
-  waypointsString: mapWaypoints
+  _waypoints: {fileID: 11400000, guid: 5554c7b8e11f1d548af7359c93fe8692, type: 2}
 --- !u!114 &6754443810916240997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,10 +145,9 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 5979f264de934584d86e9dcae023e175
-  position: {x: 296.99997, y: 337.485}
+  position: {x: 315, y: 337}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   positionName: waypoint
   goalPrecision: 0.66
@@ -175,7 +169,6 @@ MonoBehaviour:
   position: {x: 296.99997, y: -12.709907}
   blackboard:
     TeamsList: {fileID: 0}
-    MapWaypoints: {fileID: 0}
   description: 
   child: {fileID: -7813890288977465541}
   boolList:

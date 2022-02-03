@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffddcf4ceff539f4bae95f950b12ffce, type: 3}
-  m_Name: BT Hunter
+  m_Name: BT_Hunter
   m_EditorClassIdentifier: 
   rootNode: {fileID: -8324182591137516565}
   treeState: 0

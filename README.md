@@ -9,7 +9,7 @@ Learn about AI on Unity.
 
 #### Technology used
 Unity 2020.3  
-C++
+C#
 
 #### Group
 Flavien MERITTO   
@@ -18,7 +18,6 @@ Killian PEREZ (myself)
 
 #### Time to realize it
 1 month
-
 
 ## Acquired skills
 - A*, Dijkstra algorithms

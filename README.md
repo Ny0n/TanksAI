@@ -2,9 +2,23 @@
 3D top down Tank shooter game with AI
  
 ## Context
-This game has been made for educational purpose in Gaming Campus school.  
-The main focus was to learn about AI on Unity.  
-This project was made with the help of my classmates Lionel JANIN and Flavien MERITTO
+This game has been made for educational purpose during the first year of the Msc Video Game programming in Gaming Campus with the supervision of Matthieu GOLSENNE.  
+
+#### Objective
+Learn about AI on Unity.  
+
+#### Technology used
+Unity 2020.3  
+C++
+
+#### Group
+Flavien MERITTO   
+Lionel JANIN  
+Killian PEREZ (myself)
+
+#### Time to realize it
+1 month
+
 
 ## Acquired skills
 - A*, Dijkstra algorithms

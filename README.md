@@ -1,22 +1,22 @@
-# Projet So6
-3D top down Tank shooter game with AI
+# Tanks! (with AI)
+3D top down Tank shooter game with AI made on Unity.
  
 ## Context
-This game has been made for educational purpose during the first year of the Msc Video Game programming in Gaming Campus with the supervision of Matthieu GOLSENNE.  
+This game has been made for educational purposes during the first year of the Msc Video Game programming in Gaming Campus with the supervision of Matthieu GOLSENNE.
 
 #### Objective
-Learn about AI on Unity.  
+Learn about AI on Unity.
 
 #### Technology used
 Unity 2020.3  
 C#
 
 #### Group
-Flavien MERITTO   
+Flavien MERITTO (me)  
 Lionel JANIN  
-Killian PEREZ (myself)
+Killian PEREZ
 
-#### Time to realize it
+#### Time to do it
 1 month
 
 ## Acquired skills
@@ -29,4 +29,4 @@ Killian PEREZ (myself)
 - Switch between behaviours depending on the context
 
 ## Assets
-The assets used in this project come from Unity's tank project.
+The assets used come from the Unity Learn - Tanks project.

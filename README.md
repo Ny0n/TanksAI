@@ -1,5 +1,5 @@
-# Tanks! (with AI)
-3D top down Tank shooter game with AI made on Unity.
+# TanksAI - Unity Project
+3D top down Tank shooter game with AI.
  
 ## Context
 This game has been made for educational purposes during the first year of the Msc Video Game programming in Gaming Campus with the supervision of Matthieu GOLSENNE.

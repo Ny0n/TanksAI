@@ -11,7 +11,7 @@ Learn about AI on Unity.
 Unity 2020.3  
 C#
 
-#### Group
+#### Team
 Flavien MERITTO (me)  
 Lionel JANIN  
 Killian PEREZ
